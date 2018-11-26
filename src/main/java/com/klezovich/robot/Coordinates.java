@@ -4,20 +4,20 @@ public class Coordinates {
 
 	private Integer x;
     private Integer y;
-	private Direction orienation;
+	private Direction direction;
     
-	public Coordinates( Integer x, Integer y, Direction orientation ) {
+	public Coordinates( Integer x, Integer y, Direction direction ) {
 		this.x=x;
 		this.y=y;
-		this.orienation = orientation;
+		this.direction = direction;
 	}
 	
     
-	public Direction getOrienation() {
-		return orienation;
+	public Direction getDirection() {
+		return direction;
 	}
-	public void setOrienation(Direction orienation) {
-		this.orienation = orienation;
+	public void setdirection(Direction direction) {
+		this.direction = direction;
 	}
 	public Integer getX() {
 		return x;
