@@ -19,7 +19,7 @@ public class AppController {
 	
 	@PostMapping("/")
 	public String processScript( @Valid @ModelAttribute("script") Script script, Model m ) {
-		System.out.println(script);
+		//System.out.println(script);
 		return "index";
 	}
 }
