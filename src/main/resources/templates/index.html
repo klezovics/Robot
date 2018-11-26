@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Business Frontpage - Start Bootstrap Template</title>
+
+
+<style>
+table {
+	width: 100%
+}
+
+tr {
+	border: 1px solid black;
+	border-width: 1px;
+}
+
+td {
+	border: 1px solid black;
+	height: 50px;
+	width: 50px;
+}
+
+.grid {
+	border: 1px solid #ccc;
+	border-width: 1px 0 0 1px;
+}
+
+.grid div {
+	border: 1px solid #ccc;
+	border-width: 0 1px 1px 0;
+	float: left;
+}
+</style>
+
+<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link th:href="@{/css/business-frontpage.css}" rel="stylesheet">
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" />
+
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/webjars/jquery/1.9.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+
+<style>
+.form-horizontal .control-label {
+	/* text-align:right; */
+	text-align: left;
+	background-color: #ffa;
+}
+</style>
+</head>
+
+
+<body>
+
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">Robot control room</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link" href="/">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Info</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+
+
+
+
+	<!-- Page Content -->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>Script</h2>
+				<form id="script_form">
+					<textarea name="text_area_1" cols="40" rows="20" form="script_form"></textarea>
+					<br> <input type="submit" />
+					<form>
+			</div>
+
+			<div class="col-sm-6">
+				<h2>Grid:</h2>
+				<div id="grid_container"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--  end of container -->
+
+
+	<script>
+		function drawGrid(maxH, maxW) {
+
+			var table = document.createElement("table");
+			for (var i = 0; i < maxH; i++) {
+				var tr = document.createElement('tr');
+				for (var j = 0; j < maxW; j++) {
+					var td = document.createElement('td');
+					td.id = i + ":" + j;
+					if (i % 2 == j % 2) {
+						td.className = "white";
+					} else {
+						td.className = "black";
+					}
+					tr.appendChild(td);
+				}
+				table.appendChild(tr);
+			}
+
+			document.getElementById("grid_container").appendChild(table);
+		}
+
+		var maxH = 5;
+		var maxW = 5;
+		drawGrid(maxH, maxW);
+		
+		function drawRobot( squareId ){
+			document.getElementById(squareId)
+		    .innerHTML = '<img src="Robot.png" width="50px" height="50px" />';
+		}
+		
+		drawRobot("0:0");
+	</script>
+</body>
+
+</html>
