@@ -98,10 +98,10 @@ td {
 		<div class="row">
 			<div class="col-sm-6">
 				<h2>Script</h2>
-				<form id="script_form">
-					<textarea name="text_area_1" cols="40" rows="20" form="script_form"></textarea>
+				<form th:action="@{/}" th:object="${script}" id="script_form" method="post">
+					<textarea name="text_area_1"  th:field ="*{text}" cols="40" rows="20" form="script_form"></textarea>
 					<br> <input type="submit" />
-					<form>
+				</form>
 			</div>
 
 			<div class="col-sm-6">
@@ -141,12 +141,11 @@ td {
 		var maxH = 5;
 		var maxW = 5;
 		drawGrid(maxH, maxW);
-		
-		function drawRobot( squareId ){
-			document.getElementById(squareId)
-		    .innerHTML = '<img src="Robot.png" width="50px" height="50px" />';
+
+		function drawRobot(squareId) {
+			document.getElementById(squareId).innerHTML = '<img src="Robot.png" width="50px" height="50px" />';
 		}
-		
+
 		drawRobot("0:0");
 	</script>
 </body>
