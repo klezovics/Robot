@@ -98,9 +98,11 @@ td {
 		<div class="row">
 			<div class="col-sm-6">
 				<h2>Script</h2>
-				<form th:action="@{/}" th:object="${script}" id="script_form" method="post">
-					<textarea name="text_area_1"  th:field ="*{text}" cols="40" rows="20" form="script_form"></textarea>
-					<br> <input type="submit" />
+				<form th:action="@{/}" th:object="${script}" id="script_form"
+					method="post">
+					<textarea id="ta1" name="text_area_1" th:field="*{text}" cols="40"
+						rows="20" form="script_form"></textarea>
+					<br> <input id="submit" type="button" value="Submit" />
 				</form>
 			</div>
 
@@ -147,6 +149,41 @@ td {
 		}
 
 		drawRobot("0:0");
+
+		$("#submit").click(function() {
+			
+			var url = window.location.href;
+			url = url + "robots/";
+			var text = $('#ta1').val();
+			console.log("Text is" + text);
+			console.log(url);
+
+			
+			
+			
+			var headers = {
+			   "Content-Type" : 'application/json' //for object property name, use quoted notation shown in second
+			}
+			
+			var requestObject = {
+					url : url,
+					headers:headers,
+					type: 'post',
+					data: text		
+			}
+			
+			console.log(requestObject);
+			console.log(JSON.stringify(requestObject))
+			$.ajax(requestObject)
+				  .done(function( data ) {
+				    if ( console && console.log ) {
+				      console.log( "Sample of data:", data );
+				    }
+				  });
+			
+		});
+			
+		
 	</script>
 </body>
 
