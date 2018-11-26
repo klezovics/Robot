@@ -3,20 +3,20 @@ package com.klezovich.robot;
 public class Coordinates {
 
 	private Integer x;
-    private  Integer y;
-	private Orientation orienation;
+    private Integer y;
+	private Direction orienation;
     
-	public Coordinates( Integer x, Integer y, Orientation orientation ) {
+	public Coordinates( Integer x, Integer y, Direction orientation ) {
 		this.x=x;
 		this.y=y;
 		this.orienation = orientation;
 	}
 	
     
-	public Orientation getOrienation() {
+	public Direction getOrienation() {
 		return orienation;
 	}
-	public void setOrienation(Orientation orienation) {
+	public void setOrienation(Direction orienation) {
 		this.orienation = orienation;
 	}
 	public Integer getX() {
