@@ -1,5 +1,5 @@
 package com.klezovich.robot;
 
 public enum Direction {
-  WEST,EAST,NORTH,SOUTH;
+   FORWARD,BACK,LEFT,RIGHT;
 }
