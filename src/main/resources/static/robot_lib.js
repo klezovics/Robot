@@ -16,9 +16,9 @@ class Robot{
 		return robot;
 	}
 	
-	static draw( squareId ){
+	static draw( x,y ){
 		Robot.remove();
-		let queryStr ="#"+squareId;
+		let queryStr ="#"+Grid.calcGridCellId(x,y);
 		var robot = Robot.createRobot();
 		$(queryStr).append(robot);
 	}
