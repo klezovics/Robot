@@ -1,21 +1,24 @@
+class RobotPageController{
+	
+	static  getCommandTextAreaId() {
+		var commandTextAreaId = "text_area_1";
+		return commandTextAreaId;
+	}
 
-function getCommandTextAreaId() {
-	var commandTextAreaId = "text_area_1";
-	return commandTextAreaId;
+	static clearCommandTextArea() {
+		$("#"+getCommandTextAreaId()).val('');
+	}
+
+	static clearRobotData() {
+		clearCommandTextArea();
+		Robot.remove();
+	}
 }
 
-function clearCommandTextArea() {
-	$("#"+getCommandTextAreaId()).val('');
-}
-
-function clearRobotData() {
-	clearCommandTextArea();
-	Robot.remove();
-}
 
 class BackEndCommunicationManager{
 	
-	static formUserScriptRequestObject(scriptText) {
+	static formUserScriptRequestObject(url,scriptText) {
 		
 		var headers = {
 				"Content-Type" : 'application/json' // for object property name, use
@@ -28,13 +31,18 @@ class BackEndCommunicationManager{
 				type : 'post',
 				data : scriptText
 			}
+		
+		return requestObject;
 	}
 	
 	static processScriptResponse(data) {
 
-		if (console && console.log) {
-			console.log("Sample of data:", data);
-		}
+		console.log(data);
+		
+		var response = jQuery.parseJSON(JSON.stringify(data));
+	    
+		Robot.draw( response.x, response.y )
+		
 
 	}
 	
@@ -44,16 +52,16 @@ class BackEndCommunicationManager{
 		var scriptProcessingEndpoint = "robots/";
 
 		url = url + scriptProcessingEndpoint;
-		var text = $("#" + getCommandTextAreaId()).val();
-		console.log("Text is" + text);
-		console.log(url);
+		var text = $("#" + RobotPageController.getCommandTextAreaId()).val();
+		//console.log("Text is" + text);
+		//console.log(url);
 
-		var requestObject = BackEndCommunicationManager.formUserScriptRequestObject();
-		console.log(requestObject);
-		console.log(JSON.stringify(requestObject))
+		var requestObject = BackEndCommunicationManager.formUserScriptRequestObject(url,text);
+		//console.log(requestObject);
+		//console.log(JSON.stringify(requestObject))
 
-		$.ajax(requestObject).done( BackEndCommunicationManager.processScriptResponse(data) );
+		$.ajax(requestObject).done( function(data) {BackEndCommunicationManager.processScriptResponse(data);} );
+		
 	}
-	
 	
 }

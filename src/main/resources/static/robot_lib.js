@@ -23,6 +23,13 @@ class Robot{
 		$(queryStr).append(robot);
 	}
 	
+	static draw( x,y,orientation ){
+		Robot.remove();
+		let queryStr ="#"+Grid.calcGridCellId(x,y);
+		var robot = Robot.createRobot();
+		$(queryStr).append(robot);
+	}
+	
 	static remove(){
 		let robotId = Robot.getRobotId();
 	    $( "#"+robotId ).remove();	
