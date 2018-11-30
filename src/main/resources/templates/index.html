@@ -40,19 +40,19 @@ td {
 }
 </style>
 
+<!--  Bootstrap and jQuery dependencies -->
 <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
 	rel="stylesheet">
 <link th:href="@{/css/business-frontpage.css}" rel="stylesheet">
+
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
-<link rel="stylesheet"
-	th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" />
 
-<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
-<script th:src="@{/webjars/jquery/1.9.1/jquery.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+
+
+
 
 <style>
 .form-horizontal .control-label {
@@ -100,9 +100,11 @@ td {
 				<h2>Script</h2>
 				<form th:action="@{/}" th:object="${script}" id="script_form"
 					method="post">
-					<textarea id="ta1" name="text_area_1" th:field="*{text}" cols="40"
+					<textarea id="text_area_1" name="text_area_1" th:field="*{text}" cols="40"
 						rows="20" form="script_form"></textarea>
-					<br> <input id="submit" type="button" value="Submit" />
+					<br> 
+					<input id="submit" type="button" value="Submit" />
+					<input id="reset" type="button" value="Reset" />
 				</form>
 			</div>
 
@@ -118,73 +120,27 @@ td {
 	<!--  end of container -->
 
 
-	<script>
-		function drawGrid(maxH, maxW) {
+<!--  Custom JS libraries -->
+<!--  Libraries for controlling various aspects of the page -->
 
-			var table = document.createElement("table");
-			for (var i = 0; i < maxH; i++) {
-				var tr = document.createElement('tr');
-				for (var j = 0; j < maxW; j++) {
-					var td = document.createElement('td');
-					td.id = i + ":" + j;
-					if (i % 2 == j % 2) {
-						td.className = "white";
-					} else {
-						td.className = "black";
-					}
-					tr.appendChild(td);
-				}
-				table.appendChild(tr);
-			}
+<!--  Library for controlling the grid -->
+<script th:src="@{/grid_lib.js}"></script>
 
-			document.getElementById("grid_container").appendChild(table);
-		}
+<!--  Library for controlling the robot -->
+<script th:src="@{/robot_lib.js}"></script>
 
-		var maxH = 5;
-		var maxW = 5;
-		drawGrid(maxH, maxW);
+<!--  Library for controlling various page elements -->
+<script th:src="@{/robot_page_lib.js}"></script>
 
-		function drawRobot(squareId) {
-			document.getElementById(squareId).innerHTML = '<img src="Robot.png" width="50px" height="50px" />';
-		}
 
-		drawRobot("0:0");
+<!-- Draws the initial page -->
+<script th:src="@{/draw_robot_page.js}"></script>
 
-		$("#submit").click(function() {
-			
-			var url = window.location.href;
-			url = url + "robots/";
-			var text = $('#ta1').val();
-			console.log("Text is" + text);
-			console.log(url);
+<!--  Adds listeners which react to user input -->
+<script th:src="@{/robot_page_add_listeners.js}"></script>
 
-			
-			
-			
-			var headers = {
-			   "Content-Type" : 'application/json' //for object property name, use quoted notation shown in second
-			}
-			
-			var requestObject = {
-					url : url,
-					headers:headers,
-					type: 'post',
-					data: text		
-			}
-			
-			console.log(requestObject);
-			console.log(JSON.stringify(requestObject))
-			$.ajax(requestObject)
-				  .done(function( data ) {
-				    if ( console && console.log ) {
-				      console.log( "Sample of data:", data );
-				    }
-				  });
-			
-		});
-			
-		
-	</script>
+
+
 </body>
 
 </html>
