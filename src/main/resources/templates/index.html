@@ -95,11 +95,10 @@ td {
 				<h2>Script</h2>
 				<form th:action="@{/}" th:object="${script}" id="script_form"
 					method="post">
-					<textarea id="text_area_1" name="text_area_1" th:field="*{text}" cols="40"
-						rows="20" form="script_form"></textarea>
-					<br> 
-					<input id="submit" type="button" value="Submit" />
-					<input id="reset" type="button" value="Reset" />
+					<textarea id="text_area_1" name="text_area_1" th:field="*{text}"
+						cols="40" rows="20" form="script_form"></textarea>
+					<br> <input id="submit" type="button" value="Submit" /> <input
+						id="reset" type="button" value="Reset" />
 				</form>
 			</div>
 
@@ -115,27 +114,20 @@ td {
 	<!--  end of container -->
 
 
-<!--  Custom JS libraries -->
-<!--  Libraries for controlling various aspects of the page -->
+	<!--  Custom JS libraries -->
+	<!--  Libraries for controlling various aspects of the page -->
 
-<!--  Library for controlling the grid -->
-<script th:src="@{/grid_lib.js}"></script>
+	<!--  Library for controlling the grid -->
+	<script th:src="@{/grid_lib.js}"></script>
 
-<!--  Library for controlling the robot -->
-<script th:src="@{/robot_lib.js}"></script>
+	<!--  Library for controlling the robot -->
+	<script th:src="@{/robot_lib.js}"></script>
 
-<!--  Library for controlling various page elements -->
-<script th:src="@{/robot_page_lib.js}"></script>
+	<!--  Library for controlling various page elements -->
+	<script th:src="@{/robot_page_lib.js}"></script>
 
-
-<!-- Draws the initial page -->
-<script th:src="@{/draw_robot_page.js}"></script>
-
-<!--  Adds listeners which react to user input -->
-<script th:src="@{/robot_page_add_listeners.js}"></script>
-
-
-
+	<!-- Draws the initial page and adds listeners -->
+	<script th:src="@{/draw_robot_page.js}"></script>
 </body>
 
 </html>
