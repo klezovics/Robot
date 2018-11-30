@@ -5,7 +5,7 @@ function drawGrid(maxH, maxW) {
 		var tr = document.createElement('tr');
 		for (var j = 0; j < maxW; j++) {
 			var td = document.createElement('td');
-			td.id = i + ":" + j;
+			td.id = "grid_cell_"+i + "x" + j;
 			
 			tr.appendChild(td);
 		}

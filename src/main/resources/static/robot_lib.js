@@ -2,23 +2,31 @@
 
 class Robot{
 	
-	constructor(){
-		var robot = document.createElement(img);
-		robot.id="robot";
-		robot.width="50px";
-		robot.height="50px";
-		src="Robot.png";
-		this._robot = robot
-	};
+    static getRobotId(){
+    	return "robot";
+    }
 	
-	draw( squareId ){	   	
-		$("#"+squareId).appendChild(robot);
+	static createRobot(){
+		
+		let robot = document.createElement("img");
+		robot.id=Robot.getRobotId();
+		robot.width="50";
+		robot.height="50";
+		robot.src="Robot.png";
+		return robot;
+	}
+	
+	static draw( squareId ){
+		Robot.remove();
+		let queryStr ="#"+squareId;
+		var robot = Robot.createRobot();
+		$(queryStr).append(robot);
 	}
 	
 	static remove(){
-	   this._robot.remove();	
+		let robotId = Robot.getRobotId();
+	    $( "#"+robotId ).remove();	
 	}
-	
 	
 }
 
