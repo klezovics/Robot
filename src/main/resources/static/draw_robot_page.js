@@ -5,4 +5,4 @@ Grid.draw(maxH, maxW);
 Robot.draw("grid_cell_0x0");
 
 $("#reset").click( clearRobotData );
-$("#submit").click( processUserScript );
+$("#submit").click( BackEndCommunicationManager.processUserScript );
