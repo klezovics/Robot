@@ -1,5 +1,4 @@
 var commandTextAreaId = "#text_area_1";
-var robotElementId = "#robot";
 
 function clearCommandTextArea() {
 	$(commandTextAreaId).val('');
@@ -11,7 +10,7 @@ function removeRobot() {
 
 function clearRobotData(){
 	clearCommandTextArea();
-	removeRobot();
+	Robot.remove();
 }
 
 function processUserScript(){
