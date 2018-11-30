@@ -4,7 +4,7 @@ class Grid{
    static draw( maxH, maxW ){
 	 
 	 var gridContainerId = "grid_container";
-	 var gridCellPrefix = "grid_cell";
+	 var gridCellPrefix = "grid_cell_";
 	 var gridCellCoordSeparator = "x";
 	 
 	 
