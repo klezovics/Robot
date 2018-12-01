@@ -1,26 +1,29 @@
 package com.klezovich.robot.command;
 
+import com.klezovich.robot.Direction;
 import com.klezovich.robot.Robot;
 
 public class RightCommand extends Command {
 
-	private static final String tag="RIGHT";
+	private static final String tag = "RIGHT";
 	private String[] args;
-	
-	public RightCommand( String[] args ) {
+
+	public RightCommand(String[] args) {
 		super(args);
 	}
-	
+
 	protected boolean validate() {
-		
-		if( !argListEmpty() )
+
+		if (!argListEmpty())
 			throw formArgsForNoArgCmdException();
-		
+
 		return true;
 	}
-	
+
 	public boolean execute(Robot r) {
-	  return true;	
+		
+		r.rotate(Direction.RIGHT);
+		return true;
 	}
-	
+
 }
