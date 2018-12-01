@@ -1,5 +1,6 @@
 package com.klezovich.robot.command;
 
+import com.klezovich.robot.Direction;
 import com.klezovich.robot.Robot;
 
 public class TurnaroundCommand extends Command {
@@ -19,6 +20,12 @@ public class TurnaroundCommand extends Command {
 	}
 	
 	public boolean execute(Robot r) {
+	
+	  Direction rotationDirection = Direction.getRandomLeftOrRight();
+	  
+	  r.rotate( rotationDirection );
+	  r.rotate( rotationDirection );
+	  
 	  return true;	
 	}
 	
