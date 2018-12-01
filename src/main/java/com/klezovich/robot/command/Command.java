@@ -4,7 +4,7 @@ import com.klezovich.robot.Robot;
 
 public abstract class Command {
 
-	private String tag;
+	private static final String tag=null;
 	private String[] args;
 	
 	public Command( String[] args ) {
