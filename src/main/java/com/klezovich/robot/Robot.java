@@ -6,22 +6,16 @@ import static com.klezovich.robot.Direction.*;
 public class Robot {
 
 	Coordinates coordinates;
+	Integer maxX;
+	Integer maxY;
 
+	
 	public Robot() {
 		
 	}
 	
 	public Robot(Coordinates coordinates) {
 		this.coordinates = coordinates;
-	}
-
-	public Coordinates setCoordinates(Coordinates coordinates) {
-		this.coordinates = coordinates;
-		return coordinates;
-	}
-	
-	public Coordinates getCoordinates() {
-		return coordinates;
 	}
 
 	public Coordinates moveForward(Integer distance) {
@@ -33,21 +27,26 @@ public class Robot {
 		int x = coordinates.getX();
 		int y = coordinates.getY();
 
+		Coordinates newCoordinates = new Coordinates( coordinates );
+		
 		switch (currentOrientation) {
 		case NORTH:
-			coordinates.setY(y - distance);
+			newCoordinates.setY(y - distance);
 			break;
 		case SOUTH:
-			coordinates.setY(y + distance);
+			newCoordinates.setY(y + distance);
 			break;
 		case WEST:
-			coordinates.setX(x - distance);
+			newCoordinates.setX(x - distance);
 			break;
 		case EAST:
-			coordinates.setX(x + distance);
+			newCoordinates.setX(x + distance);
 			break;
 		}
 
+		validateCoordiantes(newCoordinates);
+		
+		coordinates=newCoordinates;
 		return coordinates;
 	}
 
@@ -64,4 +63,47 @@ public class Robot {
 
 	}
 
+	public Coordinates setCoordinates(Coordinates coordinates) {
+		this.coordinates = coordinates;
+		return coordinates;
+	}
+
+	public Coordinates getCoordinates() {
+		return coordinates;
+	}
+
+	public Integer getMaxX() {
+		return maxX;
+	}
+
+	public void setMaxX(Integer maxX) {
+		this.maxX = maxX;
+	}
+
+	public Integer getMaxY() {
+		return maxY;
+	}
+
+	public void setMaxY(Integer maxY) {
+		this.maxY = maxY;
+	}
+
+	private boolean validateCoordiantes( Coordinates coordinates ) {
+		
+		boolean valid = true;
+		
+		int x = coordinates.getX();
+		int y = coordinates.getY();
+		
+		if( x < 0 || x > getMaxX() )
+			valid = false;
+		
+		if( y < 0 || y > getMaxY() )
+			valid = false;
+		
+		if( !valid )
+		   throw new RuntimeException("Invalid move which leads to out of range coordinates " + coordinates);
+			
+		return true;
+	}
 }
