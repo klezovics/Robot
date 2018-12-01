@@ -8,6 +8,10 @@ public class ForwardCommand extends Command {
 	private String[] args;
 	private Integer distance;
 	
+	static {
+		addArgumentDefinition(0,Integer.class);
+	}
+	
 	public ForwardCommand( String[] args ) {
 		super(args);
 	}
