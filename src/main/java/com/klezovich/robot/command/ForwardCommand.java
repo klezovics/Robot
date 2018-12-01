@@ -12,11 +12,13 @@ public class ForwardCommand extends Command {
 		super(args);
 	}
 	
+	@Override
 	protected boolean validate() {
 		
 		return true;
 	}
 	
+	@Override
 	public boolean execute(Robot r) {
 	  return true;	
 	}

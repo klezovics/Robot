@@ -12,10 +12,12 @@ public class TurnaroundCommand extends Command {
 		super(args);
 	}
 	
+	@Override
 	protected boolean validate() {
 		return true;
 	}
 	
+	@Override
 	public boolean execute(Robot r) {
 	
 	  Direction rotationDirection = Direction.getRandomLeftOrRight();

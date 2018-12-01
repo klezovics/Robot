@@ -12,14 +12,15 @@ public class WaitCommand extends Command {
 		super(args);
 	}
 	
-	protected boolean validate() {
-		
-		return true;
-	}
-	
+	@Override
 	public boolean execute(Robot r) {
 	  r.sleep();
 	  return true;	
+	}
+
+	@Override
+	protected boolean validate() {
+		return true;
 	}
 	
 }
