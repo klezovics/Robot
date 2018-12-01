@@ -10,7 +10,7 @@ import com.klezovich.robot.command.exception.CommandValidationException;
 public abstract class Command {
 
 	private static final String tag=null;
-	private static final Map<Integer,Class> argumentDefinitions = new HashMap<>();
+	private static final Map<Integer,Class> argDefinitions = new HashMap<>();
 	
 	private String[] args;
 	
@@ -27,7 +27,7 @@ public abstract class Command {
 		if( ArgumentClass != String.class && ArgumentClass != Integer.class && ArgumentClass != Orientation.class )
 			throw new RuntimeException("This type is not allowed");
 		
-		argumentDefinitions.put(argNum, ArgumentClass );
+		argDefinitions.put(argNum, ArgumentClass );
 		
 	}
 	
@@ -45,7 +45,7 @@ public abstract class Command {
 			
 			//TODO Move this to a separate class
 			String arg = args[argNum-1];
-			Class argClass = argumentDefinitions.get(argNum-1);
+			Class argClass = argDefinitions.get(argNum-1);
 		 
 			if( argClass == String.class )
 				continue;
@@ -72,7 +72,7 @@ public abstract class Command {
 	}
 	
 	protected int getCommandArgsNum() {
-		return argumentDefinitions.size();
+		return argDefinitions.size();
 	}
 	
 	protected int getSuppliedArgsNum() {
