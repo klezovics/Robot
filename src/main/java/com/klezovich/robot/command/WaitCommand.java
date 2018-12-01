@@ -25,8 +25,7 @@ public class WaitCommand extends Command {
 
 	@Override
 	protected boolean initializeFields() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 }

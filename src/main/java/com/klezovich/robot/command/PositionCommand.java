@@ -20,19 +20,18 @@ public class PositionCommand extends Command {
 	}
 	
 	@Override
-	protected boolean validateArguments() {
-		return true;
-	}
-	
-	@Override
 	public boolean execute(Robot r) {
 	  return true;	
 	}
 
 	@Override
+	protected boolean validateArguments() {
+		return true;
+	}
+	
+	@Override
 	protected boolean initializeFields() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 }
