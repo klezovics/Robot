@@ -14,7 +14,7 @@ public class WaitCommand extends Command {
 	
 	@Override
 	public boolean execute(Robot r) {
-	  r.sleep();
+
 	  return true;	
 	}
 
