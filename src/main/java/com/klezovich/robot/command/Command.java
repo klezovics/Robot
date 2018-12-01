@@ -21,6 +21,14 @@ public abstract class Command {
 	
 	public abstract boolean execute(Robot r);
 	
+	protected static void addArgumentDefinition( int argNum, Class ArgumentClass ) {
+		
+		if( ArgumentClass != String.class && ArgumentClass != Integer.class )
+			throw new RuntimeException("Only string and interger arguments allowed");
+		
+		argumentDefinitions.put(argNum, ArgumentClass );
+		
+	}
 	
 	protected abstract boolean validate();
 	
