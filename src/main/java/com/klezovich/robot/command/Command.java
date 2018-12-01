@@ -1,6 +1,7 @@
 package com.klezovich.robot.command;
 
 import com.klezovich.robot.Robot;
+import com.klezovich.robot.command.exception.CommandValidationException;
 
 public abstract class Command {
 
@@ -14,5 +15,20 @@ public abstract class Command {
 	
 	protected abstract boolean validate();
 	public abstract boolean execute(Robot r);
+	
+	protected boolean argListEmpty() {
+		if( args.length == 0 )
+			return true;
+		
+		return false;
+	}
+	
+	protected String formArgsForNoArgCmdErrorMsg() {
+		return "Command " + tag + " does not take any arguments"; 
+	}
+	
+	protected CommandValidationException formArgsForNoArgCmdErrorException() {
+		return new CommandValidationException(formArgsForNoArgCmdErrorMsg());
+	}
 	
 }

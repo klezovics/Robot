@@ -1,6 +1,7 @@
 package com.klezovich.robot.command;
 
 import com.klezovich.robot.Robot;
+import com.klezovich.robot.command.exception.CommandValidationException;
 
 public class WaitCommand extends Command {
 
@@ -12,10 +13,14 @@ public class WaitCommand extends Command {
 	}
 	
 	protected boolean validate() {
+		if( !argListEmpty() )
+			throw formArgsForNoArgCmdErrorException();
+		
 		return true;
 	}
 	
 	public boolean execute(Robot r) {
+	  r.sleep();
 	  return true;	
 	}
 	
