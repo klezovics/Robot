@@ -20,10 +20,6 @@ public class Robot {
 		return coordinates;
 	}
 
-	public Coordinates move(Integer distance, Direction direction) {
-		return coordinates;
-	}
-
 	public Coordinates moveForward(Integer distance) {
 
 		Orientation currentOrientation = coordinates.getOrientation();
@@ -56,14 +52,6 @@ public class Robot {
 
 		return coordinates;
 
-	}
-
-	public Coordinates turnAround() {
-		return coordinates;
-	}
-
-	public void sleep() {
-		return;
 	}
 
 }
