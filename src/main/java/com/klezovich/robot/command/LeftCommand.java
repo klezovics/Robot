@@ -13,8 +13,6 @@ public class LeftCommand extends Command {
 	}
 	
 	protected boolean validate() {
-		if( !argListEmpty() )
-			throw formArgsForNoArgCmdException();
 		return true;
 	}
 	
