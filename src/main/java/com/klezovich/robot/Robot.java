@@ -35,7 +35,7 @@ public class Robot {
 
 		switch (currentOrientation) {
 		case NORTH:
-			coordinates.setY(x - distance);
+			coordinates.setY(y - distance);
 			break;
 		case SOUTH:
 			coordinates.setY(y + distance);
