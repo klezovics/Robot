@@ -15,8 +15,12 @@ public class Robot {
 		this.coordinates = coordinates;
 	}
 
-	public Coordinates setPosition(Coordinates coordinates) {
+	public Coordinates setCoordinates(Coordinates coordinates) {
 		this.coordinates = coordinates;
+		return coordinates;
+	}
+	
+	public Coordinates getCoordinates() {
 		return coordinates;
 	}
 
