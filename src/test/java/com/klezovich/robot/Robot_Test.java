@@ -64,7 +64,7 @@ public class Robot_Test {
 	}
 	
 	@Test
-	public void test_Movements() {
+	public void test_LinearMovements() {
 		
 		Robot r = new Robot();
 		
