@@ -13,7 +13,7 @@ public class LeftCommand extends Command {
 	}
 	
 	@Override
-	protected boolean validate() {
+	protected boolean validateArguments() {
 		return true;
 	}
 	
@@ -22,6 +22,12 @@ public class LeftCommand extends Command {
 	  
 	  r.rotate( Direction.LEFT );
 	  return true;	
+	}
+
+	@Override
+	protected boolean initializeFields() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

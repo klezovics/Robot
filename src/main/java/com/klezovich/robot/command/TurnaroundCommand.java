@@ -13,7 +13,7 @@ public class TurnaroundCommand extends Command {
 	}
 	
 	@Override
-	protected boolean validate() {
+	protected boolean validateArguments() {
 		return true;
 	}
 	
@@ -26,6 +26,12 @@ public class TurnaroundCommand extends Command {
 	  r.rotate( rotationDirection );
 	  
 	  return true;	
+	}
+
+	@Override
+	protected boolean initializeFields() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

@@ -19,8 +19,14 @@ public class WaitCommand extends Command {
 	}
 
 	@Override
-	protected boolean validate() {
+	protected boolean validateArguments() {
 		return true;
+	}
+
+	@Override
+	protected boolean initializeFields() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

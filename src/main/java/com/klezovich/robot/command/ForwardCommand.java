@@ -17,7 +17,7 @@ public class ForwardCommand extends Command {
 	}
 	
 	@Override
-	protected boolean validate() {
+	protected boolean validateArguments() {
 		
 		return true;
 	}
@@ -28,6 +28,12 @@ public class ForwardCommand extends Command {
 	  r.moveForward( Integer.valueOf( args[0]) );	
 		
 	  return true;	
+	}
+
+	@Override
+	protected boolean initializeFields() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

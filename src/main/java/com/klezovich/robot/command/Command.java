@@ -15,12 +15,22 @@ public abstract class Command {
 	
 	public Command( String[] args ) {
 		this.args = args;
+		validateArgumentListSizeAndTypes();
 		validateArguments();
-		validate();
+		initializeFields();
 	}
 	
 	public abstract boolean execute(Robot r);
 	
+	protected abstract boolean validateArguments();
+	protected abstract boolean initializeFields();
+	
+	protected boolean validateArgumentListSizeAndTypes() {
+		CommandArgumentValidator cmdArgVal = new CommandArgumentValidator(argDefinitions, args);
+		cmdArgVal.validate();
+		return true;
+	}
+
 	protected static void addArgumentDefinition( int argNum, Class ArgumentClass ) {
 		
 		if( ArgumentClass != String.class && ArgumentClass != Integer.class && ArgumentClass != Orientation.class )
@@ -28,14 +38,6 @@ public abstract class Command {
 		
 		argDefinitions.put(argNum, ArgumentClass );
 		
-	}
-	
-	protected abstract boolean validate();
-	
-	protected boolean validateArguments() {
-		CommandArgumentValidator cmdArgVal = new CommandArgumentValidator(argDefinitions, args);
-		cmdArgVal.validate();
-		return true;
 	}
 	
 }
