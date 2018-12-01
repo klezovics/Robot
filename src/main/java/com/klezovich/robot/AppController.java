@@ -31,7 +31,7 @@ public class AppController {
 	public Coordinates getRobotMovements( @RequestBody String str , ModelMap m ) {
 		System.out.println(m);
 		System.out.println("String is:" + str);
-		return new Coordinates(0,1,Orientation.WEST);
+		return new Coordinates(0,1,Orientation.NORTH );
 	}
 	
 	

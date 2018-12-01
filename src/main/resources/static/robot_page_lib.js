@@ -41,9 +41,8 @@ class BackEndCommunicationManager{
 		
 		var response = jQuery.parseJSON(JSON.stringify(data));
 	    
-		Robot.draw( response.x, response.y );
+		Robot.draw( response.x, response.y, response.orientation );
 		
-
 	}
 	
 	static processUserScript() {
