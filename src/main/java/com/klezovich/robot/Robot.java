@@ -6,8 +6,8 @@ import static com.klezovich.robot.Direction.*;
 public class Robot {
 
 	Coordinates coordinates;
-	Integer maxX;
-	Integer maxY;
+	Integer maxX=5;
+	Integer maxY=5;
 
 	
 	public Robot() {
