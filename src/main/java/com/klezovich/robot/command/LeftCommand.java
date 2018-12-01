@@ -2,7 +2,7 @@ package com.klezovich.robot.command;
 
 import com.klezovich.robot.Robot;
 
-public abstract class LeftCommand extends Command {
+public class LeftCommand extends Command {
 
 	private static final String tag="LEFT";
 	private String[] args;

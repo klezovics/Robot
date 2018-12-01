@@ -2,7 +2,7 @@ package com.klezovich.robot.command;
 
 import com.klezovich.robot.Robot;
 
-public abstract class TurnaroundCommand extends Command {
+public class TurnaroundCommand extends Command {
 
 	private static final String tag="TURNAROUND";
 	private String[] args;

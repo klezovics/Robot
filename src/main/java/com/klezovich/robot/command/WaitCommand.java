@@ -2,7 +2,7 @@ package com.klezovich.robot.command;
 
 import com.klezovich.robot.Robot;
 
-public abstract class WaitCommand extends Command {
+public class WaitCommand extends Command {
 
 	private static final String tag="WAIT";
 	private String[] args;

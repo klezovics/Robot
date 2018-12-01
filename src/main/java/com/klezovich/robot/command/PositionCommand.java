@@ -2,7 +2,7 @@ package com.klezovich.robot.command;
 
 import com.klezovich.robot.Robot;
 
-public abstract class PositionCommand extends Command {
+public class PositionCommand extends Command {
 
 	private static final String tag = "POSITION";
 	private String[] args;

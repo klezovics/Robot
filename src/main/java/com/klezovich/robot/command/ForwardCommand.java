@@ -2,7 +2,7 @@ package com.klezovich.robot.command;
 
 import com.klezovich.robot.Robot;
 
-public abstract class ForwardCommand extends Command {
+public class ForwardCommand extends Command {
 
 	private static final String tag="FORWARD";
 	private String[] args;
@@ -12,6 +12,8 @@ public abstract class ForwardCommand extends Command {
 	}
 	
 	protected boolean validate() {
+		
+		
 		return true;
 	}
 	
