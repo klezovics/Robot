@@ -26,6 +26,9 @@ public class Robot {
 
 	public Coordinates moveForward(Integer distance) {
 
+		if( null == getCoordinates() )
+			throw new RuntimeException("Attempting to move unitiliazed robot");
+		
 		Orientation currentOrientation = coordinates.getOrientation();
 		int x = coordinates.getX();
 		int y = coordinates.getY();
@@ -50,6 +53,9 @@ public class Robot {
 
 	public Coordinates rotate(Direction direction) {
 
+		if( null == getCoordinates() )
+			throw new RuntimeException("Attempting to move unitiliazed robot");
+		
 		Orientation robotOrientation = coordinates.getOrientation();
         robotOrientation = robotOrientation.rotate(direction);
 	    coordinates.setOrientation(robotOrientation);
