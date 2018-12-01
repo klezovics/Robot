@@ -19,7 +19,7 @@ public class ForwardCommand extends Command {
 	@Override
 	public boolean execute(Robot r) {
 	
-	  r.moveForward( Integer.valueOf( args[0]) );	
+	  r.moveForward( distance );	
 		
 	  return true;	
 	}
@@ -32,6 +32,9 @@ public class ForwardCommand extends Command {
 	
 	@Override
 	protected boolean initializeFields() {
+		
+		distance = Integer.valueOf(args[0]);
+		
 		return true;
 	}
 	
