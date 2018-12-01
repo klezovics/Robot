@@ -28,7 +28,7 @@ public class PositionCommand extends Command {
 	
 	@Override
 	public boolean execute(Robot r) {
-	    r.setPosition(coordinates);
+	    r.setCoordinates(coordinates);
 	    return true;
 	}
 
