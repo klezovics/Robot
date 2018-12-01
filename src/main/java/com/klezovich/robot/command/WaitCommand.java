@@ -14,7 +14,7 @@ public class WaitCommand extends Command {
 	
 	protected boolean validate() {
 		if( !argListEmpty() )
-			throw formArgsForNoArgCmdErrorException();
+			throw formArgsForNoArgCmdException();
 		
 		return true;
 	}

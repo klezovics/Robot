@@ -27,7 +27,7 @@ public abstract class Command {
 		return "Command " + tag + " does not take any arguments"; 
 	}
 	
-	protected CommandValidationException formArgsForNoArgCmdErrorException() {
+	protected CommandValidationException formArgsForNoArgCmdException() {
 		return new CommandValidationException(formArgsForNoArgCmdErrorMsg());
 	}
 	
