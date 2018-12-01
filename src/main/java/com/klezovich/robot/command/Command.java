@@ -3,6 +3,7 @@ package com.klezovich.robot.command;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.klezovich.robot.Orientation;
 import com.klezovich.robot.Robot;
 import com.klezovich.robot.command.exception.CommandValidationException;
 
@@ -23,8 +24,8 @@ public abstract class Command {
 	
 	protected static void addArgumentDefinition( int argNum, Class ArgumentClass ) {
 		
-		if( ArgumentClass != String.class && ArgumentClass != Integer.class )
-			throw new RuntimeException("Only string and interger arguments allowed");
+		if( ArgumentClass != String.class && ArgumentClass != Integer.class && ArgumentClass != Orientation.class )
+			throw new RuntimeException("This type is not allowed");
 		
 		argumentDefinitions.put(argNum, ArgumentClass );
 		
@@ -43,7 +44,6 @@ public abstract class Command {
 		for( int argNum=1; argNum < getCommandArgsNum(); argNum ++ ) {
 			
 			//TODO Move this to a separate class
-			
 			String arg = args[argNum-1];
 			Class argClass = argumentDefinitions.get(argNum-1);
 		 
@@ -55,6 +55,14 @@ public abstract class Command {
 				Integer intArg = Integer.valueOf(arg);
 				}catch( NumberFormatException nfe ) {
 					throw formException( formArgumentTypeMismatchIntErrorMessage(argNum, arg) );
+				}
+			}
+			
+			if( argClass == Orientation.class ) {
+				try {
+					Orientation orient = Orientation.valueOf(arg);
+				}catch( Exception e ) {
+					throw formException( "Invalid instance of orientation argument " + arg );
 				}
 			}
 			
