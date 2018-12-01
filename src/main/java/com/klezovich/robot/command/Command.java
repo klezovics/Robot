@@ -9,9 +9,10 @@ public abstract class Command {
 	
 	public Command( String[] args ) {
 		this.args = args;
+		validate();
 	}
 	
-	abstract boolean validate();
-	abstract boolean execute(Robot r);
+	protected abstract boolean validate();
+	public abstract boolean execute(Robot r);
 	
 }
