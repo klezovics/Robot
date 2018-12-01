@@ -11,6 +11,12 @@ public class Coordinates {
 		this.y = y;
 		this.orientation = orientation;
 	}
+	
+	public Coordinates( Coordinates otherCoordiantes ) {
+		this.x = otherCoordiantes.getX();
+		this.y = otherCoordiantes.getY();
+		this.orientation = otherCoordiantes.getOrientation();
+	}
 
 	public Orientation getOrientation() {
 		return orientation;
