@@ -24,6 +24,9 @@ public class ForwardCommand extends Command {
 	
 	@Override
 	public boolean execute(Robot r) {
+	  
+	  r.moveForward( Integer.valueOf( args[0]) );	
+		
 	  return true;	
 	}
 	
