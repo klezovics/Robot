@@ -33,6 +33,7 @@ public class PositionCommand extends Command {
 	
 	@Override
 	protected boolean initializeFields() {
+		coordinates = new Coordinates();
 		coordinates.setX( Integer.valueOf(args[0]) ); 
 		coordinates.setY( Integer.valueOf(args[1]) ); 
 		coordinates.setOrientation( Orientation.valueOf(args[2]) );

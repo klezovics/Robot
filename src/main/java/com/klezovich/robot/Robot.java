@@ -29,6 +29,8 @@ public class Robot {
 
 		Coordinates newCoordinates = new Coordinates( coordinates );
 		
+		System.out.println("Moving distance " + distance + "or:" + currentOrientation );
+		
 		switch (currentOrientation) {
 		case NORTH:
 			newCoordinates.setY(y - distance);

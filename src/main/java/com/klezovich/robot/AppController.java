@@ -53,7 +53,7 @@ public class AppController {
 			return null;
 		
 		System.out.println("Number of commands:" + commands.size() );
-		Robot r = new Robot( new Coordinates(4,4,Orientation.NORTH));
+		Robot r = new Robot();
 		for( Command command : commands ) {
 			System.out.println(command);
 			command.execute(r);
