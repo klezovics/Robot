@@ -14,7 +14,11 @@
 
 <style>
 table {
-	width: 100%
+	//width: 100%
+}
+
+#grid_table{
+  background-color:grey;
 }
 
 tr {
@@ -24,8 +28,8 @@ tr {
 
 td {
 	border: 1px solid black;
-	height: 50px;
-	width: 50px;
+	height: 80px;
+	width: 80px;
 }
 
 .grid {
@@ -71,23 +75,10 @@ td {
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 
-			<a class="navbar-brand" href="/">Robot control room</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="/">Home
-								<span class="sr-only">(current)</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Info</a></li>
-					</ul>
-				</div>
-			</button>
-
-
+            <div>
+            
+			<a class="navbar-brand" href="/"><img src="robot_head.png"  style="filter:invert(1)" height="35px" width="35px"/>  Robot control room</a>
+			</div>
 			<div th:if="${userName}" style="color: white">
 				Hello, <span th:text=${userName}><span />
 			</div>
@@ -101,6 +92,13 @@ td {
 	<!-- Page Content -->
 
 	<div class="container">
+	
+	    <div class="row" >
+	      <div class="col-sm-12" id="prompt_container">
+	      </div>
+	    </div>
+	    
+	    <br/>
 		<div class="row">
 			<div class="col-sm-6">
 				<h2>Script</h2>

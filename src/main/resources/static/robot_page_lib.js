@@ -1,5 +1,48 @@
 class RobotPageController{
 	
+	static getSuccessPromptId(){
+		return "success";
+	}
+	
+	static getErrorPromptId(){
+		return "error";
+	}
+	
+	static drawErrorPrompt(errorStr){
+		let error = document.createElement("div");
+		error.id=RobotPageController.getErrorPromptId();
+		$("#prompt_container").prepend(error);
+		$("#error").addClass("alert alert-danger");
+		$("#error").html("Error: "+errorStr);
+		$("#error").html( $("#error").html() + '<button type="button" class="close"\
+				             data-dismiss="alert" aria-label="Close"> \
+                             <span aria-hidden="true">&times;</span> \
+                             </button>');
+		
+	}
+	
+	static drawSuccessPrompt(){
+		/*
+		 * <div class="alert alert-success">
+  <strong>Success!</strong> Indicates a successful or positive action.
+</div>
+		 */
+		RobotPageController.removeSuccessPrompt();
+		let success = document.createElement("div");
+		success.id=RobotPageController.getSuccessPromptId();
+		$("#prompt_container").prepend(success);
+		$("#success").addClass("alert alert-success");
+		$("#success").html('Script executed - OK! <button type="button" class="close"\
+				             data-dismiss="alert" aria-label="Close"> \
+                             <span aria-hidden="true">&times;</span> \
+                             </button>');
+		
+	}
+	
+	static removeSuccessPrompt(){
+		$("#"+RobotPageController.getSuccessPromptId()).remove(); 
+	}
+	
 	static  getCommandTextAreaId() {
 		var commandTextAreaId = "text_area_1";
 		return commandTextAreaId;
@@ -13,6 +56,7 @@ class RobotPageController{
 	
 	static clearRobotData() {
 		RobotPageController.clearCommandTextArea();
+		RobotPageController.removeSuccessPrompt();
 		Robot.remove();
 	}
 	
@@ -59,7 +103,14 @@ class BackEndCommunicationManager{
 		
 		var response = jQuery.parseJSON(JSON.stringify(data));
 	    
+		if( response.hasOwnProperty('error') ){
+			console.log("Error caught")
+			RobotPageController.drawErrorPrompt(response.error);
+			return;
+		}
+		
 		Robot.draw( response.x, response.y, response.orientation );
+		RobotPageController.drawSuccessPrompt()
 		
 	}
 	

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.klezovich.robot.command.Command;
 import com.klezovich.robot.command.CommandParser;
-import com.klezovich.robot.command.exception.CommandParseException;
+import com.klezovich.robot.command.exception.ScriptExecutionException;
 
 @Controller
 public class AppController {
@@ -32,7 +32,7 @@ public class AppController {
 	
 	@PostMapping(value="/robots")
 	@ResponseBody
-	public Coordinates getRobotMovements( @RequestBody String str , ModelMap m ) {
+	public Object getRobotMovements( @RequestBody String str , ModelMap m ) {
 		//System.out.println(m);
 		//System.out.println("String is:" + str);
 		
@@ -42,9 +42,10 @@ public class AppController {
 		List<Command> commands = null;
 		try {
 		   commands = parser.parseScript(); 
-		}catch( CommandParseException e ) {
+		}catch( ScriptExecutionException e ) {
 			System.out.println("EXCEPTION - NO COMMANDS FOR YOU");
 		   	System.out.println(e);
+		   	return new JsonError(e.getError() ) ;
 		}
 		
 		if( commands == null )
@@ -52,10 +53,15 @@ public class AppController {
 		
 		System.out.println("Number of commands:" + commands.size() );
 		Robot r = new Robot();
+		try {
 		for( Command command : commands ) {
 			System.out.println(command);
 			command.execute(r);
 		}
+		}catch( ScriptExecutionException e) {
+			return new JsonError(e.getError() ) ;
+		}
+		
 		
 		return r.getCoordinates();
 	}

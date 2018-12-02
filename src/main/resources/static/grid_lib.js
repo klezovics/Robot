@@ -12,6 +12,7 @@ class Grid{
 	 var gridContainerId = "grid_container";
 	 
 	 var table = document.createElement("table");
+	 table.id ="grid_table";
 	 for (var i = 0; i < maxH; i++) {
 	   
 	   var tr = document.createElement('tr');
