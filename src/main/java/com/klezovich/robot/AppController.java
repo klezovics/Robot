@@ -1,5 +1,7 @@
 package com.klezovich.robot;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.klezovich.robot.command.Command;
+import com.klezovich.robot.command.CommandParser;
+import com.klezovich.robot.command.exception.CommandParseException;
 
 @Controller
 public class AppController {
@@ -22,7 +28,7 @@ public class AppController {
 	
 	@PostMapping("/")
 	public String processScript( @Valid @ModelAttribute("script") Script script, Model m ) {
-		//System.out.println(script);
+		//System.out.println(script);	
 		return "index";
 	}
 	
@@ -31,7 +37,22 @@ public class AppController {
 	public Coordinates getRobotMovements( @RequestBody String str , ModelMap m ) {
 		System.out.println(m);
 		System.out.println("String is:" + str);
-		return new Coordinates(0,1,Orientation.NORTH );
+		
+		CommandParser parser = new CommandParser( str );
+		
+		List<Command> commands = null;
+		try {
+		   commands = parser.parseScript(); 
+		}catch( CommandParseException e ) {
+		   	
+		}
+		
+		Robot r = new Robot();
+		for( Command command : commands ) {
+			command.execute(r);
+		}
+		
+		return r.getCoordinates();
 	}
 	
 	
