@@ -22,7 +22,7 @@ class Grid{
 		 td.id = Grid.calcGridCellId(j,i);
 		 
 		 var div= document.createElement("div"); 
-		 div.innerHTML='('+i+":"+j+")";
+		 div.innerHTML='('+j+":"+i+")";
 		 div.className="coordinate_subscript";
 		 td.appendChild(div);
 		 tr.appendChild(td);
