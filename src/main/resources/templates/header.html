@@ -2,7 +2,10 @@
 
 <head>
 
-<link rel="icon" th:href="@{/robot_head.png}">
+<div th:fragment="tab_icon" th:remove="tag">
+<link rel="icon" th:href="@{/robot_head_icon.png}">
+</div>
+
 <title>Robot Control Room</title>
 
 
@@ -47,7 +50,7 @@
 	<!-- Navigation -->
 
 	<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#"><img src="robot_head.png"
+		<a class="navbar-brand" href="#"><img src="robot_head_icon.png"
 			style="filter: invert(1)" height="35px" width="35px" />Robot control
 			room</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"

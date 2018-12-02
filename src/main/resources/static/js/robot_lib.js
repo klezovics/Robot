@@ -12,7 +12,7 @@ class Robot{
 		robot.id=Robot.getRobotId();
 		robot.width="50";
 		robot.height="50";
-		robot.src="NewRobot3.png";
+		robot.src="robot_image.png";
 		return robot;
 	}
 	

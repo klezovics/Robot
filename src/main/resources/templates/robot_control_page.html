@@ -5,6 +5,9 @@
 <link rel="icon" th:href="@{/robot_head.png}">
 <title>Robot Control Room</title>
 
+<!--  Importing icon -->
+<div th:replace="~{header::tab_icon}"></div>
+
 <!--  Bootstrap and jQuery dependencies -->
 <div th:replace="~{header::assets}"></div>
 
@@ -17,58 +20,74 @@
 
 <body>
 
-<nav th:insert="~{header::navbar}" />
+	<nav th:insert="~{header::navbar}" />
 
-<div class="container">
+	<div class="container">
 
-    <!--  A place for displaying success and error prompts -->
-	<div class="row">
-		<div class="col-sm-12" id="prompt_container" style="height: 50px">
+		<!--  A place for displaying success and error prompts -->
+		<div class="row">
+			<div class="col-sm-12" id="prompt_container" style="height: 50px">
+			</div>
 		</div>
-	</div>
-	<br/>
-		
-		
-		
-	<div class="row">
-	
-	    <!--  Container for displaying the script and control button -->
-		<div class="col-sm-7">
-			<h2>Script</h2>
-			<form th:object="${script}" id="script_form"
-				method="post">
+		<br />
 
-                <!--  Text area where the user can type in the script  -->
-				<textarea autofocus id="text_area_1" name="text_area_1"
-					th:field="*{text}" cols="50" rows="10" form="script_form">
+
+
+		<div class="row">
+
+			<!--  Container for displaying the script and control button -->
+			<div class="col-sm-7">
+				<h2>Script</h2>
+				<form th:object="${script}" id="script_form" method="post">
+
+					<!--  Text area where the user can type in the script  -->
+					<textarea autofocus id="text_area_1" name="text_area_1"
+						th:field="*{text}" cols="50" rows="10" form="script_form">
 						</textarea>
-				<!--  End of text area -->
-                <br/>
-                                
-                                
-                <!--  Script controls  -->
-				<input id="submit" type="button" value="Submit" /> 
-				<input id="reset" type="button" value="Clear" /> 
-				<input id="sample_script_button" type="button" value="Sample script" />
-				<!-- End of script controls -->
+					<!--  End of text area -->
+					<br />
 
-			</form>
+
+					<!--  Script controls  -->
+					<input id="submit" type="button" value="Submit" /> <input
+						id="reset" type="button" value="Clear" /> <input
+						id="sample_script_button" type="button" value="Sample script" />
+					<!-- End of script controls -->
+
+				</form>
+			</div>
+			<!-- End of container for displaying the script -->
+
+
+			<!--  Container for displaying the grid -->
+			<div class="col-sm-5">
+				<h2>Grid</h2>
+				<div id="grid_container"></div>
+			</div>
+			<!--  End of container for displaying the grid -->
+
 		</div>
-		<!-- End of container for displaying the script -->
+		<!--  End of row which contains grid and script input -->
+	</div>
+	<!--  End of container -->
 
 
-        <!--  Container for displaying the grid -->
-		<div class="col-sm-5">
-			<h2>Grid</h2>
-			<div id="grid_container"></div>
-		</div>
-		<!--  End of container for displaying the grid -->
-		
-	</div> <!--  End of row which contains grid and script input -->
-</div> <!--  End of container -->
+	<footer th:insert="~{footer :: footer}" />
+	
+	<!--  Custom JS libraries -->
+	<!--  Libraries for controlling various aspects of the page -->
 
+	<!--  Library for controlling the grid -->
+	<script th:src="@{/js/grid_lib.js}"></script>
 
-<footer th:insert="~{footer :: footer}" />
+	<!--  Library for controlling the robot -->
+	<script th:src="@{/js/robot_lib.js}"></script>
+
+	<!--  Library for controlling various page elements -->
+	<script th:src="@{/js/robot_page_lib.js}"></script>
+
+	<!-- Draws the initial page and adds listeners -->
+	<script th:src="@{/js/draw_robot_page.js}"></script>
 
 </body>
 </html>

@@ -2,6 +2,9 @@
 
 <head>
 
+<!--  Importing icon -->
+<div th:replace="~{header::tab_icon}"></div>
+
 <!--  Bootstrap and jQuery dependencies -->
 <div th:replace="~{header::assets}"></div>
 
@@ -12,6 +15,8 @@
 
 </head>
 
+
+
 <body>
 	<div class="container">
 		<div class="row">
@@ -20,7 +25,7 @@
 				<div class="card card-signin my-5" style="border: 1px solid black">
 
 					<!--  Image with logo --->
-					<img id="login_logo" th:src="@{/ai_1.jpg}" alt="Card image cap">
+					<img id="login_logo" th:src="@{/login_page_logo.jpg}" alt="Card image cap">
 					<div class="card-body">
 						<h5 class="card-title text-center">Welcome to the robot
 							control centre</h5>
