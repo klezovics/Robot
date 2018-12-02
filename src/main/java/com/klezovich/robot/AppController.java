@@ -45,7 +45,7 @@ public class AppController {
 		}catch( ScriptExecutionException e ) {
 			System.out.println("EXCEPTION - NO COMMANDS FOR YOU");
 		   	System.out.println(e);
-		   	return new JsonError(e.getError() ) ;
+		   	return new JsonError(e.toString()) ;
 		}
 		
 		if( commands == null )
@@ -59,7 +59,7 @@ public class AppController {
 			command.execute(r);
 		}
 		}catch( ScriptExecutionException e) {
-			return new JsonError(e.getError() ) ;
+			return new JsonError( e.toString() );
 		}
 		
 		

@@ -9,16 +9,24 @@ class RobotPageController{
 	}
 	
 	static drawErrorPrompt(errorStr){
+		
+		RobotPageController.clearSuccessPrompt();
+		RobotPageController.clearErrorPrompt();
+		
 		let error = document.createElement("div");
 		error.id=RobotPageController.getErrorPromptId();
 		$("#prompt_container").prepend(error);
 		$("#error").addClass("alert alert-danger");
-		$("#error").html("Error: "+errorStr);
+		$("#error").html("Error: '"+errorStr+"'");
 		$("#error").html( $("#error").html() + '<button type="button" class="close"\
 				             data-dismiss="alert" aria-label="Close"> \
                              <span aria-hidden="true">&times;</span> \
                              </button>');
 		
+	}
+	
+	static clearErrorPrompt(){
+		$("#"+RobotPageController.getErrorPromptId()).remove();
 	}
 	
 	static drawSuccessPrompt(){
@@ -27,7 +35,9 @@ class RobotPageController{
   <strong>Success!</strong> Indicates a successful or positive action.
 </div>
 		 */
-		RobotPageController.removeSuccessPrompt();
+		RobotPageController.clearSuccessPrompt();
+		RobotPageController.clearErrorPrompt();
+		
 		let success = document.createElement("div");
 		success.id=RobotPageController.getSuccessPromptId();
 		$("#prompt_container").prepend(success);
@@ -39,7 +49,7 @@ class RobotPageController{
 		
 	}
 	
-	static removeSuccessPrompt(){
+	static clearSuccessPrompt(){
 		$("#"+RobotPageController.getSuccessPromptId()).remove(); 
 	}
 	
@@ -56,7 +66,7 @@ class RobotPageController{
 	
 	static clearRobotData() {
 		RobotPageController.clearCommandTextArea();
-		RobotPageController.removeSuccessPrompt();
+		RobotPageController.clearSuccessPrompt();
 		Robot.remove();
 	}
 	

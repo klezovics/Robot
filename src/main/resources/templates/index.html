@@ -9,12 +9,14 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Business Frontpage - Start Bootstrap Template</title>
+<link rel="icon" th:href="@{/robot_head.png}">
+<title>Robot Control Room</title>
 
 
 <style>
 table {
-	//width: 100%
+
+	text-align:center;
 }
 
 #grid_table{
@@ -94,13 +96,13 @@ td {
 	<div class="container">
 	
 	    <div class="row" >
-	      <div class="col-sm-12" id="prompt_container">
+	      <div class="col-sm-12" id="prompt_container" style="height: 50px"> 
 	      </div>
 	    </div>
 	    
 	    <br/>
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-7">
 				<h2>Script</h2>
 				<form th:action="@{/}" th:object="${script}" id="script_form"
 					method="post">
@@ -116,8 +118,8 @@ td {
 				</form>
 			</div>
 
-			<div class="col-sm-6">
-				<h2>Grid:</h2>
+			<div class="col-sm-5">
+				<h2>Grid</h2>
 				<div id="grid_container"></div>
 			</div>
 		</div>

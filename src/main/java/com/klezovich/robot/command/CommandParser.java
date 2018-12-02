@@ -1,14 +1,11 @@
 package com.klezovich.robot.command;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-
-import org.reflections.Reflections;
 
 import com.klezovich.robot.command.exception.CommandParseException;
+import com.klezovich.robot.command.exception.ScriptExecutionException;
 
 public class CommandParser {
 
@@ -39,8 +36,9 @@ public class CommandParser {
 
 			if (lineNum == 0) {
 				Class commandClass = command.getClass();
-				if (!commandClass.equals(PositionCommand.class))
-					throw new CommandParseException("First command must be a position command");
+				if (!commandClass.equals(PositionCommand.class)) {
+					throw new ScriptExecutionException(1,"First command must be a position command");
+				}
 			}
 
 			commands.add(command);
