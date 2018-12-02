@@ -11,11 +11,10 @@
 <!--  Bootstrap and jQuery dependencies -->
 <div th:replace="~{header::assets}"></div>
 
-<!--  Custom CSS -->
+<!--  Page specific CSS -->
 <link th:href="@{/css/robot_page.css}" rel="stylesheet">
 
 </head>
-
 
 
 <body>
@@ -30,7 +29,6 @@
 			</div>
 		</div>
 		<br />
-
 
 
 		<div class="row">
@@ -56,7 +54,8 @@
 
 				</form>
 			</div>
-			<!-- End of container for displaying the script -->
+			<!-- End of container for displaying the script and control buttons -->
+
 
 
 			<!--  Container for displaying the grid -->
@@ -71,8 +70,10 @@
 	</div>
 	<!--  End of container -->
 
-
 	<footer th:insert="~{footer :: footer}" />
+	
+	
+	
 	
 	<!--  Custom JS libraries -->
 	<!--  Libraries for controlling various aspects of the page -->
