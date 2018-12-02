@@ -130,7 +130,7 @@ class BackEndCommunicationManager{
 		console.log("Sending script to back-end");
 		
 		var url = window.location.href;
-		var scriptProcessingEndpoint = "robots/";
+		var scriptProcessingEndpoint = "/robots/";
 
 		url = url + scriptProcessingEndpoint;
 		var text = $("#" + RobotPageController.getCommandTextAreaId()).val();

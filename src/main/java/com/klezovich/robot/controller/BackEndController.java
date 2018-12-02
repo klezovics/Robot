@@ -17,7 +17,7 @@ import com.klezovich.robot.json.JsonErrorDto;
 @Controller
 public class BackEndController {
 
-	@PostMapping(value = "/robots/")
+	@PostMapping(value = "/robot_control_page/robots/")
 	@ResponseBody
 	public Object getRobotMovements(@RequestBody String str, ModelMap m) {
 		System.out.println("Hello from robots controller");
