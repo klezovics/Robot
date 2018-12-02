@@ -2,29 +2,12 @@
 
 <head>
 
-<!-------------------------    CSS and JS dependencies     --------------------->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+<!--  Bootstrap and jQuery dependencies -->
+<div th:replace="~{header::assets}"></div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	crossorigin="anonymous"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
-	
-	
-<!-----------------------------------  Custom style sheet ----------------------------->
-<link th:href="@{/css/login_page.css}"
-	rel="stylesheet">
-	
+<!-- Custom style sheet -->
+<link th:href="@{/css/login_page.css}" rel="stylesheet">
+
 <title>Please Login</title>
 
 </head>
@@ -33,15 +16,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-			
+
 				<div class="card card-signin my-5" style="border: 1px solid black">
-				  
-				  <!--  Image with logo --->
-				  <img id="login_logo" th:src="@{/ai_1.jpg}" alt="Card image cap">
+
+					<!--  Image with logo --->
+					<img id="login_logo" th:src="@{/ai_1.jpg}" alt="Card image cap">
 					<div class="card-body">
-						<h5 class="card-title text-center">Welcome to the robot control centre</h5>
-						
-						
+						<h5 class="card-title text-center">Welcome to the robot
+							control centre</h5>
+
+
 						<!--  Placeholders for server response  -->
 						<!--  Login errors -->
 						<div th:if="${param.error}" class="alert alert-danger">
@@ -51,7 +35,7 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						
+
 						<!--  Successful logout -->
 						<div th:if="${param.logout}" class="alert alert-success">
 							You have been logged out.
@@ -60,13 +44,13 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						
-						
-						
+
+
+
 						<!----------------  Main login form -------------------->
 						<form class="form-signin" th:action="@{/login}" method="post">
-						
-						    <!--  Username input -->
+
+							<!--  Username input -->
 							<div class="form-label-group">
 								<input id="username" name="username" class="form-control"
 									required autofocus> <label for="username">User
@@ -74,7 +58,7 @@
 							</div>
 
 
-                            <!--  Password input -->
+							<!--  Password input -->
 							<div class="form-label-group">
 								<input type="password" id="password" name="password"
 									class="form-control" required> <label
@@ -82,18 +66,23 @@
 							</div>
 
 
-                            <!--  Submit button -->
+							<!--  Submit button -->
 							<button class="btn btn-lg btn-dark btn-block text-uppercase"
 								type="submit">Sign in</button>
 
 						</form>
 						<!------------------------ End of main login form --------------->
-						
-					</div> <!--  End of card-body -->
-				</div> <!--  End of card -->
-			</div> <!--  End of column -->
-		</div> <!--  End of row -->
-	</div>  <!-- End of container -->
+
+					</div>
+					<!--  End of card-body -->
+				</div>
+				<!--  End of card -->
+			</div>
+			<!--  End of column -->
+		</div>
+		<!--  End of row -->
+	</div>
+	<!-- End of container -->
 </body>
 
 </html>

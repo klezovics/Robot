@@ -6,17 +6,17 @@
 <title>Robot Control Room</title>
 
 <!--  Bootstrap and jQuery dependencies -->
-<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<div th:replace="~{header::assets}"></div>
+
+<!--  Custom CSS -->
 <link th:href="@{/css/robot_page.css}" rel="stylesheet">
-<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/jQueryRotate.js}"></script>
 
 </head>
 
 
 
 <body>
+
 <nav th:insert="~{header::navbar}" />
 
 <div class="container">
