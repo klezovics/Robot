@@ -18,6 +18,16 @@ import com.klezovich.robot.command.exception.ScriptExecutionException;
 @Controller
 public class AppController {
 
+	@GetMapping("/login")
+	public String getLogin() {
+		return "login";
+	}
+	
+	@PostMapping("/login")
+	public String processLogin() {
+		return "index";
+	}
+	
 	@GetMapping("/")
 	public String getHomepage( Model m, Principal p ) {
 		m.addAttribute("script", new Script() );
