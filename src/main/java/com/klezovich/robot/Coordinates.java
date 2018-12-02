@@ -18,6 +18,9 @@ public class Coordinates {
 		this.orientation = otherCoordiantes.getOrientation();
 	}
 
+	public Coordinates() {
+	}
+
 	public Orientation getOrientation() {
 		return orientation;
 	}
