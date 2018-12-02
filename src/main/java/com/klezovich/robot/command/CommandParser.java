@@ -27,9 +27,16 @@ public class CommandParser {
 
 		List<String> lines = getScriptLines(scriptText);
 		lines = removeComments(lines);
-		for( String line : lines ) {
+		
+		for( int lineNum=1; lineNum < lines.size(); lineNum++  ) {
 		   	
-		   Command command = parseCommandFromTxt(line);
+		   Command command = parseCommandFromTxt(lines.get(lineNum) );
+		   if( lineNum == 1 ) {
+			   Class commandClass = command.getClass();
+			   if( commandClass.equals( PositionCommand.class) )
+			     throw new CommandParseException("First command must be a position command");
+		   }
+		   
 		   commands.add(command);
 		}
 
