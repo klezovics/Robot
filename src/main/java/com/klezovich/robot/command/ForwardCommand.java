@@ -4,7 +4,7 @@ import com.klezovich.robot.Robot;
 
 public class ForwardCommand extends Command {
 
-	private static final String tag="FORWARD";
+	private static final String name="FORWARD";
 	private String[] args;
 	private Integer distance;
 	

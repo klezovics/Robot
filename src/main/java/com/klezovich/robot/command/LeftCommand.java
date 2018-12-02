@@ -5,7 +5,7 @@ import com.klezovich.robot.Robot;
 
 public class LeftCommand extends Command {
 
-	private static final String tag="LEFT";
+	private static final String name="LEFT";
 	private String[] args;
 	
 	public LeftCommand( String[] args ) {

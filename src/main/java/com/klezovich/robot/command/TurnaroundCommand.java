@@ -5,7 +5,7 @@ import com.klezovich.robot.Robot;
 
 public class TurnaroundCommand extends Command {
 
-	private static final String tag="TURNAROUND";
+	private static final String name="TURNAROUND";
 	private String[] args;
 	
 	public TurnaroundCommand( String[] args ) {

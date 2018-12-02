@@ -8,7 +8,7 @@ import com.klezovich.robot.Robot;
 
 public abstract class Command {
 
-	private static final String tag=null;
+	private static final String name=null;
 	private static final Map<Integer,Class> argDefinitions = new HashMap<>();
 	
 	private String[] args;
@@ -39,5 +39,10 @@ public abstract class Command {
 		argDefinitions.put(argNum, ArgumentClass );
 		
 	}
+
+	public static String getName() {
+		return name;
+	}
+
 	
 }
