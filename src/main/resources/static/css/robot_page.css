@@ -1,55 +1,34 @@
-/*!
- * Start Bootstrap - Busines Frontpage (https://startbootstrap.com/template-overviews/business-frontpage)
- * Copyright 2013-2017 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-business-frontpage/blob/master/LICENSE)
- */
-
-.business-header {
-  height: 50vh;
-  min-height: 300px;
-  background: url('http://placehold.it/1920x400') center center no-repeat scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-}
-
 .form-horizontal .control-label {
 	/* text-align:right; */
 	text-align: left;
 	background-color: #ffa;
 }
 
-table {
-	text-align: center;
-}
-
 #grid_table {
 	background-color: grey;
+	border-collapse: separate;
 }
 
-tr {
-	border: 1px solid black;
-	border-width: 1px;
-}
-
-td {
+#grid_table td{
+    text-align:center;
+    vertical-align:middle;
+    position:relative; /* establish relationship with children position absolute */
 	border: 1px solid black;
 	height: 80px;
 	width: 80px;
 }
 
-.grid {
-	border: 1px solid #ccc;
-	border-width: 1px 0 0 1px;
-}
-
-.grid div {
-	border: 1px solid #ccc;
-	border-width: 0 1px 1px 0;
-	float: left;
-}
 
 .card {
   height: 100%;
+}
+
+.coordinate_subscript {
+       position: absolute;
+    bottom:0; /* top: 0; */
+    right:0; /* left: 0; */
+    z-index: 10;
+    text-align:right;
+    vertical-align:bottom;
+    color: #0056b3;
 }

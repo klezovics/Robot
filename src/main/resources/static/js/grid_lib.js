@@ -19,7 +19,12 @@ class Grid{
 	   
 	   for (var j = 0; j < maxW; j++) {
 	     var td = document.createElement('td');
-		 td.id = Grid.calcGridCellId(j,i);			
+		 td.id = Grid.calcGridCellId(j,i);
+		 
+		 var div= document.createElement("div"); 
+		 div.innerHTML='('+i+":"+j+")";
+		 div.className="coordinate_subscript";
+		 td.appendChild(div);
 		 tr.appendChild(td);
 	   }
 	   
