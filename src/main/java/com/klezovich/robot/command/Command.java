@@ -20,7 +20,7 @@ public abstract class Command {
 		initializeFields();
 	}
 	
-	public abstract boolean execute(Robot r);
+	public abstract Coordinates execute(Robot r);
 	
 	protected abstract boolean validateArguments();
 	protected abstract boolean initializeFields();
