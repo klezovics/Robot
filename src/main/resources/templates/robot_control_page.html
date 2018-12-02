@@ -6,10 +6,10 @@
 <title>Robot Control Room</title>
 
 <!--  Importing icon -->
-<div th:replace="~{header::tab_icon}"></div>
+<div th:replace="~{fragments/header :: tab_icon}"></div>
 
 <!--  Bootstrap and jQuery dependencies -->
-<div th:replace="~{header::assets}"></div>
+<div th:replace="~{fragments/header :: assets}"></div>
 
 <!--  Page specific CSS -->
 <link th:href="@{/css/robot_page.css}" rel="stylesheet">
@@ -19,7 +19,7 @@
 
 <body>
 
-	<nav th:insert="~{header::navbar}" />
+	<nav th:insert="~{fragments/header::navbar}" />
 
 	<div class="container">
 
@@ -70,14 +70,16 @@
 	</div>
 	<!--  End of container -->
 
-	<footer th:insert="~{footer :: footer}" />
-	
-	
-	
-	
-	<!--  Custom JS libraries -->
-	<!--  Libraries for controlling various aspects of the page -->
+	<footer th:insert="~{fragments/footer :: footer}" />
 
+
+
+
+	<!--  jQuery rotate is used to rotate the robot -->
+	<script th:src="@{/js/vendor/jQueryRotate_2.3.js}"></script>
+	
+	<!--  Libraries for controlling various aspects of the page -->
+    <!--  Custom JS libraries -->
 	<!--  Library for controlling the grid -->
 	<script th:src="@{/js/grid_lib.js}"></script>
 
@@ -89,6 +91,8 @@
 
 	<!-- Draws the initial page and adds listeners -->
 	<script th:src="@{/js/draw_robot_page.js}"></script>
+
+	<
 
 </body>
 </html>
