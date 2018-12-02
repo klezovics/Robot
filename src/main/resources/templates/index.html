@@ -1,163 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<header th:insert="@{/header.html}" />
 
-<head>
+<!-- Page Content -->
 
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
+<div class="container">
 
-<link rel="icon" th:href="@{/robot_head.png}">
-<title>Robot Control Room</title>
-
-
-<style>
-table {
-	text-align: center;
-}
-
-#grid_table {
-	background-color: grey;
-}
-
-tr {
-	border: 1px solid black;
-	border-width: 1px;
-}
-
-td {
-	border: 1px solid black;
-	height: 80px;
-	width: 80px;
-}
-
-.grid {
-	border: 1px solid #ccc;
-	border-width: 1px 0 0 1px;
-}
-
-.grid div {
-	border: 1px solid #ccc;
-	border-width: 0 1px 1px 0;
-	float: left;
-}
-</style>
-
-<!--  Bootstrap and jQuery dependencies -->
-<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"
-	rel="stylesheet">
-<link th:href="@{/css/business-frontpage.css}" rel="stylesheet">
-
-<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/jQueryRotate.js}"></script>
-
-
-
-
-
-
-<style>
-.form-horizontal .control-label {
-	/* text-align:right; */
-	text-align: left;
-	background-color: #ffa;
-}
-</style>
-</head>
-
-
-<body>
-
-
-	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-
-			<div>
-
-				<a class="navbar-brand" href="/"><img src="robot_head.png"
-					style="filter: invert(1)" height="35px" width="35px" /> Robot
-					control room</a>
-			</div>
-			<div th:if="${userName}" style="color:white">
-				User: <span th:text="${userName}"></span>
-				    
-					<form th:action="@{/logout}" method="post">
-						<input type="submit" value="Log out" />
-					</form>
-			</div>
-
-
-
-
-		</div>
-	</nav>
-
-	<!-- Page Content -->
-
-	<div class="container">
-
-		<div class="row">
-			<div class="col-sm-12" id="prompt_container" style="height: 50px">
-			</div>
-		</div>
-
-		<br />
-		<div class="row">
-			<div class="col-sm-7">
-				<h2>Script</h2>
-				<form th:action="@{/}" th:object="${script}" id="script_form"
-					method="post">
-
-					<textarea autofocus id="text_area_1" name="text_area_1"
-						th:field="*{text}" cols="50" rows="10" form="script_form">
-						</textarea>
-
-					<br> <input id="submit" type="button" value="Submit" /> <input
-						id="reset" type="button" value="Clear" /> <input
-						id="sample_script_button" type="button" value="Sample script" />
-
-				</form>
-			</div>
-
-			<div class="col-sm-5">
-				<h2>Grid</h2>
-				<div id="grid_container"></div>
-			</div>
+	<div class="row">
+		<div class="col-sm-12" id="prompt_container" style="height: 50px">
 		</div>
 	</div>
 
-	<footer class="page-footer font-small bg-dark fixed-bottom">
+	<br />
+	<div class="row">
+		<div class="col-sm-7">
+			<h2>Script</h2>
+			<form th:action="@{/}" th:object="${script}" id="script_form"
+				method="post">
 
-		<!-- Copyright -->
-		<div class="footer-copyright text-center py-3 text-light">
-			© 2018 Copyright: <a href="http://github.com/klezovics"> Arthur
-				Klezovich</a>
+				<textarea autofocus id="text_area_1" name="text_area_1"
+					th:field="*{text}" cols="50" rows="10" form="script_form">
+						</textarea>
+
+				<br> <input id="submit" type="button" value="Submit" /> <input
+					id="reset" type="button" value="Clear" /> <input
+					id="sample_script_button" type="button" value="Sample script" />
+
+			</form>
 		</div>
-		<!-- Copyright -->
 
-	</footer>
+		<div class="col-sm-5">
+			<h2>Grid</h2>
+			<div id="grid_container"></div>
+		</div>
+	</div>
+</div>
 
-	<!--  end of container -->
 
-
-	<!--  Custom JS libraries -->
-	<!--  Libraries for controlling various aspects of the page -->
-
-	<!--  Library for controlling the grid -->
-	<script th:src="@{/grid_lib.js}"></script>
-
-	<!--  Library for controlling the robot -->
-	<script th:src="@{/robot_lib.js}"></script>
-
-	<!--  Library for controlling various page elements -->
-	<script th:src="@{/robot_page_lib.js}"></script>
-
-	<!-- Draws the initial page and adds listeners -->
-	<script th:src="@{/draw_robot_page.js}"></script>
+<!--  end of container -->
+<footer th:insert="~{footer :: footer}" />
 </body>
 
 </html>

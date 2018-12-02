@@ -1,0 +1,43 @@
+
+
+
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <body>
+  
+    <footer th:fragment="footer" class="page-footer font-small bg-dark fixed-bottom">
+
+	  <!-- Copyright -->
+	  <div class="footer-copyright text-center py-3 text-light">
+		  &copy; 2018 Copyright: <a href="http://github.com/klezovics"> Arthur
+			Klezovich</a>
+	  </div>
+	  <!-- Copyright -->
+
+     
+<!--  Custom JS libraries -->
+<!--  Libraries for controlling various aspects of the page -->
+
+<!--  Library for controlling the grid -->
+<script th:src="@{/grid_lib.js}"></script>
+
+<!--  Library for controlling the robot -->
+<script th:src="@{/robot_lib.js}"></script>
+
+<!--  Library for controlling various page elements -->
+<script th:src="@{/robot_page_lib.js}"></script>
+
+<!-- Draws the initial page and adds listeners -->
+<script th:src="@{/draw_robot_page.js}"></script>
+    
+  
+    </footer>
+     
+
+  
+  </body>
+  
+</html>
+
+r>
