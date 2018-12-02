@@ -95,10 +95,17 @@ td {
 				<h2>Script</h2>
 				<form th:action="@{/}" th:object="${script}" id="script_form"
 					method="post">
-					<textarea id="text_area_1" name="text_area_1" th:field="*{text}"
-						cols="20" rows="10" form="script_form"></textarea>
-					<br> <input id="submit" type="button" value="Submit" /> <input
-						id="reset" type="button" value="Reset" />
+					
+					    <textarea autofocus id="text_area_1" name="text_area_1" th:field="*{text}"
+						cols="50" rows="10" form="script_form">
+						</textarea>
+						
+						<br> 
+						
+					    <input id="submit" type="button" value="Submit" /> 
+					    <input id="reset" type="button" value="Reset" /> 
+					    <input id="sample_script_button" type="button" value="Sample script" />
+					    
 				</form>
 			</div>
 
