@@ -4,19 +4,30 @@ package com.klezovich.robot.command.exception;
 public class CommandParseException extends RuntimeException {
  
 	String error; 
-	String cmdTag="";
+	String cmdName="";
+	Integer lineNumber;
 	
 	public CommandParseException( String error ){
 		this.error = error;
 	}
+	
+	public CommandParseException( String error, String cmdName, Integer lineNumber ){	
+		this.error = error;
+		this.cmdName = cmdName;
+		this.lineNumber = lineNumber;
+	}
 
-	public void setCmdTag( String cmdTag ) {
-		this.cmdTag = cmdTag;
+	public void setCmdName( String cmdName ) {
+		this.cmdName = cmdName;
 	}
 	
 	@Override
 	public String toString() {
-		return "Command " + cmdTag+":"+error;
+		
+		if( lineNumber == null )
+		  return "Command " + cmdName+":"+error;
+		
+		return "Line " + lineNumber + ":" + " command " + cmdName + " error " + error;
 	}	
 	
 }
