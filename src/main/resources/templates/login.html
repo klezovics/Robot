@@ -1,30 +1,58 @@
 
 
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Please Login</title>
-  </head>
-  <body>
-    <div th:fragment="content">
-        <form name="f" th:action="@{/login}" method="post">               
-            <fieldset>
-                <legend>Please Login</legend>
-                <div th:if="${param.error}" class="alert alert-error">    
-                    Invalid username and password.
-                </div>
-                <div th:if="${param.logout}" class="alert alert-success"> 
-                    You have been logged out.
-                </div>
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username"/>        
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password"/>    
-                <div class="form-actions">
-                    <button type="submit" class="btn">Log in</button>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-  </body>
+<head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<title>Please Login</title>
+</head>
+<body>
+
+	<div class="col-md-12">
+		<div class="modal-dialog" style="margin-bottom: 0">
+			<div class="modal-content">
+				<div class="panel-heading">
+					<h3 class="panel-title">Sign In</h3>
+				</div>
+				<div class="panel-body">
+					<form th:action="@{/login}"method="post" role="form">
+						<div th:if="${param.error}" class="alert alert-error">
+							Invalid username and password.</div>
+						<div th:if="${param.logout}" class="alert alert-success">
+							You have been logged out.</div>
+						<fieldset>
+							<div class="form-group">
+								<input class="form-control" id="username" name="username" autofocus="">
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Password"
+									id="password" name="password" type="password" value="">
+							</div>
+							
+							<!-- Change this to a button or input when using this as a form -->
+							<button type="submit" class="btn btn-sm btn-success">Login</button>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:fragment="content">
+		<form name="f" th:action="@{/login}" method="post">
+			<fieldset>
+				<legend>Please Login</legend>
+
+				<label for="username">Username</label> <input type="text"
+					id="username" name="username" /> <label for="password">Password</label>
+				<input type="password" id="password" name="password" />
+				<div class="form-actions">
+					<button type="submit" class="btn">Log in</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</body>
 </html>
 

@@ -40,11 +40,12 @@ public class AppController {
 	}
 	
 	
-	@PostMapping(value="/robots")
+	@PostMapping(value="/robots/")
 	@ResponseBody
 	public Object getRobotMovements( @RequestBody String str , ModelMap m ) {
-		//System.out.println(m);
-		//System.out.println("String is:" + str);
+		System.out.println("Hello from robots controller");
+		System.out.println(m);
+		System.out.println("String is:" + str);
 		
 		CommandParser parser = new CommandParser( str );
 		

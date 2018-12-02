@@ -112,7 +112,8 @@ class BackEndCommunicationManager{
 		console.log(data);
 		
 		var response = jQuery.parseJSON(JSON.stringify(data));
-	    
+	    console.log(response);
+		
 		if( response.hasOwnProperty('error') ){
 			console.log("Error caught")
 			RobotPageController.drawErrorPrompt(response.error);
@@ -126,6 +127,8 @@ class BackEndCommunicationManager{
 	
 	static processUserScript() {
 
+		console.log("Sending script to back-end");
+		
 		var url = window.location.href;
 		var scriptProcessingEndpoint = "robots/";
 
