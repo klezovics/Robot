@@ -1,5 +1,6 @@
 package com.klezovich.robot.command;
 
+import com.klezovich.robot.Coordinates;
 import com.klezovich.robot.Direction;
 import com.klezovich.robot.Robot;
 
@@ -13,10 +14,9 @@ public class RightCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(Robot r) {
+	public Coordinates execute(Robot r) {
 		
-		r.rotate(Direction.RIGHT);
-		return true;
+		return r.rotate(Direction.RIGHT);
 	}
 
 	@Override

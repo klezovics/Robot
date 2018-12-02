@@ -1,5 +1,6 @@
 package com.klezovich.robot.command;
 
+import com.klezovich.robot.Coordinates;
 import com.klezovich.robot.Direction;
 import com.klezovich.robot.Robot;
 
@@ -10,13 +11,13 @@ public class LeftCommand extends Command {
 	
 	public LeftCommand( String[] args ) {
 		super(args);
-	}
+	}	
 	
 	@Override
-	public boolean execute(Robot r) {
+	public Coordinates execute(Robot r) {
 	
-	  r.rotate( Direction.LEFT );
-	  return true;	
+	  return r.rotate( Direction.LEFT );
+	  	
 	}
 
 	@Override

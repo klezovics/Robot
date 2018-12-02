@@ -3,6 +3,7 @@ package com.klezovich.robot.command;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.klezovich.robot.Coordinates;
 import com.klezovich.robot.Orientation;
 import com.klezovich.robot.Robot;
 

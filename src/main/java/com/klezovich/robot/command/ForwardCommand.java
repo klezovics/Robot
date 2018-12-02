@@ -1,5 +1,6 @@
 package com.klezovich.robot.command;
 
+import com.klezovich.robot.Coordinates;
 import com.klezovich.robot.Robot;
 
 public class ForwardCommand extends Command {
@@ -17,11 +18,10 @@ public class ForwardCommand extends Command {
 	}
 	
 	@Override
-	public boolean execute(Robot r) {
+	public Coordinates execute(Robot r) {
 	
-	  r.moveForward( distance );	
+	  return r.moveForward( distance );	
 		
-	  return true;	
 	}
 
 	@Override

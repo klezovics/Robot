@@ -1,7 +1,7 @@
 package com.klezovich.robot.command;
 
+import com.klezovich.robot.Coordinates;
 import com.klezovich.robot.Robot;
-import com.klezovich.robot.command.exception.CommandValidationException;
 
 public class WaitCommand extends Command {
 
@@ -13,9 +13,8 @@ public class WaitCommand extends Command {
 	}
 	
 	@Override
-	public boolean execute(Robot r) {
-
-	  return true;	
+	public Coordinates execute(Robot r) {
+        return  r.getCoordinates();
 	}
 
 	@Override
