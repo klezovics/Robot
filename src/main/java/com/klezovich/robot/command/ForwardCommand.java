@@ -1,17 +1,18 @@
 package com.klezovich.robot.command;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.klezovich.robot.Coordinates;
 import com.klezovich.robot.Robot;
 
 public class ForwardCommand extends Command {
 
 	private static final String name="FORWARD";
+	
 	private String[] args;
 	private Integer distance;
 	
-	static {
-		addArgumentDefinition(0,Integer.class);
-	}
 	
 	public ForwardCommand( String[] args ) {
 		super(args);
@@ -25,7 +26,9 @@ public class ForwardCommand extends Command {
 	}
 
 	@Override
-	protected boolean validateArguments() {
+	protected boolean validate() {
+		
+		
 		
 		return true;
 	}

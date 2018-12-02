@@ -1,5 +1,8 @@
 package com.klezovich.robot.command;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.klezovich.robot.Coordinates;
 import com.klezovich.robot.Direction;
 import com.klezovich.robot.Robot;
@@ -7,6 +10,7 @@ import com.klezovich.robot.Robot;
 public class RightCommand extends Command {
 
 	private static final String name = "RIGHT";
+	
 	private String[] args;
 
 	public RightCommand(String[] args) {
@@ -20,7 +24,7 @@ public class RightCommand extends Command {
 	}
 
 	@Override
-	protected boolean validateArguments() {
+	protected boolean validate() {
 		return true;
 	}
 

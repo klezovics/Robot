@@ -13,6 +13,7 @@ public class CommandArgumentValidator {
 	String cmdTag;
 
 	CommandArgumentValidator(Map<Integer, Class> argDefintions, String[] args ) {
+		System.out.println("In command argument valdator consturctor");
 		this.argDefinitions = argDefinitions;
 		this.args = args;
 	}
@@ -27,6 +28,12 @@ public class CommandArgumentValidator {
 
 	protected boolean validateArgListTypes() {
 
+		System.out.println("In argument validator - validating argument types ... ");
+		
+		System.out.println( "Number of arguments to validate" + getCommandArgsNum() );
+		if( getCommandArgsNum() == 0 )
+			return true;
+		
 		for (int argNum = 1; argNum < getCommandArgsNum(); argNum++) {
 
 			// TODO Move this to a separate class
@@ -59,9 +66,14 @@ public class CommandArgumentValidator {
 
 	protected boolean validateArgListSize() {
 
+		System.out.println("In argument validator - validating list size ... ");
 		int suppliedArgsNum = getSuppliedArgsNum();
 		int cmdArgsNum = getCommandArgsNum();
 
+		System.out.println("Supplied:" + suppliedArgsNum );
+		System.out.println("Expected:" + cmdArgsNum );
+		
+		
 		if (suppliedArgsNum != cmdArgsNum)
 			throw formException(formArgumentListMismatchErrorMessage(suppliedArgsNum));
 
@@ -70,6 +82,7 @@ public class CommandArgumentValidator {
 	}
 
 	protected int getCommandArgsNum() {
+		
 		return argDefinitions.size();
 	}
 

@@ -15,7 +15,7 @@ public class CommandParser {
 	private String scriptText;
 	private static final String commandSeparator = "\n";
 	private static final String lineCommentSymbols = "//";
-	private static final String commandArgSep = "\\s+";
+	private static final String commandArgSep = "(\\s)+";
 	private static final String robotCommandPackage = "com.klezovich.robot.command";
 
 	public CommandParser(String scriptText) {
@@ -23,21 +23,24 @@ public class CommandParser {
 	}
 
 	public List<Command> parseScript() {
+
 		List<Command> commands = new ArrayList<>();
 
 		List<String> lines = getScriptLines(scriptText);
 		lines = removeComments(lines);
-		
-		for( int lineNum=1; lineNum < lines.size(); lineNum++  ) {
-		   	
-		   Command command = parseCommandFromTxt(lines.get(lineNum) );
-		   if( lineNum == 1 ) {
-			   Class commandClass = command.getClass();
-			   if( commandClass.equals( PositionCommand.class) )
-			     throw new CommandParseException("First command must be a position command");
-		   }
-		   
-		   commands.add(command);
+
+		System.out.println("Total lines:" + lines.size());
+		for (int lineNum = 1; lineNum < lines.size(); lineNum++) {
+			System.out.println("PARSING LINE  NUMBER:" + lineNum);
+			Command command = parseCommandFromTxt(lines.get(lineNum));
+
+			if (lineNum == 1) {
+				Class commandClass = command.getClass();
+				if (!commandClass.equals(PositionCommand.class))
+					throw new CommandParseException("First command must be a position command");
+			}
+
+			commands.add(command);
 		}
 
 		return commands;
@@ -64,45 +67,37 @@ public class CommandParser {
 
 	private Command parseCommandFromTxt(String text) {
 
+		System.out.println("Parsing command form text: " + text);
 		String[] tokens = text.split(commandArgSep);
+		System.out.println("Token num" + tokens.length);
 		String cmdName = tokens[0];
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
 
 		return getInstanceFromCmdName(cmdName, args);
-		
+
 	}
 
 	private Command getInstanceFromCmdName(String name, String[] args) {
 
-		Class baseClass = Command.class;
-		Reflections reflections = new Reflections(robotCommandPackage);
-		Set<Class<? extends Command>> classes = reflections.getSubTypesOf(baseClass);
+		System.out.println("Trying to get instance from cmd name ");
 
-		for (Class commandClass : classes) {
-
-			String cmdName;
-			try {
-				cmdName = (String) commandClass.getMethod("getCommandName").invoke(null, null);
-
-				if (name.equals(cmdName)) {
-					return getInstanceFromCommandClass(commandClass, args);
-				}
-				
-			} catch (Exception e) {
-				throw new CommandParseException("Error parsing commnad:" + name);
-			}
-
+		switch (name) {
+		case "POSITION":
+			return new PositionCommand(args);
+		case "FORWARD":
+			return new ForwardCommand(args);
+		case "LEFT":
+			return new LeftCommand(args);
+		case "RIGHT":
+			return new RightCommand(args);
+		case "TURNAROUND":
+			return new TurnaroundCommand(args);
+		case "WAIT":
+			return new WaitCommand(args);
 		}
-
+		
 		throw new CommandParseException("Unknown command:" + name);
 
-	}
-
-	private Command getInstanceFromCommandClass(Class commandClass, String[] args) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-
-		Command cmd = (Command) commandClass.getConstructor(String[].class).newInstance(args);
-
-		return cmd;
 	}
 
 	public String getScriptText() {

@@ -35,20 +35,27 @@ public class AppController {
 	@PostMapping(value="/robots")
 	@ResponseBody
 	public Coordinates getRobotMovements( @RequestBody String str , ModelMap m ) {
-		System.out.println(m);
-		System.out.println("String is:" + str);
+		//System.out.println(m);
+		//System.out.println("String is:" + str);
 		
 		CommandParser parser = new CommandParser( str );
+		
 		
 		List<Command> commands = null;
 		try {
 		   commands = parser.parseScript(); 
 		}catch( CommandParseException e ) {
-		   	
+			System.out.println("EXCEPTION - NO COMMANDS FOR YOU");
+		   	System.out.println(e);
 		}
 		
-		Robot r = new Robot();
+		if( commands == null )
+			return null;
+		
+		System.out.println("Number of commands:" + commands.size() );
+		Robot r = new Robot( new Coordinates(4,4,Orientation.NORTH));
 		for( Command command : commands ) {
+			System.out.println(command);
 			command.execute(r);
 		}
 		

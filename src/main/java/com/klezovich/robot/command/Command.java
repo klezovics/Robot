@@ -9,41 +9,21 @@ import com.klezovich.robot.Robot;
 
 public abstract class Command {
 
-	private static final String name=null;
-	private static final Map<Integer,Class> argDefinitions = new HashMap<>();
-	
 	private String[] args;
+	
+	
 	
 	public Command( String[] args ) {
 		this.args = args;
-		validateArgumentListSizeAndTypes();
-		validateArguments();
+		validate();
 		initializeFields();
 	}
 	
 	public abstract Coordinates execute(Robot r);
 	
-	protected abstract boolean validateArguments();
+	protected abstract boolean validate();
 	protected abstract boolean initializeFields();
 	
-	protected boolean validateArgumentListSizeAndTypes() {
-		CommandArgumentValidator cmdArgVal = new CommandArgumentValidator(argDefinitions, args);
-		cmdArgVal.validate();
-		return true;
-	}
-
-	protected static void addArgumentDefinition( int argNum, Class ArgumentClass ) {
-		
-		if( ArgumentClass != String.class && ArgumentClass != Integer.class && ArgumentClass != Orientation.class )
-			throw new RuntimeException("This type is not allowed");
-		
-		argDefinitions.put(argNum, ArgumentClass );
-		
-	}
-
-	public static String getCommandName() {
-		return name;
-	}
 
 	
 }

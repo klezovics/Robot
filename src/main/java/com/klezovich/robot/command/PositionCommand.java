@@ -1,5 +1,8 @@
 package com.klezovich.robot.command;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.klezovich.robot.Coordinates;
 import com.klezovich.robot.Orientation;
 import com.klezovich.robot.Robot;
@@ -15,12 +18,6 @@ public class PositionCommand extends Command {
 	private int y; 
 	private Orientation orientation;
 	
-	// Describing argument list
-	static {
-		addArgumentDefinition(0, Integer.class );
-		addArgumentDefinition(1, Integer.class );
-		addArgumentDefinition(2, Orientation.class );
-	}
 	
 	public PositionCommand( String[] args ) {
 		super(args);
@@ -32,7 +29,7 @@ public class PositionCommand extends Command {
 	}
 
 	@Override
-	protected boolean validateArguments() {
+	protected boolean validate() {
 		return true;
 	}
 	
