@@ -1,13 +1,13 @@
 package com.klezovich.robot.command.exception;
 
 
-public class CommandValidationException extends CommandParseException {
+public class CommandParseException extends RuntimeException {
  
 	String error; 
 	String cmdTag="";
 	
-	public CommandValidationException( String error ){
-		super(error);
+	public CommandParseException( String error ){
+		this.error = error;
 	}
 
 	public void setCmdTag( String cmdTag ) {

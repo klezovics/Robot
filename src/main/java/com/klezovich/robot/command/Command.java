@@ -40,7 +40,7 @@ public abstract class Command {
 		
 	}
 
-	public static String getName() {
+	public static String getCommandName() {
 		return name;
 	}
 
