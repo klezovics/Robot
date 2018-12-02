@@ -11,8 +11,6 @@ public class RightCommand extends Command {
 
 	private static final String name = "RIGHT";
 	
-	private String[] args;
-
 	public RightCommand(String[] args) {
 		super(args);
 	}

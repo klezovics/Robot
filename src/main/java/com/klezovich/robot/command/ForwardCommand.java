@@ -10,7 +10,6 @@ public class ForwardCommand extends Command {
 
 	private static final String name="FORWARD";
 	
-	private String[] args;
 	private Integer distance;
 	
 	
@@ -36,6 +35,11 @@ public class ForwardCommand extends Command {
 	@Override
 	protected boolean initializeFields() {
 		
+		System.out.println("Printing command arguments ... " + args.length );
+		for( String arg : args ){
+			System.out.println("Arg:" + arg);
+		}
+		System.out.println("Done printing command arguments ... ");
 		distance = Integer.valueOf(args[0]);
 		
 		return true;

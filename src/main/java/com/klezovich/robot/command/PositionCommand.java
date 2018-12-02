@@ -10,8 +10,6 @@ import com.klezovich.robot.Robot;
 public class PositionCommand extends Command {
 
 	private static final String name = "POSITION";
-	private String[] args;
-	
 	
 	private Coordinates coordinates;
 	private int x; 

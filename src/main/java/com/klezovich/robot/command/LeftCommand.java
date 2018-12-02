@@ -11,8 +11,6 @@ public class LeftCommand extends Command {
 	
 	private static final String name="LEFT";
 	
-	private String[] args;
-	
 	public LeftCommand( String[] args ) {
 		super(args);
 	}	

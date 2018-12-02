@@ -9,12 +9,17 @@ import com.klezovich.robot.Robot;
 
 public abstract class Command {
 
-	private String[] args;
+	protected String[] args;
 	
 	
 	
 	public Command( String[] args ) {
 		this.args = args;
+		System.out.println("Printing command arguments ... ");
+		for( String arg : args ){
+			System.out.println("Arg:" + arg);
+		}
+		System.out.println("Done printing command arguments ... ");
 		validate();
 		initializeFields();
 	}
