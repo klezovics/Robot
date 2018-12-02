@@ -38,6 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
               .and()
           .formLogin()
               .loginPage("/login")
+              .loginProcessingUrl("/perform_login")
+              .defaultSuccessUrl("/robot_control_page", true)
               .permitAll()
               .and()
           .logout()                                    

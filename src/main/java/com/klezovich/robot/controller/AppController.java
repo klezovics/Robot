@@ -21,64 +21,71 @@ import com.klezovich.robot.json.JsonErrorDto;
 @Controller
 public class AppController {
 
+	@GetMapping("/")
+	public String start() {
+		return "login";
+	}
+	
 	@GetMapping("/login")
 	public String getLogin() {
 		return "login";
 	}
-	
-	@PostMapping("/login")
-	public String processLogin() {
-		return "robot_control_page";
-	}
-	
-	@GetMapping("/")
-	public String getRobotControlPage( Model m, Principal p ) {
-		m.addAttribute("script", new Script() );
-		
-		if( p != null )
-		   m.addAttribute("userName", p.getName() );
+
+	/*@PostMapping("/login")
+	public String processLogin( Model m, Principal p ) {
+		m.addAttribute("script", new Script());
+
+		if (p != null)
+			m.addAttribute("userName", p.getName());
 		else
-		   m.addAttribute("userName", "Anonymous");
+			m.addAttribute("userName", "Anonymous");
+		return "robot_control_page";
+	}*/
+
+	@GetMapping("/robot_control_page")
+	public String getRobotControlPage(Model m, Principal p) {
+		m.addAttribute("script", new Script());
+
+		if (p != null)
+			m.addAttribute("userName", p.getName());
+		else
+			m.addAttribute("userName", "Anonymous");
 		return "robot_control_page";
 	}
-	
-	
-	@PostMapping(value="/robots/")
+
+	@PostMapping(value = "/robots/")
 	@ResponseBody
-	public Object getRobotMovements( @RequestBody String str , ModelMap m ) {
+	public Object getRobotMovements(@RequestBody String str, ModelMap m) {
 		System.out.println("Hello from robots controller");
 		System.out.println(m);
 		System.out.println("String is:" + str);
-		
-		CommandParser parser = new CommandParser( str );
-		
-		
+
+		CommandParser parser = new CommandParser(str);
+
 		List<Command> commands = null;
 		try {
-		   commands = parser.parseScript(); 
-		}catch( ScriptExecutionException e ) {
+			commands = parser.parseScript();
+		} catch (ScriptExecutionException e) {
 			System.out.println("EXCEPTION - NO COMMANDS FOR YOU");
-		   	System.out.println(e);
-		   	return new JsonErrorDto(e.toString()) ;
+			System.out.println(e);
+			return new JsonErrorDto(e.toString());
 		}
-		
-		if( commands == null )
+
+		if (commands == null)
 			return null;
-		
-		System.out.println("Number of commands:" + commands.size() );
+
+		System.out.println("Number of commands:" + commands.size());
 		Robot r = new Robot();
 		try {
-		for( Command command : commands ) {
-			System.out.println(command);
-			command.execute(r);
+			for (Command command : commands) {
+				System.out.println(command);
+				command.execute(r);
+			}
+		} catch (ScriptExecutionException e) {
+			return new JsonErrorDto(e.toString());
 		}
-		}catch( ScriptExecutionException e) {
-			return new JsonErrorDto( e.toString() );
-		}
-		
-		
+
 		return r.getCoordinates();
 	}
-	
-	
+
 }
