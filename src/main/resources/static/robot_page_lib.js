@@ -77,7 +77,7 @@ class BackEndCommunicationManager{
 		// console.log(requestObject);
 		// console.log(JSON.stringify(requestObject))
 
-		$.ajax(requestObject).done( function(data) {BackEndCommunicationManager.processScriptResponse(data);} );
+		$.post(requestObject).done( function(data) {BackEndCommunicationManager.processScriptResponse(data);} );
 		
 	}
 	
