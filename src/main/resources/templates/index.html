@@ -70,20 +70,31 @@ td {
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
+
 			<a class="navbar-brand" href="/">Robot control room</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
+
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="/">Home
+								<span class="sr-only">(current)</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Info</a></li>
+					</ul>
+				</div>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="/">Home
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Info</a></li>
-				</ul>
+
+
+			<div th:if="${userName}" style="color: white">
+				Hello, <span th:text=${userName}><span />
 			</div>
+
+
+
+
 		</div>
 	</nav>
 
@@ -95,17 +106,15 @@ td {
 				<h2>Script</h2>
 				<form th:action="@{/}" th:object="${script}" id="script_form"
 					method="post">
-					
-					    <textarea autofocus id="text_area_1" name="text_area_1" th:field="*{text}"
-						cols="50" rows="10" form="script_form">
+
+					<textarea autofocus id="text_area_1" name="text_area_1"
+						th:field="*{text}" cols="50" rows="10" form="script_form">
 						</textarea>
-						
-						<br> 
-						
-					    <input id="submit" type="button" value="Submit" /> 
-					    <input id="reset" type="button" value="Reset" /> 
-					    <input id="sample_script_button" type="button" value="Sample script" />
-					    
+
+					<br> <input id="submit" type="button" value="Submit" /> <input
+						id="reset" type="button" value="Clear" /> <input
+						id="sample_script_button" type="button" value="Sample script" />
+
 				</form>
 			</div>
 
@@ -116,7 +125,17 @@ td {
 		</div>
 	</div>
 
+	<footer class="page-footer font-small bg-dark fixed-bottom">
 
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3 text-light">
+			© 2018 Copyright: <a
+				href="http://github.com/klezovics">
+				Arthur Klezovich</a>
+		</div>
+		<!-- Copyright -->
+
+	</footer>
 
 	<!--  end of container -->
 
