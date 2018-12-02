@@ -25,18 +25,18 @@ public class AppController {
 	
 	@PostMapping("/login")
 	public String processLogin() {
-		return "index";
+		return "robot_control_page";
 	}
 	
 	@GetMapping("/")
-	public String getHomepage( Model m, Principal p ) {
+	public String getRobotControlPage( Model m, Principal p ) {
 		m.addAttribute("script", new Script() );
 		
 		if( p != null )
 		   m.addAttribute("userName", p.getName() );
 		else
 		   m.addAttribute("userName", "Anonymous");
-		return "index";
+		return "robot_control_page";
 	}
 	
 	

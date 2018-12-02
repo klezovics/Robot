@@ -1,0 +1,74 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<link rel="icon" th:href="@{/robot_head.png}">
+<title>Robot Control Room</title>
+
+<!--  Bootstrap and jQuery dependencies -->
+<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/robot_page.css}" rel="stylesheet">
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/jQueryRotate.js}"></script>
+
+</head>
+
+
+
+<body>
+<nav th:insert="~{header::navbar}" />
+
+<div class="container">
+
+    <!--  A place for displaying success and error prompts -->
+	<div class="row">
+		<div class="col-sm-12" id="prompt_container" style="height: 50px">
+		</div>
+	</div>
+	<br/>
+		
+		
+		
+	<div class="row">
+	
+	    <!--  Container for displaying the script and control button -->
+		<div class="col-sm-7">
+			<h2>Script</h2>
+			<form th:object="${script}" id="script_form"
+				method="post">
+
+                <!--  Text area where the user can type in the script  -->
+				<textarea autofocus id="text_area_1" name="text_area_1"
+					th:field="*{text}" cols="50" rows="10" form="script_form">
+						</textarea>
+				<!--  End of text area -->
+                <br/>
+                                
+                                
+                <!--  Script controls  -->
+				<input id="submit" type="button" value="Submit" /> 
+				<input id="reset" type="button" value="Clear" /> 
+				<input id="sample_script_button" type="button" value="Sample script" />
+				<!-- End of script controls -->
+
+			</form>
+		</div>
+		<!-- End of container for displaying the script -->
+
+
+        <!--  Container for displaying the grid -->
+		<div class="col-sm-5">
+			<h2>Grid</h2>
+			<div id="grid_container"></div>
+		</div>
+		<!--  End of container for displaying the grid -->
+		
+	</div> <!--  End of row which contains grid and script input -->
+</div> <!--  End of container -->
+
+
+<footer th:insert="~{footer :: footer}" />
+
+</body>
+</html>
