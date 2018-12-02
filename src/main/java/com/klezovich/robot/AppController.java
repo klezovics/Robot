@@ -26,11 +26,6 @@ public class AppController {
 		return "index";
 	}
 	
-	@PostMapping("/")
-	public String processScript( @Valid @ModelAttribute("script") Script script, Model m ) {
-		//System.out.println(script);	
-		return "index";
-	}
 	
 	@PostMapping(value="/robots")
 	@ResponseBody
