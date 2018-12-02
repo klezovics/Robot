@@ -18,7 +18,7 @@ class Grid{
 	   
 	   for (var j = 0; j < maxW; j++) {
 	     var td = document.createElement('td');
-		 td.id = Grid.calcGridCellId(i,j);			
+		 td.id = Grid.calcGridCellId(j,i);			
 		 tr.appendChild(td);
 	   }
 	   
