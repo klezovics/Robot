@@ -1,4 +1,4 @@
-package com.klezovich.robot;
+package com.klezovich.robot.domain;
 
 import java.util.Random;
 

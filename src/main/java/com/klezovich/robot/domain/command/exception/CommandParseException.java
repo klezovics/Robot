@@ -1,4 +1,4 @@
-package com.klezovich.robot.command.exception;
+package com.klezovich.robot.domain.command.exception;
 
 
 public class CommandParseException extends ScriptExecutionException {

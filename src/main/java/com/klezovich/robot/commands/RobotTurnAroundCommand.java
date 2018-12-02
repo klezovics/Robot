@@ -1,6 +1,6 @@
 package com.klezovich.robot.commands;
 
-import com.klezovich.robot.Robot;
+import com.klezovich.robot.domain.Robot;
 
 public class RobotTurnAroundCommand implements RobotCommand{
 

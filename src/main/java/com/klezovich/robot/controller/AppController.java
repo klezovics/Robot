@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.klezovich.robot.JsonError;
-import com.klezovich.robot.Robot;
-import com.klezovich.robot.Script;
-import com.klezovich.robot.command.Command;
-import com.klezovich.robot.command.CommandParser;
-import com.klezovich.robot.command.exception.ScriptExecutionException;
+import com.klezovich.robot.domain.Robot;
+import com.klezovich.robot.domain.Script;
+import com.klezovich.robot.domain.command.Command;
+import com.klezovich.robot.domain.command.CommandParser;
+import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
+import com.klezovich.robot.json.JsonErrorDto;
 
 @Controller
 public class AppController {
@@ -59,7 +59,7 @@ public class AppController {
 		}catch( ScriptExecutionException e ) {
 			System.out.println("EXCEPTION - NO COMMANDS FOR YOU");
 		   	System.out.println(e);
-		   	return new JsonError(e.toString()) ;
+		   	return new JsonErrorDto(e.toString()) ;
 		}
 		
 		if( commands == null )
@@ -73,7 +73,7 @@ public class AppController {
 			command.execute(r);
 		}
 		}catch( ScriptExecutionException e) {
-			return new JsonError( e.toString() );
+			return new JsonErrorDto( e.toString() );
 		}
 		
 		

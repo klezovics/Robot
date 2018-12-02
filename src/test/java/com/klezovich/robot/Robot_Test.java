@@ -1,14 +1,18 @@
 package com.klezovich.robot;
 
-import static com.klezovich.robot.Direction.LEFT;
-import static com.klezovich.robot.Direction.RIGHT;
-import static com.klezovich.robot.Orientation.EAST;
-import static com.klezovich.robot.Orientation.NORTH;
-import static com.klezovich.robot.Orientation.SOUTH;
-import static com.klezovich.robot.Orientation.WEST;
+import static com.klezovich.robot.domain.Direction.LEFT;
+import static com.klezovich.robot.domain.Direction.RIGHT;
+import static com.klezovich.robot.domain.Orientation.EAST;
+import static com.klezovich.robot.domain.Orientation.NORTH;
+import static com.klezovich.robot.domain.Orientation.SOUTH;
+import static com.klezovich.robot.domain.Orientation.WEST;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import com.klezovich.robot.domain.Coordinates;
+import com.klezovich.robot.domain.Direction;
+import com.klezovich.robot.domain.Robot;
 
 public class Robot_Test {
 

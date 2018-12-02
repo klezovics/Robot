@@ -1,11 +1,11 @@
-package com.klezovich.robot.command;
+package com.klezovich.robot.domain.command;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.klezovich.robot.Coordinates;
-import com.klezovich.robot.Direction;
-import com.klezovich.robot.Robot;
+import com.klezovich.robot.domain.Coordinates;
+import com.klezovich.robot.domain.Direction;
+import com.klezovich.robot.domain.Robot;
 
 public class LeftCommand extends Command {
 	

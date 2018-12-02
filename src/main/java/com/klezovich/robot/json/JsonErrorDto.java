@@ -1,6 +1,6 @@
-package com.klezovich.robot;
+package com.klezovich.robot.json;
 
-public class JsonError {
+public class JsonErrorDto {
 
 	String error;
 
@@ -12,7 +12,7 @@ public class JsonError {
 		this.error = error;
 	}
 
-	public JsonError(String error) {
+	public JsonErrorDto(String error) {
 		super();
 		this.error = error;
 	}

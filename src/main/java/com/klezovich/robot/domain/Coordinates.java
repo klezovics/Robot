@@ -1,4 +1,4 @@
-package com.klezovich.robot;
+package com.klezovich.robot.domain;
 
 public class Coordinates {
 

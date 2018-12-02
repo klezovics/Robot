@@ -1,11 +1,11 @@
-package com.klezovich.robot.command;
+package com.klezovich.robot.domain.command;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.klezovich.robot.command.exception.CommandParseException;
-import com.klezovich.robot.command.exception.ScriptExecutionException;
+import com.klezovich.robot.domain.command.exception.CommandParseException;
+import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
 public class CommandParser {
 

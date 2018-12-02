@@ -1,7 +1,7 @@
-package com.klezovich.robot;
+package com.klezovich.robot.domain;
 
-import static com.klezovich.robot.Orientation.*;
-import static com.klezovich.robot.Direction.*;
+import static com.klezovich.robot.domain.Direction.*;
+import static com.klezovich.robot.domain.Orientation.*;
 
 public class Robot {
 

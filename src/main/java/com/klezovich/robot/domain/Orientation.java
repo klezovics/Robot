@@ -1,16 +1,16 @@
-package com.klezovich.robot;
+package com.klezovich.robot.domain;
 
-import static com.klezovich.robot.Direction.LEFT;
-import static com.klezovich.robot.Direction.RIGHT;
-import static com.klezovich.robot.Orientation.EAST;
-import static com.klezovich.robot.Orientation.NORTH;
-import static com.klezovich.robot.Orientation.SOUTH;
-import static com.klezovich.robot.Orientation.WEST;
+import static com.klezovich.robot.domain.Direction.LEFT;
+import static com.klezovich.robot.domain.Direction.RIGHT;
+import static com.klezovich.robot.domain.Orientation.EAST;
+import static com.klezovich.robot.domain.Orientation.NORTH;
+import static com.klezovich.robot.domain.Orientation.SOUTH;
+import static com.klezovich.robot.domain.Orientation.WEST;
 
 public enum Orientation {
 	WEST, EAST, NORTH, SOUTH;
 
-	Orientation rotate(Direction rotationDir) {
+	public Orientation rotate(Direction rotationDir) {
 
 		if (rotationDir.equals(LEFT)) {
 
