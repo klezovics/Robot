@@ -13,10 +13,12 @@ let backEndCommunicationManager = new BackEndCommunicationManager(robotPageContr
 let clearBttnListener = robotPageController.getClearBttnListener();
 let sampleScriptBttnListener = robotPageController.getSampleScriptBttnListener();
 let submitBttnListener = backEndCommunicationManager.getSubmitBttnListener();
+let setSizeBttnListener = robotPageController.getSetSizeBttnListener();
 
 $("#clear").click( clearBttnListener );
 $("#submit").click( submitBttnListener );
 $("#sample_script_button").click( sampleScriptBttnListener );
+$("#set_size_button").click( setSizeBttnListener );
 
 //var json = '{"x":0,"y":0,"orientation":"WEST"}'
 //var obj = JSON.parse(json);

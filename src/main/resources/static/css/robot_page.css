@@ -4,6 +4,11 @@
 	background-color: #ffa;
 }
 
+.num_input{
+	width:30px;
+	margin:2px;
+}
+
 #grid_table {
 	background-color: grey;
 	border-collapse: separate;

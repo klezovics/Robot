@@ -11,13 +11,23 @@ class Grid{
 	   var gridCellCoordSeparator = "x";
 	   return gridCellPrefix+x+gridCellCoordSeparator+y;
    }	
-	
+
+   getGridTableId(){
+	   return "grid_table";
+   }
+   
+   remove(){
+	   var queryStr="#"+this.getGridTableId();
+	   $(queryStr).remove();
+   }
+   
    draw(){
-	 
+	 this.remove();
+	   
 	 var gridContainerId = "grid_container";
 	 
 	 var table = document.createElement("table");
-	 table.id ="grid_table";
+	 table.id =this.getGridTableId();
 	 for (var i = 0; i < this.maxY; i++) {
 	   
 	   var tr = document.createElement('tr');

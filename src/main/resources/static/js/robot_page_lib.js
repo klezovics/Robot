@@ -5,6 +5,24 @@ class RobotPageController{
 		this.grid= grid;
 	}
 	
+    getSetSizeBttnListener(){
+    	var boundFunction = ( function() { this.redrawGrid() } ).bind(this);
+    	return boundFunction;
+    }
+    
+    redrawGrid(){
+    	console.log("Redrawing grid...");
+    	var xInputId="x_dim";
+    	var yInputId="y_dim";
+    	
+    	var newX = $("#"+xInputId).val();
+    	var newY = $("#"+yInputId).val();
+    	
+    	var newGrid = new Grid(newX,newY);
+    	this.grid = newGrid;
+    	newGrid.draw();
+    }
+    
     getClearBttnListener(){
     	var boundFunction = ( function() {this.clearRobotData() }  ).bind(this);
     	return boundFunction;
