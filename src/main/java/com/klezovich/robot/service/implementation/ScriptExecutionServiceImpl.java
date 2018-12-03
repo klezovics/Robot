@@ -20,17 +20,11 @@ public class ScriptExecutionServiceImpl implements ScriptExecutionService {
 
 		CommandParser parser = new CommandParser(script.getText());
 
-		List<Command> commands = null;
-		commands = parser.parseScript();
+		List<Command> commands = parser.parseScript();
 
-		if (commands.size() == 0)
-			throw new ScriptExecutionException("The script contains no commands to process");
-
-		System.out.println("Number of commands:" + commands.size());
 		Robot r = new Robot();
 
 		for (Command command : commands) {
-			System.out.println(command);
 			command.execute(r);
 		}
 

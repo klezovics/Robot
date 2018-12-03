@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.klezovich.robot.domain.ScriptLine;
 import com.klezovich.robot.domain.command.exception.CommandParseException;
 import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
@@ -21,97 +22,69 @@ public class CommandParser {
 
 	public List<Command> parseScript() {
 
-		List<Command> commands = new ArrayList<>();
-
-		List<String> lines = getScriptLines(scriptText);
-		System.out.println("==== START OF SCRIPT PARSE ===");
-		System.out.println("Number of lines in script:" + lines );
+		List<ScriptLine> lines = null;
 		
+		lines = ScriptLineProcessor.splitText(getScriptText());
+		lines = ScriptLineProcessor.removeComments(lines);
+        lines = ScriptLineProcessor.removeEmptyLines(lines);
 		
-		lines = removeComments(lines);
-		lines = removeEmptyLines(lines);
-		System.out.println("Number of lines after removal of empties and comments" + lines);
-		
-
-		System.out.println("Total lines:" + lines.size());
+        
+        List<Command> commands = new ArrayList<>();
 		for (int lineNum = 0; lineNum < lines.size(); lineNum++) {
-			System.out.println("=PARSING LINE  NUMBER:" + lineNum+"=");
-			
-			String line = lines.get(lineNum);
-			if( line.equals("(\\s)+") || line.equals("") ){
-				//Skipping empty lines
-				System.out.println("Line number " + lineNum + "is empty");
-				continue;
-			}
-			
-			Command command = null;
-			try {
-			   command = parseCommandFromTxt(lines.get(lineNum));
-			   command.setLineNum(lineNum);
-			} catch( ScriptExecutionException e ) {
-				e.setLineNum(lineNum);
-				throw e;
-			}
-			
-			if (lineNum == 0) {
-				Class commandClass = command.getClass();
-				if (!commandClass.equals(PositionCommand.class)) {
-					throw new ScriptExecutionException(1,"First command must be a position command");
-				}
-			}
-			
 
+			ScriptLine line = lines.get(lineNum);
+			Command command = parseScriptLine(line);
 			commands.add(command);
 		}
 
-		System.out.println("==== END OF SCRIPT PARSE ===");
+		if (commands.size() == 0)
+			throw new ScriptExecutionException(1,"The script contains no commands to process");
+		
+		if (!firstCommandIsPositionCommand(commands)) {
+			throw new ScriptExecutionException(1, "First command must be a position command");
+		}
+
 		return commands;
 	}
 
-	private List<String> getScriptLines(String scriptText) {
-
-		List<String> lines = Arrays.asList(scriptText.split(commandSeparator));
-
-		return lines;
-	}
-
-	private List<String> removeComments(List<String> lines) {
-
-		for (int ii = 0; ii < lines.size(); ii++) {
-			String str = lines.get(ii);
-			String[] tokens = str.split(lineCommentSymbols);
-			if (!tokens[0].equals(""))
-				lines.set(ii, tokens[0]);
-		}
-
-		return lines;
-	}
+	private Command parseCommand(String cmdText) {
 	
-	private List<String> removeEmptyLines(List<String> lines) {
-
-		for (int ii = 0; ii < lines.size(); ii++) {
-			String line = lines.get(ii);
-			if( line.equals("(\\s)+") || line.equals("") ){
-				lines.remove(ii);
-			}
-		}
-
-		return lines;
-	}
-
-	private Command parseCommandFromTxt(String text) {
-
-		System.out.println("Parsing command form text: " + text);
-		String[] tokens = text.split(commandArgSep);
-		System.out.println("Token num:" + tokens.length);
+		String[] tokens = cmdText.split(commandArgSep);
 		String cmdName = tokens[0];
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
-
-		return getInstanceFromCmdName(cmdName, args);
-
+	
+		return getInstance(cmdName, args);
+	
 	}
 
-	private Command getInstanceFromCmdName(String name, String[] args) {
+	private Boolean firstCommandIsPositionCommand( List<Command> commands ) {
+		
+		if( commands.size() == 0 )
+			return false;
+		
+		Command command = commands.get(0);
+		Class commandClass = command.getClass();
+		if (commandClass.equals(PositionCommand.class))
+			return true;
+		
+		return false;
+	}
+	
+	private Command parseScriptLine( ScriptLine scriptLine ) {
+
+		Command command = null;
+		try {
+			command = parseCommand(scriptLine.getText());
+			command.setLineNum(scriptLine.getLineNumber());
+		} catch (ScriptExecutionException e) {
+			e.setLineNum(scriptLine.getLineNumber());
+			throw e;
+		}
+
+		return command;
+	}
+
+	private Command getInstance(String name, String[] args) {
 
 		System.out.println("Trying to get instance from cmd name ");
 
@@ -129,7 +102,7 @@ public class CommandParser {
 		case "WAIT":
 			return new WaitCommand(args);
 		}
-		
+
 		throw new CommandParseException("unknown command", name);
 
 	}
@@ -140,6 +113,49 @@ public class CommandParser {
 
 	public void setScriptText(String scriptText) {
 		this.scriptText = scriptText;
+	}
+
+	static public class ScriptLineProcessor {
+
+		static List<ScriptLine> removeEmptyLines( List<ScriptLine> lines ){
+			
+			for( int ii=0; ii<lines.size(); ii++ ) {
+				ScriptLine line = lines.get(ii);
+				if( line.isEmpty() )
+					lines.remove(ii);
+			}
+			
+			return lines;
+		}
+
+		static List<ScriptLine> splitText(String text) {
+			
+			List<String> textLines = Arrays.asList(text.split(commandSeparator));
+			List<ScriptLine> scriptLines = new ArrayList<>();
+			for( int lineNum=0; lineNum<textLines.size(); lineNum++ ) {
+				String lineText = textLines.get(lineNum);
+				scriptLines.add( new ScriptLine(text, lineNum+1) );
+			}
+			
+			return scriptLines;
+		}
+
+		static List<ScriptLine> removeComments(List<ScriptLine> lines) {
+
+			for (int ii = 0; ii < lines.size(); ii++) {;
+				ScriptLine resLine = removeComments(lines.get(ii));
+				lines.set(ii, resLine);
+			}
+
+			return lines;
+		}
+
+		static ScriptLine removeComments( ScriptLine line) {
+			String text = line.getText();
+			String[] tokens = text.split(lineCommentSymbols);
+			line.setText(tokens[0]);
+			return line;
+		}
 	}
 
 }
