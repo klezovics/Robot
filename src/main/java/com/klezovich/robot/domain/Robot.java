@@ -103,8 +103,15 @@ public class Robot {
 			valid = false;
 		
 		if( !valid )
-		   throw new MoveForwardCmdExecutionException("Invalid move which leads to out of range coordinates " + coordinates);
+		   throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
 			
 		return true;
+	}
+	
+	class RobotException extends RuntimeException{
+			
+		RobotException( String error ){
+			super(error);
+		}
 	}
 }
