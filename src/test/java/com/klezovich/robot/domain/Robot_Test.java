@@ -23,7 +23,7 @@ public class Robot_Test {
 		Robot r = new Robot(c,5,5);
 		assertEquals(c, r.getCoordinates());
 
-		r = new Robot();
+		r = new Robot(c);
 		r.setCoordinates(c);
 		assertEquals(c, r.getCoordinates());
 
