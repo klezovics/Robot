@@ -24,27 +24,46 @@ public class CommandParser {
 		List<Command> commands = new ArrayList<>();
 
 		List<String> lines = getScriptLines(scriptText);
-		lines = removeEmptyLines(lines);
-		lines = removeComments(lines);
+		System.out.println("==== START OF SCRIPT PARSE ===");
+		System.out.println("Number of lines in script:" + lines );
 		
-		System.out.println("Script lines without comments ");
+		
+		lines = removeComments(lines);
+		lines = removeEmptyLines(lines);
+		System.out.println("Number of lines after removal of empties and comments" + lines);
 		
 
 		System.out.println("Total lines:" + lines.size());
 		for (int lineNum = 0; lineNum < lines.size(); lineNum++) {
-			System.out.println("PARSING LINE  NUMBER:" + lineNum);
-			Command command = parseCommandFromTxt(lines.get(lineNum));
-
+			System.out.println("=PARSING LINE  NUMBER:" + lineNum+"=");
+			
+			String line = lines.get(lineNum);
+			if( line.equals("(\\s)+") || line.equals("") ){
+				//Skipping empty lines
+				System.out.println("Line number " + lineNum + "is empty");
+				continue;
+			}
+			
+			Command command = null;
+			try {
+			   command = parseCommandFromTxt(lines.get(lineNum));
+			} catch( ScriptExecutionException e ) {
+				e.setLineNum(lineNum+1);
+				throw e;
+			}
+			
 			if (lineNum == 0) {
 				Class commandClass = command.getClass();
 				if (!commandClass.equals(PositionCommand.class)) {
 					throw new ScriptExecutionException(1,"First command must be a position command");
 				}
 			}
+			
 
 			commands.add(command);
 		}
 
+		System.out.println("==== END OF SCRIPT PARSE ===");
 		return commands;
 	}
 
@@ -70,7 +89,8 @@ public class CommandParser {
 	private List<String> removeEmptyLines(List<String> lines) {
 
 		for (int ii = 0; ii < lines.size(); ii++) {
-			if( lines.get(ii).equals("(\\s)+") ){
+			String line = lines.get(ii);
+			if( line.equals("(\\s)+") || line.equals("") ){
 				lines.remove(ii);
 			}
 		}
