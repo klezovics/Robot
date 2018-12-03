@@ -9,8 +9,7 @@ import com.klezovich.robot.domain.command.exception.ArgsForZeroArgCommandExcepti
 
 public class WaitCommand extends Command {
 
-	private static final Map<Integer,Class> argDefinitions = new HashMap<>();
-	private static final String name="WAIT";
+	private final String name="WAIT";
 	
 	public WaitCommand( String[] args ) {
 		super(args);

@@ -62,6 +62,7 @@ public class PositionCommand extends Command {
 			throw new CommandValidationException(this, "third argument must be an orientation");
 		}
 		
+		initializeFields();
 		return true;
 	}
 	

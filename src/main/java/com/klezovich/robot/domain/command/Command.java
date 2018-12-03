@@ -15,8 +15,6 @@ public abstract class Command {
 	
 	public Command( String[] args ) {
 		this.args = args;
-		validate();
-		initializeFields();
 	}
 	
 	public abstract Coordinates execute(Robot r);

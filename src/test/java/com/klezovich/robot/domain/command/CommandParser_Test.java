@@ -12,7 +12,7 @@ import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 public class CommandParser_Test {
 
 	@Test
-	public void basicParserTest1() {
+	public void testPositionCmdMustBeFirst() {
 
 		String script = "FORWARD 3";
 		CommandParser p = new CommandParser(script);
@@ -27,18 +27,22 @@ public class CommandParser_Test {
 	}
 
 	@Test
-	public void lineSeparatorTest() {
+	public void testExcessiveArgDetection() {
 
 		String script = "POSITION 1 3 EAST FORWARD 3";
+		try {
 		CommandParser p = new CommandParser(script);
-
-		List<Command> cmds = p.parseScript();
-		assertEquals(1, cmds.size());
+		p.parseScript();
+		}catch( ScriptExecutionException e ) {
+			return;
+		}
+		
+		fail("Excessive arguments issue not detected");
 
 	}
 
 	@Test
-	public void basicParserTest2() {
+	public void testAllOK() {
 
 		String script = "POSITION 1 3 EAST\nFORWARD 3";
 		CommandParser p = new CommandParser(script);
@@ -61,5 +65,56 @@ public class CommandParser_Test {
 		}
 
 		fail("Unknown command error not detected");
+	}
+	
+	@Test
+	public void testEmptyScript() {
+
+		String script = "";
+		CommandParser p = new CommandParser(script);
+
+		try {
+			p.parseScript();
+		} catch (ScriptExecutionException e) {
+			return;
+		}
+
+		fail("Empty script did not trigger exception");
+	}
+	
+	@Test
+	public void testScriptWithEmptyLines() {
+
+		String script = "\n\nPOSITION 1 3 EAST\n\nFORWARD 3";
+		CommandParser p = new CommandParser(script);
+
+		
+		List<Command> cmds = p.parseScript();
+		assertEquals(2, cmds.size() );
+		
+	}
+	
+	
+	@Test
+	public void testIndividualCommandParsing() {
+		
+		String cmdText = null;
+		Command c = null;
+		
+		CommandParser p = new CommandParser("");
+		
+	    cmdText = "FORWARD 3";
+	    c = p.parseCommand(cmdText);
+	    assertEquals(c.getClass(), ForwardCommand.class );
+	    
+	    cmdText = "FORWARD -3";
+	    c = p.parseCommand(cmdText);
+	    /*try {
+	       c.validate();
+	       fail("Negative distances should not be allowed");
+	    }catch( ScriptExecutionException e ) {
+	    	
+	    }*/
+		
 	}
 }

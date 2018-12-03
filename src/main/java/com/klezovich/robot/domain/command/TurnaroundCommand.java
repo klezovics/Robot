@@ -11,8 +11,7 @@ import com.klezovich.robot.domain.command.exception.CommandValidationException;
 
 public class TurnaroundCommand extends Command {
 	
-	private static final Map<Integer,Class> argDefinitions = new HashMap<>();
-	private static final String name="TURNAROUND";
+	private final String name="TURNAROUND";
 	
 
 	public TurnaroundCommand( String[] args ) {

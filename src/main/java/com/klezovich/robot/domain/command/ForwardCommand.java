@@ -7,7 +7,7 @@ import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
 public class ForwardCommand extends Command {
 
-	private static final String name="FORWARD";
+	private final String name="FORWARD";
 	
 	private Integer distance;
 	
@@ -41,6 +41,7 @@ public class ForwardCommand extends Command {
 		if( distance < 0 )
 			throw new CommandValidationException(this, "first argument must be non-negative");
 		
+		initializeFields();
 		return true;
 	}
 	

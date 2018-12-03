@@ -11,7 +11,7 @@ import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 public class CommandParser {
 
 	private String scriptText;
-	private static final String commandSeparator = "\n";
+	private static final String commandSeparator = "[\\r\\n]+";
 	private static final String lineCommentSymbols = "//";
 	private static final String commandArgSep = "(\\s)+";
 	private static final String robotCommandPackage = "com.klezovich.robot.command";
@@ -53,7 +53,10 @@ public class CommandParser {
 		String cmdName = tokens[0];
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
 	
-		return getInstance(cmdName, args);
+		Command c = getInstance(cmdName, args);
+		c.validate();
+		
+		return c;
 	
 	}
 
@@ -134,7 +137,7 @@ public class CommandParser {
 			List<ScriptLine> scriptLines = new ArrayList<>();
 			for( int lineNum=0; lineNum<textLines.size(); lineNum++ ) {
 				String lineText = textLines.get(lineNum);
-				scriptLines.add( new ScriptLine(text, lineNum+1) );
+				scriptLines.add( new ScriptLine(lineText, lineNum+1) );
 			}
 			
 			return scriptLines;
