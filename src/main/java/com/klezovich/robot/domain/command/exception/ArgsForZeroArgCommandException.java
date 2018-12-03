@@ -1,13 +1,13 @@
 package com.klezovich.robot.domain.command.exception;
 
+import com.klezovich.robot.domain.command.Command;
 
-public class ArgsForZeroArgCommandException extends ScriptExecutionException {
- 	
-	private String cmdName;
-	
-	public ArgsForZeroArgCommandException( String cmdName, String error ){
-		super(error);
-		this.cmdName = cmdName;
+public class ArgsForZeroArgCommandException extends CommandValidationException {
+ 		
+	public ArgsForZeroArgCommandException( Command cmd ){
+		super("Arguments provided for zero argument command");
+		setLineNum(cmd.getLineNum());
+		setCmdName(cmd.getName());
 	}
 	
 	

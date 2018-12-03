@@ -1,7 +1,6 @@
 package com.klezovich.robot.domain;
 
-import static com.klezovich.robot.domain.Direction.*;
-import static com.klezovich.robot.domain.Orientation.*;
+import com.klezovich.robot.domain.command.exception.MoveForwardCmdExecutionException;
 
 public class Robot {
 
@@ -104,7 +103,7 @@ public class Robot {
 			valid = false;
 		
 		if( !valid )
-		   throw new RuntimeException("Invalid move which leads to out of range coordinates " + coordinates);
+		   throw new MoveForwardCmdExecutionException("Invalid move which leads to out of range coordinates " + coordinates);
 			
 		return true;
 	}

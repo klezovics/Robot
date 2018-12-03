@@ -6,15 +6,16 @@ import java.util.Map;
 import com.klezovich.robot.domain.Coordinates;
 import com.klezovich.robot.domain.Direction;
 import com.klezovich.robot.domain.Robot;
+import com.klezovich.robot.domain.command.exception.ArgsForZeroArgCommandException;
 
 public class RightCommand extends Command {
 
-	private static final String name = "RIGHT";
+	private final String name = "RIGHT";
 	
 	public RightCommand(String[] args) {
 		super(args);
 	}
-
+	
 	@Override
 	public Coordinates execute(Robot r) {
 		
@@ -23,6 +24,10 @@ public class RightCommand extends Command {
 
 	@Override
 	protected boolean validate() {
+		
+		if( 0 != getArgNum() )
+			throw new ArgsForZeroArgCommandException(this);
+		
 		return true;
 	}
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.klezovich.robot.domain.Coordinates;
 import com.klezovich.robot.domain.Robot;
+import com.klezovich.robot.domain.command.exception.ArgsForZeroArgCommandException;
 
 public class WaitCommand extends Command {
 
@@ -22,6 +23,10 @@ public class WaitCommand extends Command {
 
 	@Override
 	protected boolean validate() {
+		
+		if( 0 != getArgNum() )
+			throw new ArgsForZeroArgCommandException(this);
+		
 		return true;
 	}
 

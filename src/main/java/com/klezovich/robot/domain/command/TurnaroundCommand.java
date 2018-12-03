@@ -6,6 +6,8 @@ import java.util.Map;
 import com.klezovich.robot.domain.Coordinates;
 import com.klezovich.robot.domain.Direction;
 import com.klezovich.robot.domain.Robot;
+import com.klezovich.robot.domain.command.exception.ArgsForZeroArgCommandException;
+import com.klezovich.robot.domain.command.exception.CommandValidationException;
 
 public class TurnaroundCommand extends Command {
 	
@@ -16,6 +18,7 @@ public class TurnaroundCommand extends Command {
 	public TurnaroundCommand( String[] args ) {
 		super(args);
 	}
+	
 	
 	@Override
 	public Coordinates execute(Robot r) {
@@ -31,6 +34,9 @@ public class TurnaroundCommand extends Command {
 
 	@Override
 	protected boolean validate() {
+		if( 0 != getArgNum() )
+			throw new ArgsForZeroArgCommandException(this);
+		
 		return true;
 	}
 	

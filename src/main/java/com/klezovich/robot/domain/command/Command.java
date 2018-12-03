@@ -10,8 +10,8 @@ import com.klezovich.robot.domain.Robot;
 public abstract class Command {
 
 	protected String[] args;
-	
-	
+	private   Integer  lineNum;
+	private final String name = "GENERIC_COMMAND_NAME";
 	
 	public Command( String[] args ) {
 		this.args = args;
@@ -23,6 +23,22 @@ public abstract class Command {
 	
 	protected abstract boolean validate();
 	protected abstract boolean initializeFields();
+	
+	protected Integer getArgNum() {
+		return args.length;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Integer getLineNum() {
+		return lineNum;
+	}
+
+	public void setLineNum(Integer lineNum) {
+		this.lineNum = lineNum;
+	}
 	
 
 	

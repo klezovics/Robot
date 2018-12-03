@@ -9,7 +9,7 @@ import com.klezovich.robot.domain.Robot;
 
 public class PositionCommand extends Command {
 
-	private static final String name = "POSITION";
+	private final String name = "POSITION";
 	
 	private Coordinates coordinates;
 		

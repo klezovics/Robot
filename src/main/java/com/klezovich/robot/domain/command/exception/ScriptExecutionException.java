@@ -1,31 +1,55 @@
 package com.klezovich.robot.domain.command.exception;
 
+import com.klezovich.robot.domain.command.Command;
+
 public class ScriptExecutionException extends RuntimeException {
 
 	Integer lineNum;
+	String cmdName;
 	String error;
 	
 	public String toString() {
 		
-		String res="";
-		String prefix = "Script execution exception.";
-		
-		if(lineNum == null )
-			return prefix + error;
-		
-		
-		return prefix+" Line " + lineNum + ": "+error;
+		return this.getClass().getSimpleName() + ": line "+lineNum+ " command "+cmdName+" error "+error;
 	}
 	
-	public ScriptExecutionException( int lineNum, String error ){
+	public ScriptExecutionException( String error ){
+		this.error = error;
+	}
+
+	public ScriptExecutionException( Command cmd, String error ){
+		this.lineNum = cmd.getLineNum();
+		this.cmdName = 
+		this.error = error;
+	}
+
+	public ScriptExecutionException( Integer lineNum, String error ){
 		this.lineNum = lineNum;
 		this.error = error;
 	}
 
-	public ScriptExecutionException( String error ){
+	public ScriptExecutionException(Integer lineNum, String cmdName, String error) {
+		super();
 		this.lineNum = lineNum;
+		this.cmdName = cmdName;
 		this.error = error;
 	}
+
+	public String getCmdName() {
+		return cmdName;
+	}
+
+	public void setCmdName(String cmdName) {
+		this.cmdName = cmdName;
+	}
+
+	public void setLineNum(Integer lineNum) {
+		this.lineNum = lineNum;
+	}
+	
+	
+	
+	
 
 	public int getLineNum() {
 		return lineNum;

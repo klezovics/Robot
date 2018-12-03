@@ -3,6 +3,7 @@ package com.klezovich.robot.domain.command;
 import com.klezovich.robot.domain.Coordinates;
 import com.klezovich.robot.domain.Robot;
 import com.klezovich.robot.domain.command.exception.CommandValidationException;
+import com.klezovich.robot.domain.command.exception.MoveForwardCmdExecutionException;
 
 public class ForwardCommand extends Command {
 
@@ -11,6 +12,7 @@ public class ForwardCommand extends Command {
 	private Integer distance;
 	
 	
+
 	public ForwardCommand( String[] args ) {
 		super(args);
 	}
@@ -18,8 +20,13 @@ public class ForwardCommand extends Command {
 	@Override
 	public Coordinates execute(Robot r) {
 	
-	  return r.moveForward( distance );	
-		
+	 try {
+	    return r.moveForward( distance );	
+	 }catch(MoveForwardCmdExecutionException e ) {
+		 e.setCmdName(getName());
+		 e.setLineNum(getLineNum());
+		 throw e;
+	 }
 	}
 
 	@Override

@@ -47,8 +47,9 @@ public class CommandParser {
 			Command command = null;
 			try {
 			   command = parseCommandFromTxt(lines.get(lineNum));
+			   command.setLineNum(lineNum);
 			} catch( ScriptExecutionException e ) {
-				e.setLineNum(lineNum+1);
+				e.setLineNum(lineNum);
 				throw e;
 			}
 			
@@ -102,7 +103,7 @@ public class CommandParser {
 
 		System.out.println("Parsing command form text: " + text);
 		String[] tokens = text.split(commandArgSep);
-		System.out.println("Token num" + tokens.length);
+		System.out.println("Token num:" + tokens.length);
 		String cmdName = tokens[0];
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
 
@@ -129,7 +130,7 @@ public class CommandParser {
 			return new WaitCommand(args);
 		}
 		
-		throw new CommandParseException("Unknown command:" + name);
+		throw new CommandParseException("unknown command", name);
 
 	}
 
