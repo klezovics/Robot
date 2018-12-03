@@ -108,7 +108,7 @@ public class Robot {
 		return true;
 	}
 	
-	static class RobotException extends RuntimeException{
+	public static class RobotException extends RuntimeException{
 			
 		RobotException( String error ){
 			super(error);
