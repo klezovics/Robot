@@ -15,11 +15,6 @@ public abstract class Command {
 	
 	public Command( String[] args ) {
 		this.args = args;
-		System.out.println("Printing command arguments ... ");
-		for( String arg : args ){
-			System.out.println("Arg:" + arg);
-		}
-		System.out.println("Done printing command arguments ... ");
 		validate();
 		initializeFields();
 	}

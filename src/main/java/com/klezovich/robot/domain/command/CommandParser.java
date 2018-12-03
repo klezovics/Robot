@@ -24,6 +24,7 @@ public class CommandParser {
 		List<Command> commands = new ArrayList<>();
 
 		List<String> lines = getScriptLines(scriptText);
+		lines = removeEmptyLines(lines);
 		lines = removeComments(lines);
 		
 		System.out.println("Script lines without comments ");
@@ -61,6 +62,17 @@ public class CommandParser {
 			String[] tokens = str.split(lineCommentSymbols);
 			if (!tokens[0].equals(""))
 				lines.set(ii, tokens[0]);
+		}
+
+		return lines;
+	}
+	
+	private List<String> removeEmptyLines(List<String> lines) {
+
+		for (int ii = 0; ii < lines.size(); ii++) {
+			if( lines.get(ii).equals("(\\s)+") ){
+				lines.remove(ii);
+			}
 		}
 
 		return lines;

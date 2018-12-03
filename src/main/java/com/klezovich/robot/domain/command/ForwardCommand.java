@@ -1,10 +1,8 @@
 package com.klezovich.robot.domain.command;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.klezovich.robot.domain.Coordinates;
 import com.klezovich.robot.domain.Robot;
+import com.klezovich.robot.domain.command.exception.CommandValidationException;
 
 public class ForwardCommand extends Command {
 
@@ -27,7 +25,14 @@ public class ForwardCommand extends Command {
 	@Override
 	protected boolean validate() {
 		
+		if( args.length != 1 )
+			throw new CommandValidationException(name + "command expects one argument");
 		
+		try {
+			Integer i = Integer.parseInt(args[0]);
+		}catch( NumberFormatException nfe ) {
+			throw new CommandValidationException("First argument of "+ name + " command must be an integer");
+		}
 		
 		return true;
 	}
@@ -35,11 +40,7 @@ public class ForwardCommand extends Command {
 	@Override
 	protected boolean initializeFields() {
 		
-		System.out.println("Printing command arguments ... " + args.length );
-		for( String arg : args ){
-			System.out.println("Arg:" + arg);
-		}
-		System.out.println("Done printing command arguments ... ");
+		
 		distance = Integer.valueOf(args[0]);
 		
 		return true;

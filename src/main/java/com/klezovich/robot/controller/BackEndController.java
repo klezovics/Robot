@@ -35,8 +35,8 @@ public class BackEndController {
 			return new JsonErrorDto(e.toString());
 		}
 
-		if (commands == null)
-			return null;
+		if (commands == null || commands.size() == 0 )
+			return new JsonErrorDto("The script contains no commands to process");
 
 		System.out.println("Number of commands:" + commands.size());
 		Robot r = new Robot();
