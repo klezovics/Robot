@@ -1,4 +1,4 @@
-package com.klezovich.robot;
+package com.klezovich.robot.domain;
 
 import static com.klezovich.robot.domain.Direction.LEFT;
 import static com.klezovich.robot.domain.Direction.RIGHT;
