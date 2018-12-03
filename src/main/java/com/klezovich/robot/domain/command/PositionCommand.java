@@ -6,6 +6,7 @@ import java.util.Map;
 import com.klezovich.robot.domain.Coordinates;
 import com.klezovich.robot.domain.Orientation;
 import com.klezovich.robot.domain.Robot;
+import com.klezovich.robot.domain.command.exception.CommandValidationException;
 
 public class PositionCommand extends Command {
 
@@ -24,6 +25,37 @@ public class PositionCommand extends Command {
 
 	@Override
 	protected boolean validate() {
+		
+		if( 3 != getArgNum() )
+			throw new CommandValidationException(this, "command expects 3 argumentss");
+		
+		Integer x = null;
+		try {
+			x = Integer.parseInt(args[0]);
+		}catch( NumberFormatException nfe ) {
+			throw new CommandValidationException(this, "first argument must be an integer");
+		}
+		
+		if( x < 0 )
+			throw new CommandValidationException(this, "first argument must be non-negative");
+		
+		Integer y = null;
+		try {
+			y = Integer.parseInt(args[1]);
+		}catch( NumberFormatException nfe ) {
+			throw new CommandValidationException(this, "second argument must be an integer");
+		}
+		
+		if( y < 0 )
+			throw new CommandValidationException(this, "second argument must be non-negative");
+		
+		Orientation orient=null;
+		try {
+			orient = Orientation.valueOf(args[2]);
+		}catch( IllegalArgumentException e ) {
+			throw new CommandValidationException(this, "third argument must be an orientation");
+		}
+		
 		return true;
 	}
 	
