@@ -11,8 +11,6 @@ public class ForwardCommand extends Command {
 	
 	private Integer distance;
 	
-	
-
 	public ForwardCommand( String[] args ) {
 		super(args);
 	}
@@ -31,13 +29,17 @@ public class ForwardCommand extends Command {
 	protected boolean validate() {
 		
 		if( args.length != 1 )
-			throw new CommandValidationException(name + "command expects one argument");
+			throw new CommandValidationException(this,"command expects one argument");
 		
+		Integer distance = null;
 		try {
-			Integer i = Integer.parseInt(args[0]);
+			distance = Integer.parseInt(args[0]);
 		}catch( NumberFormatException nfe ) {
-			throw new CommandValidationException("First argument of "+ name + " command must be an integer");
+			throw new CommandValidationException(this, "first argument must be an integer");
 		}
+		
+		if( distance < 0 )
+			throw new CommandValidationException(this, "first argument must be non-negative");
 		
 		return true;
 	}
