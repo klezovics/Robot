@@ -1,6 +1,5 @@
 package com.klezovich.robot.domain;
 
-import com.klezovich.robot.domain.command.exception.MoveForwardCmdExecutionException;
 
 public class Robot {
 
