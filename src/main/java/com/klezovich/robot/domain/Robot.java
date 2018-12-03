@@ -7,20 +7,29 @@ public class Robot {
 	Integer maxY = 5;
 
 	public Robot() {
+		
+	}
+	
+	public Robot(Coordinates c) {
+		
+		boolean valid = validateCoordiantes(coordinates);
+		if (!valid)
+			throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
+
+		this.coordinates = coordinates;
 
 	}
 
-	public Robot(Coordinates coordinates, Integer maxX, Integer maxY ) {
+	public Robot(Coordinates coordinates, Integer maxX, Integer maxY) {
 		this.maxX = maxX;
 		this.maxY = maxY;
-		
+
 		boolean valid = validateCoordiantes(coordinates);
-		if( !valid )
+		if (!valid)
 			throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
-		
+
 		this.coordinates = coordinates;
-		
-		
+
 	}
 
 	public Coordinates moveForward(Integer distance) {
