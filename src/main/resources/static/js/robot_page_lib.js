@@ -131,7 +131,7 @@ class BackEndCommunicationManager{
 	    }
 	    
 	
-	formUserScriptRequestObject(url,scriptText) {
+	formUserScriptRequestObject(url,scriptText, maxX, maxY) {
 		
 		var headers = {
 				"Content-Type" : 'application/json' // for object property name,
@@ -143,8 +143,9 @@ class BackEndCommunicationManager{
 				url : url,
 				headers : headers,
 				type : 'post',
-				data : scriptText
+				data : JSON.stringify({text:scriptText, maxX:maxX, maxY:maxY})
 			}
+		console.log(requestObject);
 		
 		return requestObject;
 	}
@@ -176,10 +177,12 @@ class BackEndCommunicationManager{
 
 		url = url + scriptProcessingEndpoint;
 		var text = $("#" + this.robotPageController.getCommandTextAreaId()).val();
+		var maxX = this.robotPageController.grid.maxX;
+		var maxY = this.robotPageController.grid.maxY; 
 		// console.log("Text is" + text);
 		// console.log(url);
 
-		var requestObject = this.formUserScriptRequestObject(url,text);
+		var requestObject = this.formUserScriptRequestObject(url,text, maxX, maxY);
 		// console.log(requestObject);
 		// console.log(JSON.stringify(requestObject))
 

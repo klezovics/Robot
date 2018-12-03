@@ -20,9 +20,9 @@ public class BackEndController {
 	
 	@PostMapping(value = "/robot_control_page/robots/")
 	@ResponseBody
-	public Object getRobotMovements(@RequestBody String str, ModelMap m) {
+	public Object getRobotMovements(@RequestBody Script script, ModelMap m) {
 		System.out.println("Hello from back-end controller");
-		Script script = new Script(str);
+		System.out.println(script);
 		
 		try {
 			return scriptExecutionService.executeScript(script);

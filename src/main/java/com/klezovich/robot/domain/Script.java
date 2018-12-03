@@ -3,6 +3,24 @@ package com.klezovich.robot.domain;
 public class Script {
 
 	private String text;
+	Integer maxX;
+	Integer maxY;
+
+	public Integer getMaxX() {
+		return maxX;
+	}
+
+	public void setMaxX(Integer maxX) {
+		this.maxX = maxX;
+	}
+
+	public Integer getMaxY() {
+		return maxY;
+	}
+
+	public void setMaxY(Integer maxY) {
+		this.maxY = maxY;
+	}
 
 	public Script() {
 		
@@ -22,7 +40,8 @@ public class Script {
 
 	@Override
 	public String toString() {
-		return text;
+		return "Script [text=" + text + ", maxX=" + maxX + ", maxY=" + maxY + "]";
 	}
+	
 	
 }
