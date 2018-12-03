@@ -19,7 +19,7 @@ public class CommandExecution_Test {
 	@Test
 	public void basicTest() {
 		
-		Robot r = new Robot( new Coordinates(0,0,SOUTH) );
+		Robot r = new Robot( new Coordinates(0,0,SOUTH),5,5 );
 		List<Command> cmds = new ArrayList<>();
 		cmds.add( new ForwardCommand( new String[] {"1"} ) );
 		
