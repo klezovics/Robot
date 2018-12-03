@@ -1,4 +1,4 @@
-class RobotPage{
+class RobotPageController{
 	
     constructor(robot,grid){
 		this.robot=robot;

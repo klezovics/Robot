@@ -7,7 +7,7 @@ grid.draw();
 
 let robot = new Robot(grid);
 
-let robotPageController = new RobotPage(robot,grid);
+let robotPageController = new RobotPageController(robot,grid);
 let backEndCommunicationManager = new BackEndCommunicationManager(robotPageController);
 
 let clearBttnListener = robotPageController.getClearBttnListener();
@@ -18,7 +18,7 @@ $("#clear").click( clearBttnListener );
 $("#submit").click( submitBttnListener );
 $("#sample_script_button").click( sampleScriptBttnListener );
 
-var json = '{"x":0,"y":0,"orientation":"WEST"}'
-var obj = JSON.parse(json);
-console.log(obj);
+//var json = '{"x":0,"y":0,"orientation":"WEST"}'
+//var obj = JSON.parse(json);
+//console.log(obj);
 
