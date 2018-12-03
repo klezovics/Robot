@@ -6,7 +6,9 @@ import java.util.Map;
 import com.klezovich.robot.domain.Coordinates;
 import com.klezovich.robot.domain.Orientation;
 import com.klezovich.robot.domain.Robot;
+import com.klezovich.robot.domain.Robot.RobotException;
 import com.klezovich.robot.domain.command.exception.CommandValidationException;
+import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
 public class PositionCommand extends Command {
 
@@ -20,7 +22,11 @@ public class PositionCommand extends Command {
 	
 	@Override
 	public Coordinates execute(Robot r) {
+		try {
 	    return r.setCoordinates(coordinates);
+		}catch( RobotException e ) {
+			throw new ScriptExecutionException(this,e.getMessage());
+		}
 	}
 
 	@Override
