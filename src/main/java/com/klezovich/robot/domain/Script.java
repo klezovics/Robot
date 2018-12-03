@@ -2,8 +2,16 @@ package com.klezovich.robot.domain;
 
 public class Script {
 
-	String text;
+	private String text;
 
+	public Script() {
+		
+	}
+	
+	public Script( String text ) {
+		this.text = text;
+	}
+	
 	public String getText() {
 		return text;
 	}
