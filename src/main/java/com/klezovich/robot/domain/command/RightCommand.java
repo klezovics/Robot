@@ -10,10 +10,10 @@ import com.klezovich.robot.domain.command.exception.ArgsForZeroArgCommandExcepti
 
 public class RightCommand extends Command {
 
-	private final String name = "RIGHT";
 	
 	public RightCommand(String[] args) {
 		super(args);
+		this.name ="RIGHT";
 	}
 	
 	@Override

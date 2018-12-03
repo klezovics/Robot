@@ -10,12 +10,11 @@ import com.klezovich.robot.domain.command.exception.ArgsForZeroArgCommandExcepti
 import com.klezovich.robot.domain.command.exception.CommandValidationException;
 
 public class TurnaroundCommand extends Command {
-	
-	private final String name="TURNAROUND";
-	
+		
 
 	public TurnaroundCommand( String[] args ) {
 		super(args);
+		this.name="TURNAROUND";
 	}
 	
 	

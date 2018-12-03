@@ -8,11 +8,10 @@ import com.klezovich.robot.domain.Robot;
 import com.klezovich.robot.domain.command.exception.ArgsForZeroArgCommandException;
 
 public class WaitCommand extends Command {
-
-	private final String name="WAIT";
 	
 	public WaitCommand( String[] args ) {
 		super(args);
+		this.name="WAIT";
 	}
 	
 	@Override

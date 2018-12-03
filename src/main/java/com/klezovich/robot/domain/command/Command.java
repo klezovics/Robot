@@ -11,7 +11,7 @@ public abstract class Command {
 
 	protected String[] args;
 	private   Integer  lineNum;
-	private final String name = "GENERIC_COMMAND_NAME";
+	protected  String name;
 	
 	public Command( String[] args ) {
 		this.args = args;

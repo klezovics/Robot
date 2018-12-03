@@ -108,13 +108,17 @@ public class CommandParser_Test {
 	    assertEquals(c.getClass(), ForwardCommand.class );
 	    
 	    cmdText = "FORWARD -3";
-	    c = p.parseCommand(cmdText);
-	    /*try {
-	       c.validate();
-	       fail("Negative distances should not be allowed");
-	    }catch( ScriptExecutionException e ) {
-	    	
-	    }*/
+	    try {
+	      c = p.parseCommand(cmdText);
+	      fail("Failed to catch issue with negative argument");
+	    }catch( ScriptExecutionException e ){}
+	    
+	    cmdText = "POSITION 1 1 NA";
+	    try {
+	      c = p.parseCommand(cmdText);
+	      fail("Failed to catch issue with bad orientation");
+	    }catch( ScriptExecutionException e ){}
+	    
 		
 	}
 }

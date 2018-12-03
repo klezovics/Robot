@@ -7,12 +7,11 @@ import static com.klezovich.robot.domain.Orientation.NORTH;
 import static com.klezovich.robot.domain.Orientation.SOUTH;
 import static com.klezovich.robot.domain.Orientation.WEST;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.klezovich.robot.domain.Coordinates;
-import com.klezovich.robot.domain.Direction;
-import com.klezovich.robot.domain.Robot;
+import com.klezovich.robot.domain.Robot.RobotException;
 
 public class Robot_Test {
 
@@ -26,6 +25,14 @@ public class Robot_Test {
 		r = new Robot(c);
 		r.setCoordinates(c);
 		assertEquals(c, r.getCoordinates());
+		
+		
+		try {
+			Robot r1 = new Robot( new Coordinates(1,1,NORTH), 0, 0 );
+			fail("Failed to detect out of range coordinates");
+		}catch( RobotException e) {
+			
+		}
 
 	}
 

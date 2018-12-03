@@ -48,12 +48,17 @@ public class CommandParser {
 	}
 
 	public Command parseCommand(String cmdText) {
+		return parseCommand(cmdText,1);
+	}
 	
+	private Command parseCommand(String cmdText, int lineNum ) {
+		
 		String[] tokens = cmdText.split(commandArgSep);
 		String cmdName = tokens[0];
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
 	
 		Command c = getInstance(cmdName, args);
+		c.setLineNum(lineNum);
 		c.validate();
 		
 		return c;

@@ -12,12 +12,12 @@ import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
 public class PositionCommand extends Command {
 
-	private final String name = "POSITION";
 	
 	private Coordinates coordinates;
 		
 	public PositionCommand( String[] args ) {
 		super(args);
+		this.name="POSITION";
 	}
 	
 	@Override

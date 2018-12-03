@@ -10,9 +10,9 @@ public class Robot {
 		
 	}
 	
-	public Robot(Coordinates c) {
+	public Robot(Coordinates coordinates) {
 		
-		boolean valid = validateCoordiantes(coordinates);
+		boolean valid = validateCoordinates(coordinates);
 		if (!valid)
 			throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
 
@@ -24,7 +24,7 @@ public class Robot {
 		this.maxX = maxX;
 		this.maxY = maxY;
 
-		boolean valid = validateCoordiantes(coordinates);
+		boolean valid = validateCoordinates(coordinates);
 		if (!valid)
 			throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
 
@@ -43,7 +43,7 @@ public class Robot {
 
 		Coordinates newCoordinates = new Coordinates(coordinates);
 
-		System.out.println("Moving distance " + distance + "or:" + currentOrientation);
+		//System.out.println("Moving distance " + distance + "or:" + currentOrientation);
 
 		switch (currentOrientation) {
 		case NORTH:
@@ -60,7 +60,7 @@ public class Robot {
 			break;
 		}
 
-		validateCoordiantes(newCoordinates);
+		validateCoordinates(newCoordinates);
 
 		coordinates = newCoordinates;
 		return coordinates;
@@ -81,7 +81,7 @@ public class Robot {
 
 	public Coordinates setCoordinates(Coordinates coordinates) {
 
-		boolean valid = validateCoordiantes(coordinates);
+		boolean valid = validateCoordinates(coordinates);
 
 		if (!valid)
 			throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
@@ -110,21 +110,11 @@ public class Robot {
 		this.maxY = maxY;
 	}
 
-	private boolean validateCoordiantes(Coordinates coordinates) {
-
-		boolean valid = validateCoordiantes(coordinates);
-
-		if (!valid)
-			throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
-
-		return true;
-	}
-
 	private boolean validateCoordinates(Coordinates c) {
 		boolean valid = true;
 
-		int x = coordinates.getX();
-		int y = coordinates.getY();
+		int x = c.getX();
+		int y = c.getY();
 
 		if (x < 0 || x > getMaxX())
 			valid = false;

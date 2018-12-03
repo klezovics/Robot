@@ -6,13 +6,12 @@ import com.klezovich.robot.domain.command.exception.CommandValidationException;
 import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
 public class ForwardCommand extends Command {
-
-	private final String name="FORWARD";
 	
 	private Integer distance;
 	
 	public ForwardCommand( String[] args ) {
 		super(args);
+		this.name = "FORWARD";
 	}
 	
 	@Override

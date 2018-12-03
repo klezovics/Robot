@@ -10,10 +10,11 @@ import com.klezovich.robot.domain.command.exception.ArgsForZeroArgCommandExcepti
 
 public class LeftCommand extends Command {
 	
-	private final String name="LEFT";
+	private String name="LEFT";
 	
 	public LeftCommand( String[] args ) {
 		super(args);
+		this.name="LEFT";
 	}	
 	
 	
