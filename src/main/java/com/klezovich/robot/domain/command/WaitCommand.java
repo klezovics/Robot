@@ -12,6 +12,7 @@ public class WaitCommand extends Command {
 	public WaitCommand( String[] args ) {
 		super(args);
 		this.name="WAIT";
+		validate();
 	}
 	
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.klezovich.robot.domain.Coordinates;
+import com.klezovich.robot.domain.Orientation;
 import com.klezovich.robot.domain.Robot;
 import com.klezovich.robot.domain.Script;
 import com.klezovich.robot.domain.command.Command;
@@ -22,7 +23,7 @@ public class ScriptExecutionServiceImpl implements ScriptExecutionService {
 
 		List<Command> commands = parser.parseScript();
 
-		Robot r = new Robot();
+		Robot r = new Robot( new Coordinates(0,0,Orientation.NORTH),5,5);
 
 		for (Command command : commands) {
 			command.execute(r);

@@ -29,7 +29,6 @@ public class Robot {
 			throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
 
 		this.coordinates = coordinates;
-
 	}
 
 	public Coordinates moveForward(Integer distance) {

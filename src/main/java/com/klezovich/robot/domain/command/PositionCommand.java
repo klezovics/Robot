@@ -18,6 +18,7 @@ public class PositionCommand extends Command {
 	public PositionCommand( String[] args ) {
 		super(args);
 		this.name="POSITION";
+		validate();
 	}
 	
 	@Override

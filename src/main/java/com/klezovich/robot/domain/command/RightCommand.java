@@ -14,6 +14,7 @@ public class RightCommand extends Command {
 	public RightCommand(String[] args) {
 		super(args);
 		this.name ="RIGHT";
+		validate();
 	}
 	
 	@Override

@@ -12,6 +12,7 @@ public class ForwardCommand extends Command {
 	public ForwardCommand( String[] args ) {
 		super(args);
 		this.name = "FORWARD";
+		validate();
 	}
 	
 	@Override

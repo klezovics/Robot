@@ -15,6 +15,7 @@ public class LeftCommand extends Command {
 	public LeftCommand( String[] args ) {
 		super(args);
 		this.name="LEFT";
+		validate();
 	}	
 	
 	
