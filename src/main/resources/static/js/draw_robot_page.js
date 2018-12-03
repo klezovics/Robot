@@ -1,12 +1,22 @@
-var maxH = 5;
-var maxW = 5;
-Grid.draw(maxH, maxW);
+var maxX = 5;
+var maxY = 5;
 
-Robot.draw(0,0);
 
-$("#reset").click( RobotPageController.clearRobotData );
-$("#submit").click( BackEndCommunicationManager.processUserScript );
-$("#sample_script_button").click( RobotPageController.insertSampleScript );
+let grid = new Grid(maxX, maxY);
+grid.draw();
+
+let robot = new Robot(grid);
+
+let robotPageController = new RobotPage(robot,grid);
+let backEndCommunicationManager = new BackEndCommunicationManager(robotPageController);
+
+let clearBttnListener = robotPageController.getClearBttnListener();
+let sampleScriptBttnListener = robotPageController.getSampleScriptBttnListener();
+let submitBttnListener = backEndCommunicationManager.getSubmitBttnListener();
+
+$("#clear").click( clearBttnListener );
+$("#submit").click( submitBttnListener );
+$("#sample_script_button").click( sampleScriptBttnListener );
 
 var json = '{"x":0,"y":0,"orientation":"WEST"}'
 var obj = JSON.parse(json);

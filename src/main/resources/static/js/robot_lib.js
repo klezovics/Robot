@@ -2,38 +2,42 @@
 
 class Robot{
 	
-    static getRobotId(){
+	constructor(grid){
+		this.grid=grid;
+	}
+	
+    getRobotId(){
     	return "robot";
     }
 	
-	static createRobot(){
+	createRobot(){
 		
 		let robot = document.createElement("img");
-		robot.id=Robot.getRobotId();
+		robot.id=this.getRobotId();
 		robot.width="50";
 		robot.height="50";
 		robot.src="/images/robot_image.png";
 		return robot;
 	}
 	
-	static draw( x,y ){
-		Robot.remove();
-		let queryStr ="#"+Grid.calcGridCellId(x,y);
+	draw( x,y ){
+		this.remove();
+		let queryStr ="#"+this.grid.calcGridCellId(x,y);
 		var robot = Robot.createRobot();
 		$(queryStr).append(robot);
 	}
 	
-	static draw( x,y,orientation ){
-		Robot.remove();
-		let queryStr ="#"+Grid.calcGridCellId(x,y);
-		var robot = Robot.createRobot();
+	draw( x,y,orientation ){
+		this.remove();
+		let queryStr ="#"+this.grid.calcGridCellId(x,y);
+		var robot = this.createRobot();
 		$(queryStr).append(robot);
-		Robot.rotateRobot(orientation);
+		this.rotateRobot(orientation);
 	}
 	
-	static rotateRobot( orientation ){
+	rotateRobot( orientation ){
 		
-		let robotId = Robot.getRobotId();
+		let robotId = this.getRobotId();
 		
 		
 		if( orientation === "NORTH" ){
@@ -47,8 +51,8 @@ class Robot{
 		}
 	}
 	
-	static remove(){
-		let robotId = Robot.getRobotId();
+	remove(){
+		let robotId = this.getRobotId();
 	    $( "#"+robotId ).remove();	
 	}
 	

@@ -1,17 +1,50 @@
-class RobotPageController{
+class RobotPage{
 	
-	static getSuccessPromptId(){
+    constructor(robot,grid){
+		this.robot=robot;
+		this.grid= grid;
+	}
+	
+    getClearBttnListener(){
+    	var boundFunction = ( function() {this.clearRobotData() }  ).bind(this);
+    	return boundFunction;
+    }
+    
+    getSampleScriptBttnListener(){
+    	var boundFunction = ( function() { this.insertSampleScript() }  ).bind(this);
+    	return boundFunction;
+    }
+    
+	getCommandTextAreaId() {
+		var commandTextAreaId = "text_area_1";
+		return commandTextAreaId;
+	}
+
+	clearCommandTextArea() {
+		$("#"+this.getCommandTextAreaId()).val('');
+		return 1;
+	}
+    
+	getSuccessPromptId(){
 		return "success";
 	}
 	
-	static getErrorPromptId(){
+	getErrorPromptId(){
 		return "error";
 	}
 	
-	static drawErrorPrompt(errorStr){
+	clearSuccessPrompt(){
+		$("#"+this.getSuccessPromptId() ).remove(); 
+	}
+	
+	clearErrorPrompt(){
+		$("#"+this.getErrorPromptId()).remove();
+	}
+	
+	drawErrorPrompt(errorStr){
 		
-		RobotPageController.clearSuccessPrompt();
-		RobotPageController.clearErrorPrompt();
+		this.clearSuccessPrompt();
+		this.clearErrorPrompt();
 		
 		let error = document.createElement("div");
 		error.id=RobotPageController.getErrorPromptId();
@@ -25,21 +58,15 @@ class RobotPageController{
 		
 	}
 	
-	static clearErrorPrompt(){
-		$("#"+RobotPageController.getErrorPromptId()).remove();
-	}
+
 	
-	static drawSuccessPrompt(){
-		/*
-		 * <div class="alert alert-success">
-  <strong>Success!</strong> Indicates a successful or positive action.
-</div>
-		 */
-		RobotPageController.clearSuccessPrompt();
-		RobotPageController.clearErrorPrompt();
+	drawSuccessPrompt(){
+		
+		this.clearSuccessPrompt();
+		this.clearErrorPrompt();
 		
 		let success = document.createElement("div");
-		success.id=RobotPageController.getSuccessPromptId();
+		success.id=this.getSuccessPromptId();
 		$("#prompt_container").prepend(success);
 		$("#success").addClass("alert alert-success");
 		$("#success").html('Script executed - OK! <button type="button" class="close"\
@@ -49,32 +76,18 @@ class RobotPageController{
 		
 	}
 	
-	static clearSuccessPrompt(){
-		$("#"+RobotPageController.getSuccessPromptId()).remove(); 
+
+	clearRobotData() {
+		this.clearCommandTextArea();
+		this.clearSuccessPrompt();
+		this.robot.remove();
 	}
 	
-	static  getCommandTextAreaId() {
-		var commandTextAreaId = "text_area_1";
-		return commandTextAreaId;
-	}
-
-	static clearCommandTextArea() {
-		$("#"+RobotPageController.getCommandTextAreaId()).val('');
-	}
-
-
-	
-	static clearRobotData() {
-		RobotPageController.clearCommandTextArea();
-		RobotPageController.clearSuccessPrompt();
-		Robot.remove();
-	}
-	
-	static insertSampleScript(){
+	insertSampleScript(){
 		
-		RobotPageController.clearCommandTextArea();
+		this.clearCommandTextArea();
 		
-		let qs = "#"+RobotPageController.getCommandTextAreaId();
+		let qs = "#"+this.getCommandTextAreaId();
 		$(qs).val( $(qs).val() + 'POSITION 1 3 EAST //sets the initial position for the robot\n' );
 		$(qs).val( $(qs).val() + 'FORWARD 3 //lets the robot do 3 steps forward\n' );
 		$(qs).val( $(qs).val() + 'WAIT //lets the robot do nothing\n' );
@@ -84,12 +97,23 @@ class RobotPageController{
 		$(qs).val( $(qs).val() + 'FORWARD 2 //lets the robot do 2 steps forward\n' );
 	
 	} 
+	
 }
 
 
 class BackEndCommunicationManager{
 	
-	static formUserScriptRequestObject(url,scriptText) {
+	constructor( robotPageController ){
+		this.robotPageController = robotPageController;
+	}
+	
+	 getSubmitBttnListener(){
+	    	var boundFunction = ( function() {this.processUserScript() }  ).bind(this);
+	    	return boundFunction;
+	    }
+	    
+	
+	formUserScriptRequestObject(url,scriptText) {
 		
 		var headers = {
 				"Content-Type" : 'application/json' // for object property name,
@@ -107,7 +131,7 @@ class BackEndCommunicationManager{
 		return requestObject;
 	}
 	
-	static processScriptResponse(data) {
+	processScriptResponse(data) {
 
 		console.log(data);
 		
@@ -116,16 +140,16 @@ class BackEndCommunicationManager{
 		
 		if( response.hasOwnProperty('error') ){
 			console.log("Error caught")
-			RobotPageController.drawErrorPrompt(response.error);
+			this.robotPageController.drawErrorPrompt(response.error);
 			return;
 		}
 		
-		Robot.draw( response.x, response.y, response.orientation );
-		RobotPageController.drawSuccessPrompt()
+		this.robotPageController.robot.draw( response.x, response.y, response.orientation );
+		this.robotPageController.drawSuccessPrompt();
 		
 	}
 	
-	static processUserScript() {
+	processUserScript() {
 
 		console.log("Sending script to back-end");
 		
@@ -133,15 +157,17 @@ class BackEndCommunicationManager{
 		var scriptProcessingEndpoint = "/robots/";
 
 		url = url + scriptProcessingEndpoint;
-		var text = $("#" + RobotPageController.getCommandTextAreaId()).val();
+		var text = $("#" + this.robotPageController.getCommandTextAreaId()).val();
 		// console.log("Text is" + text);
 		// console.log(url);
 
-		var requestObject = BackEndCommunicationManager.formUserScriptRequestObject(url,text);
+		var requestObject = this.formUserScriptRequestObject(url,text);
 		// console.log(requestObject);
 		// console.log(JSON.stringify(requestObject))
 
-		$.post(requestObject).done( function(data) {BackEndCommunicationManager.processScriptResponse(data);} );
+		//var boundFunction = ( function() {this.processScriptResponse }  ).bind(this);
+		var self = this;
+		$.post(requestObject).done( function(data) {self.processScriptResponse(data);} );
 		
 	}
 	
