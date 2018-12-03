@@ -20,7 +20,7 @@ public class Robot_Test {
 	public void test_Constructors() {
 
 		Coordinates c = new Coordinates(0, 0, NORTH);
-		Robot r = new Robot(c);
+		Robot r = new Robot(c,5,5);
 		assertEquals(c, r.getCoordinates());
 
 		r = new Robot();
