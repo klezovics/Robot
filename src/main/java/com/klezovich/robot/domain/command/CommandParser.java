@@ -23,23 +23,28 @@ public class CommandParser {
 	public List<Command> parseScript() {
 
 		List<ScriptLine> lines = null;
-		
+
 		lines = ScriptLineProcessor.splitText(getScriptText());
 		lines = ScriptLineProcessor.removeComments(lines);
-        lines = ScriptLineProcessor.removeEmptyLines(lines);
-		
-        
-        List<Command> commands = new ArrayList<>();
+		lines = ScriptLineProcessor.removeEmptyLines(lines);
+
+		List<Command> commands = new ArrayList<>();
 		for (int lineNum = 0; lineNum < lines.size(); lineNum++) {
 
 			ScriptLine line = lines.get(lineNum);
-			Command command = parseScriptLine(line);
-			commands.add(command);
+			
+			try {
+			  Command command = parseScriptLine(line);
+			  command.setLineNum(lineNum+1);
+			  commands.add(command);
+			}catch( CommandParseException e ) {
+				e.setLineNum(lineNum+1);
+			}
 		}
 
 		if (commands.size() == 0)
-			throw new ScriptExecutionException(1,"The script contains no commands to process");
-		
+			throw new ScriptExecutionException(1, "The script contains no commands to process");
+
 		if (!firstCommandIsPositionCommand(commands)) {
 			throw new ScriptExecutionException(1, "First command must be a position command");
 		}
@@ -47,48 +52,35 @@ public class CommandParser {
 		return commands;
 	}
 
-	public Command parseCommand(String cmdText) {
-		return parseCommand(cmdText,1);
-	}
 	
-	private Command parseCommand(String cmdText, int lineNum ) {
-		
+	public Command parseCommand(String cmdText ) {
+
 		String[] tokens = cmdText.split(commandArgSep);
 		String cmdName = tokens[0];
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
-	
+
 		Command c = getInstance(cmdName, args);
-		c.setLineNum(lineNum);
-		c.validate();
-		
+
 		return c;
-	
+
 	}
 
-	private Boolean firstCommandIsPositionCommand( List<Command> commands ) {
-		
-		if( commands.size() == 0 )
+	private Boolean firstCommandIsPositionCommand(List<Command> commands) {
+
+		if (commands.size() == 0)
 			return false;
-		
+
 		Command command = commands.get(0);
 		Class commandClass = command.getClass();
 		if (commandClass.equals(PositionCommand.class))
 			return true;
-		
+
 		return false;
 	}
-	
-	private Command parseScriptLine( ScriptLine scriptLine ) {
 
-		Command command = null;
-		try {
-			command = parseCommand(scriptLine.getText());
-			command.setLineNum(scriptLine.getLineNumber());
-		} catch (ScriptExecutionException e) {
-			e.setLineNum(scriptLine.getLineNumber());
-			throw e;
-		}
+	private Command parseScriptLine(ScriptLine scriptLine) {
 
+		Command command = parseCommand(scriptLine.getText());
 		return command;
 	}
 
@@ -125,32 +117,33 @@ public class CommandParser {
 
 	static public class ScriptLineProcessor {
 
-		static List<ScriptLine> removeEmptyLines( List<ScriptLine> lines ){
-			
-			for( int ii=0; ii<lines.size(); ii++ ) {
+		static List<ScriptLine> removeEmptyLines(List<ScriptLine> lines) {
+
+			for (int ii = 0; ii < lines.size(); ii++) {
 				ScriptLine line = lines.get(ii);
-				if( line.isEmpty() )
+				if (line.isEmpty())
 					lines.remove(ii);
 			}
-			
+
 			return lines;
 		}
 
 		static List<ScriptLine> splitText(String text) {
-			
+
 			List<String> textLines = Arrays.asList(text.split(commandSeparator));
 			List<ScriptLine> scriptLines = new ArrayList<>();
-			for( int lineNum=0; lineNum<textLines.size(); lineNum++ ) {
+			for (int lineNum = 0; lineNum < textLines.size(); lineNum++) {
 				String lineText = textLines.get(lineNum);
-				scriptLines.add( new ScriptLine(lineText, lineNum+1) );
+				scriptLines.add(new ScriptLine(lineText, lineNum + 1));
 			}
-			
+
 			return scriptLines;
 		}
 
 		static List<ScriptLine> removeComments(List<ScriptLine> lines) {
 
-			for (int ii = 0; ii < lines.size(); ii++) {;
+			for (int ii = 0; ii < lines.size(); ii++) {
+				;
 				ScriptLine resLine = removeComments(lines.get(ii));
 				lines.set(ii, resLine);
 			}
@@ -158,14 +151,14 @@ public class CommandParser {
 			return lines;
 		}
 
-		static ScriptLine removeComments( ScriptLine line) {
+		static ScriptLine removeComments(ScriptLine line) {
 			String text = line.getText();
 			String[] tokens = text.split(lineCommentSymbols);
-			if( tokens.length > 0 )
+			if (tokens.length > 0)
 				line.setText(tokens[0]);
-			else 
+			else
 				line.setText("");
-			
+
 			return line;
 		}
 	}

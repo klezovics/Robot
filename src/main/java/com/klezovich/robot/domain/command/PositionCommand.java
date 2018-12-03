@@ -33,7 +33,7 @@ public class PositionCommand extends Command {
 	protected boolean validate() {
 		
 		if( 3 != getArgNum() )
-			throw new CommandValidationException(this, "command expects 3 argumentss");
+			throw new CommandValidationException(this, "command expects 3 arguments");
 		
 		Integer x = null;
 		try {
