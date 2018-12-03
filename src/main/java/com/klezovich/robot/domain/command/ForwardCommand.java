@@ -3,7 +3,7 @@ package com.klezovich.robot.domain.command;
 import com.klezovich.robot.domain.Coordinates;
 import com.klezovich.robot.domain.Robot;
 import com.klezovich.robot.domain.command.exception.CommandValidationException;
-import com.klezovich.robot.domain.command.exception.MoveForwardCmdExecutionException;
+import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
 public class ForwardCommand extends Command {
 
@@ -22,10 +22,8 @@ public class ForwardCommand extends Command {
 	
 	 try {
 	    return r.moveForward( distance );	
-	 }catch(MoveForwardCmdExecutionException e ) {
-		 e.setCmdName(getName());
-		 e.setLineNum(getLineNum());
-		 throw e;
+	 }catch( Robot.RobotException e ) {
+		 throw new ScriptExecutionException(this, e.getMessage() );
 	 }
 	}
 
