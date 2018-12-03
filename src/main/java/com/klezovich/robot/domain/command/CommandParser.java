@@ -47,7 +47,7 @@ public class CommandParser {
 		return commands;
 	}
 
-	private Command parseCommand(String cmdText) {
+	public Command parseCommand(String cmdText) {
 	
 		String[] tokens = cmdText.split(commandArgSep);
 		String cmdName = tokens[0];
@@ -153,7 +153,11 @@ public class CommandParser {
 		static ScriptLine removeComments( ScriptLine line) {
 			String text = line.getText();
 			String[] tokens = text.split(lineCommentSymbols);
-			line.setText(tokens[0]);
+			if( tokens.length > 0 )
+				line.setText(tokens[0]);
+			else 
+				line.setText("");
+			
 			return line;
 		}
 	}
