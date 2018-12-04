@@ -139,7 +139,7 @@ public class CommandParser {
 		public static List<ScriptLine> removeComments(List<ScriptLine> lines) {
 
 			for (int ii = 0; ii < lines.size(); ii++) {
-				;
+				
 				ScriptLine resLine = removeComments(lines.get(ii));
 				lines.set(ii, resLine);
 			}
