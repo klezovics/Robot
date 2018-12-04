@@ -21,11 +21,7 @@ public class CommandParser {
 
 	public List<Command> parseScript() {
 
-		List<ScriptLine> lines = null;
-
-		lines = ScriptLineProcessor.splitText(scriptText);
-		lines = ScriptLineProcessor.removeComments(lines);
-		lines = ScriptLineProcessor.removeEmptyLines(lines);
+		List<ScriptLine> lines = preProcessScript(scriptText);
 
 		List<Command> commands = new ArrayList<>();
 		for (int lineNum = 0; lineNum < lines.size(); lineNum++) {
@@ -85,6 +81,13 @@ public class CommandParser {
 		return command;
 	}
 
+	private List<ScriptLine> preProcessScript( String scriptText ){
+		List<ScriptLine> lines = ScriptLineProcessor.splitText(scriptText);
+		lines = ScriptLineProcessor.removeComments(lines);
+		lines = ScriptLineProcessor.removeEmptyLines(lines);
+		return lines;
+	}
+	
 	private static Command makeCommand(String name, String[] args) {
 
 		System.out.println("Trying to get instance from cmd name ");
