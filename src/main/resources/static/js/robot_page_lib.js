@@ -65,7 +65,7 @@ class RobotPageController{
 		this.clearErrorPrompt();
 		
 		let error = document.createElement("div");
-		error.id=RobotPageController.getErrorPromptId();
+		error.id=this.getErrorPromptId();
 		$("#prompt_container").prepend(error);
 		$("#error").addClass("alert alert-danger");
 		$("#error").html("Error: '"+errorStr+"'");

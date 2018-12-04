@@ -44,10 +44,10 @@ public class CommandParser {
 		}
 
 		if (commands.size() == 0)
-			throw new ScriptExecutionException(1, "The script contains no commands to process");
+			throw new ScriptExecutionException(1, "the script contains no commands to process");
 
 		if (!firstCommandIsPositionCommand(commands)) {
-			throw new ScriptExecutionException(1, "First command must be a position command");
+			throw new ScriptExecutionException(1, "first command must be a position command");
 		}
 
 		return commands;

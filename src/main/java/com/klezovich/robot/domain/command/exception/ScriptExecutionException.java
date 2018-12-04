@@ -10,7 +10,10 @@ public class ScriptExecutionException extends RuntimeException {
 	
 	public String toString() {
 		
-		return this.getClass().getSimpleName() + ": line "+lineNum+ " command "+cmdName+" error "+error;
+		if(cmdName == null )
+			return "Line " + lineNum + ": " + error;
+		
+		return "Line "+lineNum+ " command "+cmdName+": "+error;
 	}
 	
 	public ScriptExecutionException( String error ){
