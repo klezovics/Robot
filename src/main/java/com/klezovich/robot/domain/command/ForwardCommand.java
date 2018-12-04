@@ -9,8 +9,8 @@ public class ForwardCommand extends Command {
 
 	private Integer distance;
 
-	public ForwardCommand(String[] args) {
-		super(args);
+	public ForwardCommand(String[] args, Integer lineNum) {
+		super(args, lineNum);
 		this.name = "FORWARD";
 		validate();
 	}

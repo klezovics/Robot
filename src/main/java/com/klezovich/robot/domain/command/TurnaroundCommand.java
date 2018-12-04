@@ -12,8 +12,8 @@ import com.klezovich.robot.domain.command.exception.CommandValidationException;
 public class TurnaroundCommand extends Command {
 		
 
-	public TurnaroundCommand( String[] args) {
-		super(args);
+	public TurnaroundCommand( String[] args, Integer lineNum ) {
+		super(args, lineNum);
 		this.name="TURNAROUND";
 		validate();
 	}

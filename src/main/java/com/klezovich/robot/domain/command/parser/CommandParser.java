@@ -33,7 +33,7 @@ public class CommandParser {
 
 			Command command = null;
 			try {
-				command = parseCommand(line.getText());
+				command = parseCommand(line);
 			} catch (CommandParseException e) {
 				e.setLineNum(line.getLineNumber());
 				throw e;
@@ -53,13 +53,16 @@ public class CommandParser {
 		return commands;
 	}
 
-	public static Command parseCommand(String cmdText) {
+	public static Command parseCommand(ScriptLine cmdLine) {
 
+		String cmdText = cmdLine.getText(); 
+		System.out.println("Cmd text is:'" + cmdText +"'");
+		System.out.println("Cmd text length is:" + cmdText.length() );
 		String[] tokens = cmdText.split(commandArgSep);
 		String cmdName = tokens[0];
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
 
-		Command c = buildCommandObject(cmdName, args);
+		Command c = buildCommandObject(cmdName, args, cmdLine.getLineNumber() );
 
 		return c;
 
@@ -85,21 +88,21 @@ public class CommandParser {
 		return lines;
 	}
 
-	private static Command buildCommandObject(String name, String[] args) {
+	private static Command buildCommandObject(String name, String[] args, Integer lineNum ) {
 
 		switch (name) {
 		case "POSITION":
-			return new PositionCommand(args);
+			return new PositionCommand(args, lineNum);
 		case "FORWARD":
-			return new ForwardCommand(args);
+			return new ForwardCommand(args, lineNum);
 		case "LEFT":
-			return new LeftCommand(args);
+			return new LeftCommand(args, lineNum);
 		case "RIGHT":
-			return new RightCommand(args);
+			return new RightCommand(args, lineNum);
 		case "TURNAROUND":
-			return new TurnaroundCommand(args);
+			return new TurnaroundCommand(args,lineNum);
 		case "WAIT":
-			return new WaitCommand(args);
+			return new WaitCommand(args, lineNum);
 		}
 
 		throw new CommandParseException("unknown command", name);

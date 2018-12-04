@@ -15,8 +15,8 @@ public class PositionCommand extends Command {
 	
 	private Coordinates coordinates;
 		
-	public PositionCommand( String[] args) {
-		super(args);
+	public PositionCommand( String[] args, Integer lineNumber ) {
+		super(args, lineNumber );
 		this.name="POSITION";
 		validate();
 	}

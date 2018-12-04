@@ -11,8 +11,8 @@ import com.klezovich.robot.domain.command.exception.ArgsForZeroArgCommandExcepti
 public class RightCommand extends Command {
 
 	
-	public RightCommand(String[] args) {
-		super(args);
+	public RightCommand(String[] args, Integer lineNum ) {
+		super(args, lineNum );
 		this.name ="RIGHT";
 		validate();
 	}

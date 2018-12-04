@@ -13,8 +13,9 @@ public abstract class Command {
 	protected  Integer  lineNum;
 	protected  String name;
 	
-	public Command( String[] args) {
+	public Command( String[] args, Integer lineNum) {
 		this.args = args;
+		this.lineNum = lineNum;
 	}
 	
 	public abstract Coordinates execute(Robot r);
