@@ -2,9 +2,9 @@ package com.klezovich.robot.domain;
 
 public class Robot {
 
-	Coordinates coordinates;
-	Integer maxX = 5;
-	Integer maxY = 5;
+	private Coordinates coordinates;
+	private Integer maxX = 5;
+	private Integer maxY = 5;
 
 	public Robot() {
 		
