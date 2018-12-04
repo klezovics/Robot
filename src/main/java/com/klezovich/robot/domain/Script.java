@@ -3,8 +3,8 @@ package com.klezovich.robot.domain;
 public class Script {
 
 	private String text;
-	Integer maxX;
-	Integer maxY;
+	private Integer maxX;
+	private Integer maxY;
 
 	public Integer getMaxX() {
 		return maxX;
