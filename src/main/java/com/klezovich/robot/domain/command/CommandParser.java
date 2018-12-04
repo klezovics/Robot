@@ -54,7 +54,7 @@ public class CommandParser {
 		String cmdName = tokens[0];
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
 
-		Command c = makeCommand(cmdName, args);
+		Command c = buildCommandObject(cmdName, args);
         
 		
 		return c;
@@ -82,7 +82,7 @@ public class CommandParser {
 		return lines;
 	}
 	
-	private static Command makeCommand(String name, String[] args) {
+	private static Command buildCommandObject(String name, String[] args) {
 
 		System.out.println("Trying to get instance from cmd name ");
 
