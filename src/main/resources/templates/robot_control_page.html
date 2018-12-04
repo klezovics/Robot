@@ -66,7 +66,8 @@
 				<!-- Only administrators are able to resize the grid -->
 				<div th:if="${#request.isUserInRole('ADMIN')}">
 					X:<input id="x_dim" class="num_input" type="number" min="1" max="5"
-						value="5" /> Y:<input id="y_dim" class="num_input" type="number"
+						value="5" /> 
+					Y:<input id="y_dim" class="num_input" type="number"
 						min="1" max="5" value="5" /> <input id="set_size_button"
 						type="button" value="Set size" />
 				</div>

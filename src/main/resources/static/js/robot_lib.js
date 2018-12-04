@@ -23,7 +23,7 @@ class Robot{
 	draw( x,y ){
 		this.remove();
 		let queryStr ="#"+this.grid.calcGridCellId(x,y);
-		var robot = Robot.createRobot();
+		var robot = this.createRobot();
 		$(queryStr).append(robot);
 	}
 	

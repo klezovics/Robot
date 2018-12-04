@@ -56,8 +56,6 @@ public class CommandParser {
 	public static Command parseCommand(ScriptLine cmdLine) {
 
 		String cmdText = cmdLine.getText(); 
-		System.out.println("Cmd text is:'" + cmdText +"'");
-		System.out.println("Cmd text length is:" + cmdText.length() );
 		String[] tokens = cmdText.split(commandArgSep);
 		String cmdName = tokens[0];
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
