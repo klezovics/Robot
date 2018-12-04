@@ -17,7 +17,7 @@ import com.klezovich.robot.service.ScriptExecutionService;
 public class ScriptExecutionServiceImpl implements ScriptExecutionService {
 
 	@Override
-	public Coordinates executeScript(Script script) {
+	public Coordinates executeScript(Script script) throws ScriptExecutionException {
 
 		List<Command> commands = CommandParser.parseScript(script);
 
