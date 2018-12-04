@@ -63,6 +63,7 @@ class RobotPageController{
 		
 		this.clearSuccessPrompt();
 		this.clearErrorPrompt();
+		this.robot.remove();
 		
 		let error = document.createElement("div");
 		error.id=this.getErrorPromptId();
