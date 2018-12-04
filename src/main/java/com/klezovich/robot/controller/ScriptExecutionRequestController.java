@@ -22,7 +22,7 @@ public class ScriptExecutionRequestController {
 	
 	@PostMapping(value = "/robot_control_page/robots/")
 	@ResponseBody
-	public Object getRobotMovements(@RequestBody @Valid Script script, ModelMap m) {
+	public Object getRobotMovements(@RequestBody @Valid Script script) {
 		
 		try {
 			return scriptExecutionService.executeScript(script);
