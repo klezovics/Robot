@@ -4,7 +4,7 @@ import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
 public class JsonErrorDto {
 
-	String error;
+	private String error;
 
 	public String getError() {
 		return error;
