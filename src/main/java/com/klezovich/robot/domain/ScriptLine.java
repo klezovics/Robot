@@ -6,7 +6,6 @@ public class ScriptLine {
 	private Integer lineNumber;
 	
 	public ScriptLine(String text, Integer lineNumber) {
-		super();
 		this.text = text;
 		this.lineNumber = lineNumber;
 	}
