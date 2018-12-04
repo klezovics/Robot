@@ -58,23 +58,13 @@ public class PositionCommand extends Command {
 		if( y < 0 )
 			throw new CommandValidationException(this, "second argument must be non-negative");
 		
-		Orientation orient=null;
+		Orientation orientation=null;
 		try {
-			orient = Orientation.valueOf(args[2]);
+			orientation = Orientation.valueOf(args[2]);
 		}catch( IllegalArgumentException e ) {
 			throw new CommandValidationException(this, "third argument must be an orientation");
 		}
 		
-		initializeFields();
-		return true;
-	}
-	
-	
-	private boolean initializeFields() {
-		
-		Integer x =  Integer.valueOf(args[0] ); 
-		Integer y =  Integer.valueOf(args[1] ); 
-		Orientation orientation =  Orientation.valueOf(args[2]);
 		coordinates = new Coordinates(x,y,orientation);
 		return true;
 	}
