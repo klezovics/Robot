@@ -21,7 +21,7 @@ public class CommandExecution_Test {
 		
 		Robot r = new Robot( new Coordinates(0,0,SOUTH),5,5 );
 		List<Command> cmds = new ArrayList<>();
-		cmds.add( new ForwardCommand( new String[] {"1"} ) );
+		cmds.add( new ForwardCommand( new String[] {"1"},0 ) );
 		
 		for( Command cmd: cmds ) {
 			cmd.execute(r);

@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.klezovich.robot.domain.Script;
+import com.klezovich.robot.domain.ScriptLine;
 import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 import com.klezovich.robot.domain.command.parser.CommandParser;
 
@@ -97,19 +98,19 @@ public class CommandParser_Test {
 		
 
 		cmdText = "FORWARD 3";
-		c = CommandParser.parseCommand(cmdText);
+		c = CommandParser.parseCommand( new ScriptLine(cmdText,1));
 		assertEquals(c.getClass(), ForwardCommand.class);
 
 		cmdText = "FORWARD -3";
 		try {
-			c = CommandParser.parseCommand(cmdText);
+			c = CommandParser.parseCommand( new ScriptLine(cmdText,1));
 			fail("Failed to catch issue with negative argument");
 		} catch (ScriptExecutionException e) {
 		}
 
 		cmdText = "POSITION 1 1 NA";
 		try {
-			c = CommandParser.parseCommand(cmdText);
+			c = CommandParser.parseCommand( new ScriptLine(cmdText,1));
 			fail("Failed to catch issue with bad orientation");
 		} catch (ScriptExecutionException e) {
 		}
