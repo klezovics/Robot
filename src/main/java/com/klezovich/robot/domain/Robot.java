@@ -115,10 +115,10 @@ public class Robot {
 		int x = c.getX();
 		int y = c.getY();
 
-		if (x < 0 || x > getMaxX())
+		if (x < 0 || x >= getMaxX())
 			valid = false;
 
-		if (y < 0 || y > getMaxY())
+		if (y < 0 || y >= getMaxY())
 			valid = false;
 
 		return valid;
