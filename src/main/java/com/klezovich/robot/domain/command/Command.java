@@ -13,7 +13,7 @@ public abstract class Command {
 	protected  Integer  lineNum;
 	protected  String name;
 	
-	public Command( String[] args ) {
+	public Command( String[] args) {
 		this.args = args;
 	}
 	

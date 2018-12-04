@@ -9,7 +9,7 @@ public class ForwardCommand extends Command {
 	
 	private Integer distance;
 	
-	public ForwardCommand( String[] args ) {
+	public ForwardCommand( String[] args) {
 		super(args);
 		this.name = "FORWARD";
 		validate();

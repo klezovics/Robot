@@ -9,7 +9,7 @@ import com.klezovich.robot.domain.command.exception.ArgsForZeroArgCommandExcepti
 
 public class WaitCommand extends Command {
 	
-	public WaitCommand( String[] args ) {
+	public WaitCommand( String[] args) {
 		super(args);
 		this.name="WAIT";
 		validate();

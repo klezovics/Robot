@@ -12,7 +12,7 @@ public class LeftCommand extends Command {
 	
 	private String name="LEFT";
 	
-	public LeftCommand( String[] args ) {
+	public LeftCommand( String[] args) {
 		super(args);
 		this.name="LEFT";
 		validate();

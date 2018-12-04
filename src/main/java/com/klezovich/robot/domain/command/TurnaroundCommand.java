@@ -12,7 +12,7 @@ import com.klezovich.robot.domain.command.exception.CommandValidationException;
 public class TurnaroundCommand extends Command {
 		
 
-	public TurnaroundCommand( String[] args ) {
+	public TurnaroundCommand( String[] args) {
 		super(args);
 		this.name="TURNAROUND";
 		validate();
