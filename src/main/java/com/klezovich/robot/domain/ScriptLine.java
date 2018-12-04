@@ -2,8 +2,8 @@ package com.klezovich.robot.domain;
 
 public class ScriptLine {
 
-	String text;
-	Integer lineNumber;
+	private String text;
+	private Integer lineNumber;
 	
 	public ScriptLine(String text, Integer lineNumber) {
 		super();
