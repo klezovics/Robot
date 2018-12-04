@@ -6,9 +6,6 @@ public class Robot {
 	private Integer maxX = 5;
 	private Integer maxY = 5;
 
-	public Robot() {
-		
-	}
 	
 	public Robot( int maxX, int maxY ) {
 		this.maxX =maxX;
@@ -41,9 +38,8 @@ public class Robot {
 
 	public Coordinates moveForward(Integer distance) {
 
-		if (null == getCoordinates())
-			throw new RobotControlException("attempting to move robot with no starting coordinates");
-
+		validateCoordinates(this.coordinates);
+		
 		Orientation currentOrientation = coordinates.getOrientation();
 		int x = coordinates.getX();
 		int y = coordinates.getY();
@@ -74,8 +70,7 @@ public class Robot {
 
 	public Coordinates rotate(Direction direction) {
 
-		if (null == getCoordinates())
-			throw new RuntimeException("Attempting to move unitiliazed robot");
+		validateCoordinates(this.coordinates);
 
 		Orientation robotOrientation = coordinates.getOrientation();
 		robotOrientation = robotOrientation.rotate(direction);
@@ -105,7 +100,12 @@ public class Robot {
 		this.maxY = maxY;
 	}
 
+	
 	private boolean validateCoordinates(Coordinates coordinates) {
+		
+		if( coordinates == null )
+			throw new RobotControlException("uninitialized coordinates");
+		
 		boolean valid = true;
 
 		int x = coordinates.getX();

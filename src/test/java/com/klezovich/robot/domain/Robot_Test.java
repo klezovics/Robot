@@ -39,10 +39,11 @@ public class Robot_Test {
 	@Test
 	public void test_Rotations() {
 
-		Robot r = new Robot();
+		
 		Coordinates c = new Coordinates(0, 0, NORTH);
-
-		r.setCoordinates(c);
+       
+		
+		Robot r = new Robot(c);
 		r.rotate(LEFT);
 		assertEquals(new Coordinates(0, 0, WEST), r.getCoordinates());
 		r.rotate(LEFT);
@@ -76,12 +77,12 @@ public class Robot_Test {
 	@Test
 	public void test_LinearMovements() {
 
-		Robot r = new Robot();
+		
 
 		// Moving south tests
 		Coordinates c = new Coordinates(0, 0, SOUTH);
 
-		r.setCoordinates(c);
+		Robot r = new Robot(c);
 		r.moveForward(1);
 		assertEquals(r.getCoordinates(), new Coordinates(0, 1, SOUTH));
 
@@ -105,22 +106,22 @@ public class Robot_Test {
 		assertEquals(new Coordinates(4, 4, EAST), r.getCoordinates());
 
 		// Moving west tests
-		c = new Coordinates(5, 4, WEST);
+		c = new Coordinates(4, 4, WEST);
 		r.setCoordinates(c);
 		r.moveForward(1);
-		assertEquals(new Coordinates(4, 4, WEST), r.getCoordinates());
+		assertEquals(new Coordinates(3, 4, WEST), r.getCoordinates());
 		r.moveForward(2);
-		assertEquals(new Coordinates(2, 4, WEST), r.getCoordinates());
+		assertEquals(new Coordinates(1, 4, WEST), r.getCoordinates());
 
 	}
 
 	@Test
 	public void test_CompountMovements1() {
 
-		Robot r = new Robot();
+		
 
 		Coordinates c = new Coordinates(0, 0, SOUTH);
-		r.setCoordinates(c);
+		Robot r = new Robot(c);
 		r.moveForward(4);
 		assertEquals(new Coordinates(0, 4, SOUTH), r.getCoordinates());
 
@@ -143,18 +144,18 @@ public class Robot_Test {
 
 	@Test
 	public void test_TraverseArenaClockwise() {
-		Robot r = new Robot();
+		
 
 		Coordinates c = new Coordinates(0, 0, SOUTH);
-        r.setCoordinates(c);
+		Robot r = new Robot(c);
 		
-        r.moveForward(5);
+        r.moveForward(4);
         r.rotate(LEFT);
-        r.moveForward(5);
+        r.moveForward(4);
         r.rotate(LEFT);
-        r.moveForward(5);
+        r.moveForward(4);
         r.rotate(LEFT);
-        r.moveForward(5);
+        r.moveForward(4);
         
 		assertEquals( new Coordinates(0,0,WEST), r.getCoordinates() );
 	}
