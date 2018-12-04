@@ -31,17 +31,17 @@ public class CommandParser {
 		List<ScriptLine> script = preProcessScript(scriptText);
 
 		List<Command> commands = new ArrayList<>();
-		for ( ScriptLine line : script ) {
+		for (ScriptLine line : script) {
 
 			Command command = null;
 			try {
-			  command = parseCommand(line.getText());
+				command = parseCommand(line.getText());
 			} catch (CommandParseException e) {
 				e.setLineNum(line.getLineNumber());
 				throw e;
 			}
 
-			command.setLineNum( line.getLineNumber());
+			command.setLineNum(line.getLineNumber());
 			commands.add(command);
 		}
 
@@ -62,8 +62,7 @@ public class CommandParser {
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
 
 		Command c = buildCommandObject(cmdName, args);
-        
-		
+
 		return c;
 
 	}
@@ -81,14 +80,13 @@ public class CommandParser {
 		return false;
 	}
 
-
-	private List<ScriptLine> preProcessScript( String scriptText ){
+	private List<ScriptLine> preProcessScript(String scriptText) {
 		List<ScriptLine> lines = ScriptLineProcessor.splitText(scriptText);
 		lines = ScriptLineProcessor.removeComments(lines);
 		lines = ScriptLineProcessor.removeEmptyLines(lines);
 		return lines;
 	}
-	
+
 	private static Command buildCommandObject(String name, String[] args) {
 
 		switch (name) {
@@ -110,7 +108,6 @@ public class CommandParser {
 
 	}
 
-
 	static public class ScriptLineProcessor {
 
 		public static List<ScriptLine> removeEmptyLines(List<ScriptLine> lines) {
@@ -129,6 +126,7 @@ public class CommandParser {
 			List<String> textLines = Arrays.asList(text.split(commandSeparator));
 			List<ScriptLine> scriptLines = new ArrayList<>();
 			for (int lineNum = 0; lineNum < textLines.size(); lineNum++) {
+
 				String lineText = textLines.get(lineNum);
 				scriptLines.add(new ScriptLine(lineText, lineNum + 1));
 			}
@@ -139,7 +137,7 @@ public class CommandParser {
 		public static List<ScriptLine> removeComments(List<ScriptLine> lines) {
 
 			for (int ii = 0; ii < lines.size(); ii++) {
-				
+
 				ScriptLine resLine = removeComments(lines.get(ii));
 				lines.set(ii, resLine);
 			}
