@@ -84,8 +84,6 @@ public class CommandParser {
 	
 	private static Command buildCommandObject(String name, String[] args) {
 
-		System.out.println("Trying to get instance from cmd name ");
-
 		switch (name) {
 		case "POSITION":
 			return new PositionCommand(args);
