@@ -1,10 +1,17 @@
-package com.klezovich.robot.domain.command;
+package com.klezovich.robot.domain.command.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import com.klezovich.robot.domain.ScriptLine;
+import com.klezovich.robot.domain.command.Command;
+import com.klezovich.robot.domain.command.ForwardCommand;
+import com.klezovich.robot.domain.command.LeftCommand;
+import com.klezovich.robot.domain.command.PositionCommand;
+import com.klezovich.robot.domain.command.RightCommand;
+import com.klezovich.robot.domain.command.TurnaroundCommand;
+import com.klezovich.robot.domain.command.WaitCommand;
 import com.klezovich.robot.domain.command.exception.CommandParseException;
 import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
@@ -106,7 +113,7 @@ public class CommandParser {
 
 	static public class ScriptLineProcessor {
 
-		static List<ScriptLine> removeEmptyLines(List<ScriptLine> lines) {
+		public static List<ScriptLine> removeEmptyLines(List<ScriptLine> lines) {
 
 			for (int ii = 0; ii < lines.size(); ii++) {
 				ScriptLine line = lines.get(ii);
@@ -117,7 +124,7 @@ public class CommandParser {
 			return lines;
 		}
 
-		static List<ScriptLine> splitText(String text) {
+		public static List<ScriptLine> splitText(String text) {
 
 			List<String> textLines = Arrays.asList(text.split(commandSeparator));
 			List<ScriptLine> scriptLines = new ArrayList<>();
@@ -129,7 +136,7 @@ public class CommandParser {
 			return scriptLines;
 		}
 
-		static List<ScriptLine> removeComments(List<ScriptLine> lines) {
+		public static List<ScriptLine> removeComments(List<ScriptLine> lines) {
 
 			for (int ii = 0; ii < lines.size(); ii++) {
 				;
@@ -140,7 +147,7 @@ public class CommandParser {
 			return lines;
 		}
 
-		static ScriptLine removeComments(ScriptLine line) {
+		public static ScriptLine removeComments(ScriptLine line) {
 			String text = line.getText();
 			String[] tokens = text.split(lineCommentSymbols);
 			if (tokens.length > 0)

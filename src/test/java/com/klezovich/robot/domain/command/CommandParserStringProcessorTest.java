@@ -7,7 +7,8 @@ import java.util.List;
 import org.junit.Test;
 
 import com.klezovich.robot.domain.ScriptLine;
-import com.klezovich.robot.domain.command.CommandParser.ScriptLineProcessor;
+import com.klezovich.robot.domain.command.parser.CommandParser;
+import com.klezovich.robot.domain.command.parser.CommandParser.ScriptLineProcessor;
 
 public class CommandParserStringProcessorTest {
 

@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
+import com.klezovich.robot.domain.command.parser.CommandParser;
 
 public class CommandParser_Test {
 
