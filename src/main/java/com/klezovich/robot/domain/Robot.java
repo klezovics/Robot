@@ -10,6 +10,11 @@ public class Robot {
 		
 	}
 	
+	public Robot( int maxX, int maxY ) {
+		this.maxX =maxX;
+		this.maxY=maxY;
+	}
+	
 	public Robot(Coordinates coordinates) {
 		
 		boolean valid = validateCoordinates(coordinates);
