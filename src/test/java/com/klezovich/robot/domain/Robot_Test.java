@@ -34,6 +34,14 @@ public class Robot_Test {
 			
 		}
 
+		try {
+		  r = new Robot( new Coordinates(10,10,NORTH), 10,10 );
+		  fail("Failed to detec out of range coordinates");
+		}catch( RobotControlException e ) {
+			
+		}
+		
+		r = new Robot( new Coordinates(9,9, NORTH),10,10);
 	}
 
 	@Test
