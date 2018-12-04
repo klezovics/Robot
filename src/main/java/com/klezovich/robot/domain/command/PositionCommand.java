@@ -71,10 +71,11 @@ public class PositionCommand extends Command {
 	
 	
 	private boolean initializeFields() {
-		coordinates = new Coordinates();
-		coordinates.setX( Integer.valueOf(args[0]) ); 
-		coordinates.setY( Integer.valueOf(args[1]) ); 
-		coordinates.setOrientation( Orientation.valueOf(args[2]) );
+		
+		Integer x =  Integer.valueOf(args[0] ); 
+		Integer y =  Integer.valueOf(args[1] ); 
+		Orientation orientation =  Orientation.valueOf(args[2]);
+		coordinates = new Coordinates(x,y,orientation);
 		return true;
 	}
 	
