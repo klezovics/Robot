@@ -9,8 +9,8 @@ import com.klezovich.robot.domain.Robot;
 
 public abstract class Command {
 
-	protected String[] args;
-	private   Integer  lineNum;
+	protected  String[] args;
+	protected  Integer  lineNum;
 	protected  String name;
 	
 	public Command( String[] args ) {
