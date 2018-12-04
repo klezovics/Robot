@@ -21,22 +21,20 @@ public class CommandParser {
 
 	public List<Command> parseScript() {
 
-		List<ScriptLine> lines = preProcessScript(scriptText);
+		List<ScriptLine> script = preProcessScript(scriptText);
 
 		List<Command> commands = new ArrayList<>();
-		for (int lineNum = 0; lineNum < lines.size(); lineNum++) {
-
-			ScriptLine line = lines.get(lineNum);
+		for ( ScriptLine line : script ) {
 
 			Command command = null;
 			try {
-			  command = parseScriptLine(line);
+			  command = parseCommand(line.getText());
 			} catch (CommandParseException e) {
-				e.setLineNum(lineNum + 1);
+				e.setLineNum(line.getLineNumber());
 				throw e;
 			}
 
-			command.setLineNum(lineNum + 1);
+			command.setLineNum( line.getLineNumber());
 			commands.add(command);
 		}
 
@@ -57,7 +55,8 @@ public class CommandParser {
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
 
 		Command c = makeCommand(cmdName, args);
-
+        
+		
 		return c;
 
 	}
@@ -68,18 +67,13 @@ public class CommandParser {
 			return false;
 
 		Command command = commands.get(0);
-		Class commandClass = command.getClass();
+		Class<? extends Command> commandClass = command.getClass();
 		if (commandClass.equals(PositionCommand.class))
 			return true;
 
 		return false;
 	}
 
-	private Command parseScriptLine(ScriptLine scriptLine) {
-
-		Command command = parseCommand(scriptLine.getText());
-		return command;
-	}
 
 	private List<ScriptLine> preProcessScript( String scriptText ){
 		List<ScriptLine> lines = ScriptLineProcessor.splitText(scriptText);
