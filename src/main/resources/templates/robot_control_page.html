@@ -36,11 +36,11 @@
 			<!--  Container for displaying the script and control button -->
 			<div class="col-sm-7">
 				<h2>Script</h2>
-				<form th:object="${script}" id="script_form" method="post">
+				<form id="script_form" method="post">
 
 					<!--  Text area where the user can type in the script  -->
 					<textarea autofocus id="text_area_1" name="text_area_1"
-						th:field="*{text}" cols="50" rows="10" form="script_form">
+						 cols="50" rows="10" form="script_form">
 						</textarea>
 					<!--  End of text area -->
 					<br />

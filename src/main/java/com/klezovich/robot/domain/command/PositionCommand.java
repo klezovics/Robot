@@ -23,11 +23,13 @@ public class PositionCommand extends Command {
 	
 	@Override
 	public Coordinates execute(Robot r) {
+		
 		try {
-	    return r.setCoordinates(coordinates);
+	      return r.setCoordinates(coordinates);
 		}catch( RobotException e ) {
 			throw new ScriptExecutionException(this,e.getMessage());
 		}
+		
 	}
 
 	@Override
@@ -67,8 +69,8 @@ public class PositionCommand extends Command {
 		return true;
 	}
 	
-	@Override
-	protected boolean initializeFields() {
+	
+	private boolean initializeFields() {
 		coordinates = new Coordinates();
 		coordinates.setX( Integer.valueOf(args[0]) ); 
 		coordinates.setY( Integer.valueOf(args[1]) ); 

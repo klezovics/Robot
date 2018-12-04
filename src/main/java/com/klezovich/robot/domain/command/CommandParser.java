@@ -14,7 +14,6 @@ public class CommandParser {
 	private static final String commandSeparator = "[\\r\\n]+";
 	private static final String lineCommentSymbols = "//";
 	private static final String commandArgSep = "(\\s)+";
-	private static final String robotCommandPackage = "com.klezovich.robot.command";
 
 	public CommandParser(String scriptText) {
 		this.scriptText = scriptText;
@@ -24,7 +23,7 @@ public class CommandParser {
 
 		List<ScriptLine> lines = null;
 
-		lines = ScriptLineProcessor.splitText(getScriptText());
+		lines = ScriptLineProcessor.splitText(scriptText);
 		lines = ScriptLineProcessor.removeComments(lines);
 		lines = ScriptLineProcessor.removeEmptyLines(lines);
 
@@ -32,14 +31,17 @@ public class CommandParser {
 		for (int lineNum = 0; lineNum < lines.size(); lineNum++) {
 
 			ScriptLine line = lines.get(lineNum);
-			
+
+			Command command = null;
 			try {
-			  Command command = parseScriptLine(line);
-			  command.setLineNum(lineNum+1);
-			  commands.add(command);
-			}catch( CommandParseException e ) {
-				e.setLineNum(lineNum+1);
+			  command = parseScriptLine(line);
+			} catch (CommandParseException e) {
+				e.setLineNum(lineNum + 1);
+				throw e;
 			}
+
+			command.setLineNum(lineNum + 1);
+			commands.add(command);
 		}
 
 		if (commands.size() == 0)
@@ -52,14 +54,13 @@ public class CommandParser {
 		return commands;
 	}
 
-	
-	public Command parseCommand(String cmdText ) {
+	public static Command parseCommand(String cmdText) {
 
 		String[] tokens = cmdText.split(commandArgSep);
 		String cmdName = tokens[0];
 		String[] args = Arrays.copyOfRange(tokens, 1, tokens.length);
 
-		Command c = getInstance(cmdName, args);
+		Command c = makeCommand(cmdName, args);
 
 		return c;
 
@@ -84,7 +85,7 @@ public class CommandParser {
 		return command;
 	}
 
-	private Command getInstance(String name, String[] args) {
+	private static Command makeCommand(String name, String[] args) {
 
 		System.out.println("Trying to get instance from cmd name ");
 
@@ -107,13 +108,6 @@ public class CommandParser {
 
 	}
 
-	public String getScriptText() {
-		return scriptText;
-	}
-
-	public void setScriptText(String scriptText) {
-		this.scriptText = scriptText;
-	}
 
 	static public class ScriptLineProcessor {
 

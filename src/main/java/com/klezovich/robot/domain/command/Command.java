@@ -20,7 +20,6 @@ public abstract class Command {
 	public abstract Coordinates execute(Robot r);
 	
 	protected abstract boolean validate();
-	protected abstract boolean initializeFields();
 	
 	protected Integer getArgNum() {
 		return args.length;

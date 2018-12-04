@@ -35,9 +35,5 @@ public class LeftCommand extends Command {
 		return true;
 	}
 	
-	@Override
-	protected boolean initializeFields() {
-		return true;
-	}
 	
 }

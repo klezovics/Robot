@@ -1,5 +1,7 @@
 package com.klezovich.robot.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,16 +15,14 @@ import com.klezovich.robot.json.JsonErrorDto;
 import com.klezovich.robot.service.ScriptExecutionService;
 
 @Controller
-public class BackEndController {
+public class ScriptExecutionRequestController {
 
 	@Autowired
 	ScriptExecutionService scriptExecutionService;
 	
 	@PostMapping(value = "/robot_control_page/robots/")
 	@ResponseBody
-	public Object getRobotMovements(@RequestBody Script script, ModelMap m) {
-		System.out.println("Hello from back-end controller");
-		System.out.println(script);
+	public Object getRobotMovements(@RequestBody @Valid Script script, ModelMap m) {
 		
 		try {
 			return scriptExecutionService.executeScript(script);

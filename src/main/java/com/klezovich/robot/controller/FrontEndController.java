@@ -25,24 +25,21 @@ public class FrontEndController {
 	public String start() {
 		return "login";
 	}
-	
+
 	@GetMapping("/login")
 	public String getLogin() {
 		return "login";
 	}
 
-	
 	@GetMapping("/robot_control_page")
 	public String getRobotControlPage(Model m, Principal p) {
-		m.addAttribute("script", new Script());
 
 		if (p != null)
 			m.addAttribute("userName", p.getName());
 		else
 			m.addAttribute("userName", "Anonymous");
+
 		return "robot_control_page";
 	}
-
-
 
 }

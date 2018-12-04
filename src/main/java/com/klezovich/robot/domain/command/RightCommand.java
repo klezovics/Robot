@@ -32,9 +32,5 @@ public class RightCommand extends Command {
 		return true;
 	}
 
-	@Override
-	protected boolean initializeFields() {
-		return true;
-	}
 
 }

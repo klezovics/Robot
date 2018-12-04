@@ -45,8 +45,8 @@ public class ForwardCommand extends Command {
 		return true;
 	}
 	
-	@Override
-	protected boolean initializeFields() {
+	
+	private boolean initializeFields() {
 		
 		
 		distance = Integer.valueOf(args[0]);

@@ -39,9 +39,4 @@ public class TurnaroundCommand extends Command {
 		return true;
 	}
 	
-	@Override
-	protected boolean initializeFields() {
-		return true;
-	}
-	
 }

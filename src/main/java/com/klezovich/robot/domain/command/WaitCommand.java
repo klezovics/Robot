@@ -29,9 +29,5 @@ public class WaitCommand extends Command {
 		return true;
 	}
 
-	@Override
-	protected boolean initializeFields() {
-		return true;
-	}
 	
 }
