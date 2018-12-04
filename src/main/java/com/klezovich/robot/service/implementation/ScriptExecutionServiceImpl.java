@@ -20,10 +20,12 @@ public class ScriptExecutionServiceImpl implements ScriptExecutionService {
 	public Coordinates executeScript(Script script) {
 
 		CommandParser parser = new CommandParser(script.getText());
-
 		List<Command> commands = parser.parseScript();
 
-		Robot r = new Robot( new Coordinates(0,0,Orientation.NORTH),5,5);
+		int maxX = script.getMaxX();
+		int maxY = script.getMaxY();
+		
+		Robot r = new Robot(maxX,maxY);
 
 		for (Command command : commands) {
 			command.execute(r);
