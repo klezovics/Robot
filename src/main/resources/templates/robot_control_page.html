@@ -39,8 +39,8 @@
 				<form id="script_form" method="post">
 
 					<!--  Text area where the user can type in the script  -->
-					<textarea autofocus id="text_area_1" name="text_area_1"
-						 cols="50" rows="10" form="script_form">
+					<textarea autofocus id="text_area_1" name="text_area_1" cols="50"
+						rows="10" form="script_form">
 						</textarea>
 					<!--  End of text area -->
 					<br />
@@ -62,9 +62,15 @@
 			<div class="col-sm-5">
 				<h2>Grid</h2>
 				<div id="grid_container"></div>
-				X:<input id="x_dim" class="num_input" type="number" min="1" max="5" value="5"/>
-				Y:<input id="y_dim" class="num_input" type="number" min="1" max="5" value="5"/>
-				<input id="set_size_button" type="button" value="Set size"/>
+		
+				<!-- Only administrators are able to resize the grid -->
+				<div th:if="${#request.isUserInRole('ADMIN')}">
+					X:<input id="x_dim" class="num_input" type="number" min="1" max="5"
+						value="5" /> Y:<input id="y_dim" class="num_input" type="number"
+						min="1" max="5" value="5" /> <input id="set_size_button"
+						type="button" value="Set size" />
+				</div>
+
 			</div>
 			<!--  End of container for displaying the grid -->
 
@@ -80,9 +86,9 @@
 
 	<!--  jQuery rotate is used to rotate the robot -->
 	<script th:src="@{/js/vendor/jQueryRotate_2.3.js}"></script>
-	
+
 	<!--  Libraries for controlling various aspects of the page -->
-    <!--  Custom JS libraries -->
+	<!--  Custom JS libraries -->
 	<!--  Library for controlling the grid -->
 	<script th:src="@{/js/grid_lib.js}"></script>
 
@@ -95,7 +101,7 @@
 	<!-- Draws the initial page and adds listeners -->
 	<script th:src="@{/js/draw_robot_page.js}"></script>
 
-	<
+
 
 </body>
 </html>
