@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.klezovich.robot.domain.Script;
 import com.klezovich.robot.domain.ScriptLine;
 import com.klezovich.robot.domain.command.Command;
 import com.klezovich.robot.domain.command.ForwardCommand;
@@ -17,21 +18,18 @@ import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
 public class CommandParser {
 
-	private String scriptText;
 	private static final String commandSeparator = "[\\r\\n]+";
 	private static final String lineCommentSymbols = "//";
 	private static final String commandArgSep = "(\\s)+";
 
-	public CommandParser(String scriptText) {
-		this.scriptText = scriptText;
-	}
+	
 
-	public List<Command> parseScript() {
+	public static List<Command> parseScript( Script script ) {
 
-		List<ScriptLine> script = preProcessScript(scriptText);
+		List<ScriptLine> scriptLines = preProcessScript( script );
 
 		List<Command> commands = new ArrayList<>();
-		for (ScriptLine line : script) {
+		for (ScriptLine line : scriptLines ) {
 
 			Command command = null;
 			try {
@@ -67,7 +65,7 @@ public class CommandParser {
 
 	}
 
-	private Boolean firstCommandIsPositionCommand(List<Command> commands) {
+	private static Boolean firstCommandIsPositionCommand(List<Command> commands) {
 
 		if (commands.size() == 0)
 			return false;
@@ -80,8 +78,8 @@ public class CommandParser {
 		return false;
 	}
 
-	private List<ScriptLine> preProcessScript(String scriptText) {
-		List<ScriptLine> lines = ScriptLineProcessor.splitText(scriptText);
+	private static List<ScriptLine> preProcessScript( Script script ) {
+		List<ScriptLine> lines = ScriptLineProcessor.splitText(script.getText());
 		lines = ScriptLineProcessor.removeComments(lines);
 		lines = ScriptLineProcessor.removeEmptyLines(lines);
 		return lines;

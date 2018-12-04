@@ -19,8 +19,7 @@ public class ScriptExecutionServiceImpl implements ScriptExecutionService {
 	@Override
 	public Coordinates executeScript(Script script) {
 
-		CommandParser parser = new CommandParser(script.getText());
-		List<Command> commands = parser.parseScript();
+		List<Command> commands = CommandParser.parseScript(script);
 
 		int maxX = script.getMaxX();
 		int maxY = script.getMaxY();

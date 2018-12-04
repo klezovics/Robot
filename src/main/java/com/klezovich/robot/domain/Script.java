@@ -6,6 +6,17 @@ public class Script {
 	private Integer maxX;
 	private Integer maxY;
 
+	
+	public Script() {
+		
+	}
+	
+	public Script(String text, Integer maxX, Integer maxY) {
+		this.text = text;
+		this.maxX = maxX;
+		this.maxY = maxY;
+	}
+
 	public Integer getMaxX() {
 		return maxX;
 	}
@@ -22,13 +33,6 @@ public class Script {
 		this.maxY = maxY;
 	}
 
-	public Script() {
-		
-	}
-	
-	public Script( String text ) {
-		this.text = text;
-	}
 	
 	public String getText() {
 		return text;
