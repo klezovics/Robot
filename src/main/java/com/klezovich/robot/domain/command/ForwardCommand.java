@@ -20,7 +20,7 @@ public class ForwardCommand extends Command {
 	
 	 try {
 	    return r.moveForward( distance );	
-	 }catch( Robot.RobotException e ) {
+	 }catch( Robot.RobotControlException e ) {
 		 throw new ScriptExecutionException(this, e.getMessage() );
 	 }
 	}

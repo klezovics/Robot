@@ -17,10 +17,7 @@ public class Robot {
 	
 	public Robot(Coordinates coordinates) {
 		
-		boolean valid = validateCoordinates(coordinates);
-		if (!valid)
-			throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
-
+		validateCoordinates(coordinates);
 		this.coordinates = coordinates;
 
 	}
@@ -29,17 +26,23 @@ public class Robot {
 		this.maxX = maxX;
 		this.maxY = maxY;
 
-		boolean valid = validateCoordinates(coordinates);
-		if (!valid)
-			throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
-
+	    validateCoordinates(coordinates);
+		
 		this.coordinates = coordinates;
+	}
+
+	public Coordinates setCoordinates(Coordinates coordinates) {
+	
+		validateCoordinates(coordinates);
+	
+		this.coordinates = coordinates;
+		return coordinates;
 	}
 
 	public Coordinates moveForward(Integer distance) {
 
 		if (null == getCoordinates())
-			throw new RuntimeException("Attempting to move unitiliazed robot");
+			throw new RobotControlException("attempting to move robot with no starting coordinates");
 
 		Orientation currentOrientation = coordinates.getOrientation();
 		int x = coordinates.getX();
@@ -47,7 +50,6 @@ public class Robot {
 
 		Coordinates newCoordinates = new Coordinates(coordinates);
 
-		//System.out.println("Moving distance " + distance + "or:" + currentOrientation);
 
 		switch (currentOrientation) {
 		case NORTH:
@@ -83,17 +85,6 @@ public class Robot {
 
 	}
 
-	public Coordinates setCoordinates(Coordinates coordinates) {
-
-		boolean valid = validateCoordinates(coordinates);
-
-		if (!valid)
-			throw new RobotException("Invalid move which leads to out of range coordinates " + coordinates);
-
-		this.coordinates = coordinates;
-		return coordinates;
-	}
-
 	public Coordinates getCoordinates() {
 		return coordinates;
 	}
@@ -114,24 +105,27 @@ public class Robot {
 		this.maxY = maxY;
 	}
 
-	private boolean validateCoordinates(Coordinates c) {
+	private boolean validateCoordinates(Coordinates coordinates) {
 		boolean valid = true;
 
-		int x = c.getX();
-		int y = c.getY();
+		int x = coordinates.getX();
+		int y = coordinates.getY();
 
 		if (x < 0 || x >= getMaxX())
 			valid = false;
 
 		if (y < 0 || y >= getMaxY())
 			valid = false;
+		
+		if (!valid)
+			throw new RobotControlException("invalid move which leads to out of range coordinates " + coordinates);
 
 		return valid;
 	}
 
-	public static class RobotException extends RuntimeException {
+	public static class RobotControlException extends RuntimeException {
 
-		RobotException(String error) {
+		RobotControlException(String error) {
 			super(error);
 		}
 	}

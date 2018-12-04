@@ -11,7 +11,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.klezovich.robot.domain.Robot.RobotException;
+import com.klezovich.robot.domain.Robot.RobotControlException;
 
 public class Robot_Test {
 
@@ -30,7 +30,7 @@ public class Robot_Test {
 		try {
 			Robot r1 = new Robot( new Coordinates(1,1,NORTH), 0, 0 );
 			fail("Failed to detect out of range coordinates");
-		}catch( RobotException e) {
+		}catch( RobotControlException e) {
 			
 		}
 

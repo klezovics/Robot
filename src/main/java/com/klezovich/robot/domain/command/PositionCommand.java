@@ -6,7 +6,7 @@ import java.util.Map;
 import com.klezovich.robot.domain.Coordinates;
 import com.klezovich.robot.domain.Orientation;
 import com.klezovich.robot.domain.Robot;
-import com.klezovich.robot.domain.Robot.RobotException;
+import com.klezovich.robot.domain.Robot.RobotControlException;
 import com.klezovich.robot.domain.command.exception.CommandValidationException;
 import com.klezovich.robot.domain.command.exception.ScriptExecutionException;
 
@@ -26,7 +26,7 @@ public class PositionCommand extends Command {
 		
 		try {
 	      return r.setCoordinates(coordinates);
-		}catch( RobotException e ) {
+		}catch( RobotControlException e ) {
 			throw new ScriptExecutionException(this,e.getMessage());
 		}
 		

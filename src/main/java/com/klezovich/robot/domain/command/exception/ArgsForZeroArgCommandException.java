@@ -5,7 +5,7 @@ import com.klezovich.robot.domain.command.Command;
 public class ArgsForZeroArgCommandException extends CommandValidationException {
  		
 	public ArgsForZeroArgCommandException( Command cmd ){
-		super("Arguments provided for zero argument command");
+		super("arguments provided for zero argument command");
 		setLineNum(cmd.getLineNum());
 		setCmdName(cmd.getName());
 	}
