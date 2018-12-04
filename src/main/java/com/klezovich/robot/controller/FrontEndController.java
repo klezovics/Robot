@@ -34,10 +34,11 @@ public class FrontEndController {
 	@GetMapping("/robot_control_page")
 	public String getRobotControlPage(Model m, Principal p) {
 
-		if (p != null)
-			m.addAttribute("userName", p.getName());
-		else
+		if (p == null)
 			m.addAttribute("userName", "Anonymous");
+		else
+			m.addAttribute("userName", p.getName());
+			
 
 		return "robot_control_page";
 	}
