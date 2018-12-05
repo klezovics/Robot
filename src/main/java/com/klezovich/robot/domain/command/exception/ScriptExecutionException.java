@@ -22,7 +22,7 @@ public class ScriptExecutionException extends RuntimeException {
 
 	public ScriptExecutionException( Command cmd, String error ){
 		this.lineNum = cmd.getLineNum();
-		this.cmdName = 
+		this.cmdName = cmd.getName();
 		this.error = error;
 	}
 

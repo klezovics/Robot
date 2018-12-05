@@ -115,6 +115,9 @@ Additionally, by using CSS animation or transition functionality the robot's
 movements could be visualized for the user - that is a transition would be rendered 
 for every line of the script. 
 
+Aditionally, syntax highlighting could be implemented on teh web-page in the text area and 
+when an error on line X is shown - this line could be highlighted.
+
 ## Back-end ##
 
 The back-end of the project will be described by describing each of the layers. 
@@ -193,7 +196,7 @@ The script is parsed by a class called CommandParser. It pre-processes the lines
  ScriptExecutionService.  And then it checks if the final position is equal to the final 
  position of the input to the .generateScript() method ...  
  
- For example, a 1000 random scenarios for grids of sizes from 1 to 50 are done in the 
+ For example, a 1000 random scenarios for grids of sizes from 1 to 5 0 are done in the 
  automatedTestSequence() method of the com.klezovich.robot.service.implementation.ScriptExecutionService_Test class. 
  
  
