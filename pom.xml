@@ -6,7 +6,7 @@
 
 	<groupId>com.klezovich</groupId>
 	<artifactId>robot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>demo</version>
 	<packaging>jar</packaging>
 
 	<name>robot</name>
