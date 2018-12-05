@@ -6,6 +6,9 @@ In order to run the application you can use one of the following:
 1) Import it into your IDE and select 'Run as SpringBoot application ...' 
 2) Run it using maven 
 
+You can also do testing on the instance of the application which is running on *AWS*
+http://robot-control.us-east-2.elasticbeanstalk.com/
+
 The application runs on port *5000*. Therefore, if you are running a local instance 
 use the following URL: *'http://localhost:5000/'*  
 
