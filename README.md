@@ -194,6 +194,6 @@ The script is parsed by a class called CommandParser. It pre-processes the lines
  position of the input to the .generateScript() method ...  
  
  For example, a 1000 random scenarios for grids of sizes from 1 to 50 are done in the 
- automatedTestSequence() method of the ScriptExecutionService method. 
+ automatedTestSequence() method of the com.klezovich.robot.service.implementation.ScriptExecutionService_Test class. 
  
  
